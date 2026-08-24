@@ -1,13 +1,16 @@
 '''반복문 for 
 for target in object: target에 object의 요소들을 하나씩 대입시켜라! ... 묶음형 자료를 반복!!(일반형 자료X)
         statement
-object자리에 묶음형 자료가 온다 .. list[], set{}, tuple()
+target : 내가 임의로 정한 변수 .. 위에서 따로 target = ~ 할 필요가 없다!
+object : 메모리에 저장된 객체 .. 묶음형 자료를 쓴다.
+target은 object의 객체의 주소값을 저장한다.
+object자리에 묶음형 자료가 온다 .. list[], set{}, tuple() ...* dict형태는 못받는다. 그래서 datas.item()을 통해 리스트 속 튜플 형태의 값으로 형변환을 해준다!
         ''' 
 
 for i in [1, 2, 3, 4, 5, 5, 5]: # range안에 있는 자료들이 순서대로 i에 대입되고 모두 대입되어 대입해야 할 자료가 없으면 탈출한다.
     print(i, end = ' ')
 
-for i in (1, 2, 3, 4, 5, 5, 5): 
+for i in (1, 2, 3, 4, 5, 5, 5): # tuple
     print(i, end = ' ')
 
 for i in {1, 2, 3, 4, 5, 5, 5}: # set은 중복이 안된다.
@@ -17,19 +20,20 @@ for i in {1, 2, 3, 4, 5, 5, 5}: # set은 중복이 안된다.
 print('\n\n')
 
 '''
-# 편차 제곱합의 평균 = 분산 ... 제곱근(분산) = 표준편차
+# 편차 제곱합의 평균 = 분산 ... 제곱근(분산) = 표준편차 ... 평균 = 전체 점수 / 전체 갯수
+                                                        분산 = 
 print('분산 / 표준편차 ---')
 numbers1 = [1, 3, 5, 7, 9] # 합은 25, 평균은 5.0
 total = 0
 for a in numbers1:
-    total = total + a
+    total = total + a 증가치
 print(f"합은 {total}이고 평균은 {total / len(numbers1)}")
 
 
 numbers2 = [3, 4, 5, 6, 7] # 합은 25, 평균은 5.0
 total = 0
 for a in numbers2:
-    total = total + a
+    total = total + a 증가치
 print(f"합은 {total}이고 평균은 {total / len(numbers2)}")
 
 
@@ -42,18 +46,16 @@ print(f"합은 {total}이고 평균은 {total / len(numbers3)}")
 '''
 
 numbers = [1,2,3,4,5]
-total = 0
-avg = total / len(numbers) # .. 평균
-
+avg = sum(numbers) / len(numbers) # .. 평균
 # 편차제곱의 합 
 
 hap = 0
 for i in numbers : 
-    hap = hap + (i - avg) ** 2
+    hap = hap + (i - avg) ** 2 
 print(f"편차제곱의 합 : {hap}")
 var1 = hap / len(numbers)
 print(f"분산은 {var1}")
-print(f"표준편차는 {var1**0.5}")
+print(f"표준편차는 {var1**0.5}") # 분산은 모두 0이 나오기 때문에 분산들을 제곱한 값을 더하면 무조건 양수만 나올 수 있다.
 
 
 print()
@@ -64,12 +66,14 @@ for v in colors:
 
 print()
 
-print(f"'iter()' : 반복 가능한 객체를 하나씩 꺼낼 수 있는 상태를 만들어 주는 함수")
+print(f"'iter()' : 반복 가능한 객체를 하나씩 꺼낼 수 있는 상태를 만들어 주는 함수") # iterate : '반복하다'
 iterator = iter(colors) # iter함수를 사용해도 변수에 리스트 값의 요소를 넣을 수 있다.
-x = next(iterator)
+# iter(colors)하면 colors 안에 있는 객체들을 하나씩 꺼내서 쓴다.
+# iterator = iter(colors)를 하면 colors안에 있는 객체들을 하나씩 가리키는 화살표이다. iter()는 빨-초-파를 순서대로 가리키고 다시 원래대로 돌아가지 않는다.
+x = next(iterator) # 빨강을 가리키고 다음 객체를 가리켜
 y = next(iterator)
 print(x, y)
-for v in iterator :
+for v in iterator : # iterator는 순서대로 뽑아쓴다. 위에서 빨강과 초록을 뽑아썻기에 남은 친구인 파랑만 나오게 된다.
     print(v, end = ' ') # 내가 원할때 하나씩 꺼내서 쓸 수 있다. 주로 next와 함께쓴다
 
 print()
@@ -83,17 +87,19 @@ for idx, d in enumerate(colors, start = 1): # start = 1하면 처음 시작하�
 print()
 
 print('사전형-----------------------')
-datas = {'파이썬' : '만능언어', "java" : '웹용언어', 'maria DB' : 'RDBMS'}
-print(datas.items()) #변수.items() 리스트 안에 dict를 키value 형태로 만들어준다. 리스트 안에 튜플 형태로 만들어준다.
-# dict의 자료형들을 for반복문에서 쓰기위해 형변환을 해준것임 ㅇㅇ [("key1", "value1"), ("key2", "value2"), ("key3", "value3")] 리스트 속 튜플 형태로 만들어주는 것이 .items
-
+datas = {'파이썬' : '만능언어', "java" : '웹용언어', 'maria DB' : 'RDBMS'} # 이번에는 어떤 변수가 리스트가 아닌 dict형태의 자료형의 객체 주소를 저장하고 있다.
+print(datas.items()) #변수.items() : 리스트 안에 dict를 키:value 형태로 만들어준다. 리스트 안에 튜플 형태로 만들어준다.
+# dict의 자료형들을 for반복문(for반복문은 묶음형자료를 받지만 dict형태는 못 받기 때문!)에서 쓰기위해 형변환을 해준것임 ㅇㅇ [("key1", "value1"), ("key2", "value2"), ("key3", "value3")] 리스트 속 튜플 형태로 만들어주는 것이 .items
 # datas.items() = [("key1", "value1"), ("key2", "value2"), ("key3", "value3")]
 
 for i in datas.items(): # dict형태가 리스트 속 튜플 형태로 만들어서 순서가 생겼다. 01234...(파이썬, 만능언어), (java, 웹용언어), (mariaDB, RDMS) 순서로 튜플끼리 짝지어진다
-    print(i[0], ' ~~ ', i[1]) # datas가 items()함수를 통해서 리스트 속 튜플 자료로 바뀌었다. [("key1" = i[0], "value1" = i[1]), ("key2" = i[0], "value2" = i[1]), ("key3" = i[0], "value3" = i[1])
+    print(i[0], ' ~~ ', i[1]) # datas가 items()함수를 통해서 리스트 속 튜플 자료로 바뀌었다.
+    # [("key1" = i[0], "value1" = i[1]), ("key2" = i[0], "value2" = i[1]), ("key3" = i[0], "value3" = i[1])
     # i[0] : key값 , i[1]은 value값이다.
 
-for k, v in datas.items(): # in안의 집합형 자료의 요소가 복수라면 변수를 2개를 써서 따로 값을 받아 사용할 수 있다.
+print()
+
+for k, v in datas.items(): # 집합형 자료의 요소가 복수라면 변수를 2개를 써서 따로 값을 받아 사용할 수 있다.
     print(k, ' ~~ ', v)
 
 print()
@@ -108,7 +114,7 @@ for v in datas.values():
 
 
 '''
-datas.items() : datas라는 dict 집합형 자료에서 key:value값을 리스트 속 튜플 형태로 빼낸다
+datas.items() : datas라는 dict 집합형 자료에서 key:value값을 리스트 속 튜플 형태로 빼낸다.
 datas.keys() : datas라는 dict 집합형 자료에서 keys값만 뽑아낸다.
 datas.values() : datas라는 dict 집합형 자료에서 values값만 뽑아낸다.
 '''
@@ -118,11 +124,11 @@ print('다중 for ---------------------------') # for문 안에 for문이 들어
 for n in [2, 3]:
     print(f"{n}단 ~~~")
     for su in [1,2,3,4,5,6,7,8,9]:
-        print(f'{n} * {su} = {n * su}') # for문 안에 for문 넣기
+        print(f'{n} * {su} = {n * su}') # for문 안에 for문 넣기 {n = 2}에 대해서 {su = 1,2,3,4,5,6,7,8,9}가 대입되고 나서 {n = 3}에 대해서 {su = 1,2,3,4,5,6,7,8,9}이 대입된다.
 
 # 안쪽 반복문이 끝나고 바깥쪽 반복문을 수행한다.
 
-# for문은 집합형 자료가 없으면 반복을 할 수 없다.
+# for문은 집합형 자료가 없으면 반복을 할 수 없다. 대신 while과 다르게 초기값과 증가치를 따로 설정해줄 필요가 없다. 어차피 주어진 집합형 자료가 초기값이고 모든 요소에 대해서 값을 대입시켜야 하기 때문에 증가치는 필요가 없기 때문이다.
 print()
 
 print('다중 for ----, continue / break')
@@ -142,18 +148,19 @@ print("\n\n")
 
 print(f"정규표현식 + for 연습")
 message = """ 
-메이저리그(MLB) 구단주들이 샌디에이고 파드리스의 매각을 만장일치로 승인했다. 매각 금액은 39억 달러(약 5조5000억 원)로 MLB 구단 거래 사상 최고액이다.
-MLB는 17일(현지시간) 화상 회의를 열고 억만장자 투자자 호세 E. 펠리시아노와 콴자 존스 부부의 샌디에이고 인수를 승인했다. 두 사람은 지난 4월 사이들러 가문으로부터 구단 지분 40% 이상을 사들이기로 합의했다. 구단 매각 절차는 수일 안에 마무리될 예정이다.
-39억 달러   39억 달러   39억 달러   abc & * ( ) % ... 웹에서 주워온 임의의 데이터 ... 가공이 필요!!
+안녕하세요 저는 김재환이구요 저는 20040629입니다. 주민번호는 040629 3abcdef이에요 만나서 다들 반갑습니다. 오늘은 2026년 08월 22일 이네요 
+저는 현재 톰홀튼 카페에서 파이썬을 공부중입니다... ㄷㄷ 너무 많네요.... 하지만 열심히 해보겠습니다 현재 시간은 16시 33분입니다
+... 웹에서 주워온 임의의 데이터 ... 가공이 필요!!
 """
 print(message)
 # 정규표현식을 쓰면 데이터에서 내가 원하는 데이터만 쏙 뽑아낼 수 있다.
 # 내가 필요한 정규표현식을 파이썬에서 라이브러리로 지원하고 있다. 우선 내가 정규표현식(re)을 쓰겠다고 주기억장치로 가져와야한다.
-import re # 정규표현식을 쓰기 위한 라이브러리 불러와!
+import re # 정규표현식을 쓰기 위한 라이브러리 불러와! re도 함수이다. 그래서 라이브러리에 저장된 re함수(전문가들이 만들어둠)를 불러온다.
 
 print()
 # 1. re.sub()
-message2 = re.sub(r'[^가-힣\s]', '', message)# 정규표현식에 패턴을 고를려면 r로 시작해야한다. 한글과 공백을 제외한 나머지 자료만 나오게 함 # 패턴과 일치하는 문자엶을 다른 문자열로 치환(message -> message2)
+message2 = re.sub(r'[^가-힣\s]', '', message)# 정규표현식에 패턴을 고를려면 r로 시작해야한다. 한글과 공백을 제외한 나머지 자료만 나오게 함 
+# 패턴과 일치하는 문자엶을 다른 문자열로 치환(message -> message2) # 가-힣그리고 공백을 빼고 모두 substitute한다. 즉, 한글과 공백만 나오게한다.
 print(message2)
 # ^[] : 시작 글자 
 # [^] : 부정(=제외)
@@ -166,7 +173,7 @@ print()
 import re
 message2 = re.sub(r'[^가-힣\s]', '', message)
 print(message2)
-message3 = message2.split(' ') # 공백 기준 문자열 정리 
+message3 = message2.split(' ') # 공백을 기준으로 문자열들을 정리한다 
 print(message3)
 
 
@@ -209,7 +216,7 @@ print()
 print('comprehension : 반복문 + 조건문 + 값 생성을 한 줄로 표현')
 a = [1,2,3,4,5,6,7,8,9,10]
 li = [] # 밑의 조건에 충족하는 수들을 빈칸[]에 채워넣어라
-for i in a: # li에 a값들을 하나씩 밀어넣는다
+for i in a: # li에 a값들을 하나씩 밀어넣는다. 밀어넣어진 값들은 li에 저장되어 리스트 형태로 저장된다.
     if i % 2 == 0:
         li.append(i) # li라는 변수에 i값을 추가해라.
 print(li)# li값의 주소가 반환되어 나타난다.
@@ -261,7 +268,7 @@ print(set(range(6))) # 초기치를 주지 않으면 0부터 시작한다. # 증
 print(list(range(0,6,1)))
 print(list(range(-10, -100, -20)))
 # for i in range()
-for i in range(6): # 0부터 6까지 변수에 대한 값을 i가 받는다.
+for i in range(6): # 0부터 5까지 변수에 대한 값을 i가 받는다.
         print(i, end = ", ")
 
 print()

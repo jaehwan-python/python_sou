@@ -26,6 +26,9 @@ print()
 money = 200
 age = 23
 
+
+# 들여쓰기가 된 부분은 모두 해당 if가 참일 때만 수행한다.
+
 if money >= 500: # money가 500 이상인가? 참이면 아래 수행 / 거짓이면 밑에 같은 행의 else 수행(item = 복숭아)
     item = "사과" # money 변수가 500보다 크다면 item은 "사과"이고 만약 그때~
     if age <= 30: # money가 500이상일때, 나이가 30이하인가? 참이면 아래 수행 / 거짓이면 밑에 같은 행의 else 수행(msg = '참 거짓')
@@ -43,7 +46,7 @@ print("끝")
 
 print()
 
-data = input('점수입력 : ') # 프로그램 입력 도중 잠깐 중단시키고 데이터 값을 입력받는 표준 입력 장치이다.
+data = input('점수입력 : ') # 프로그램 입력 도중 잠깐 중단시키고 데이터 값을 입력받는 표준 입력 장치이다. input앞에 아무것도 없으면 받은 문자는 문자열이 된다.
 print(data, type(data)) # 키보드로 값을 받음. # 내가 입력한 값과 그 값의 데이터 유형이 출력됨. * 우리는 아라비아 숫자 모양의 문자열을 입력한거다. type이 str이 나옴!!...int로 바꾸어야한다.
 print(int(data), type(int(data)))
 # print(data + 5) ...error int와 str을 연산이 불가능 = type mismatch

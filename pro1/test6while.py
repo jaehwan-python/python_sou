@@ -1,4 +1,4 @@
-# 2. 반복문 while 조건 : 조건(if)이 참인 동안 블럭을 수행한다.
+# 2. 반복문 while 조건 : 조건(if)이 참인 동안 블럭을 수행한다.  가장 큰 특징 1. 초기치와 증가치가 있다. 2. while뒤에 있는 조건이 거짓이 될때까지 들여쓰기 된 부분을 수행! ..이걸 증가치가 자제해준다.
 
 a = 1 # 조건에 초기치를 준 것. while문 이전에는 초기값을 설정해주는 작업이 필요!!
 while a <= 5: # 초기 a값으로 1을 받음. a는 5보다 작거나 같다. 조건이 참!
@@ -18,7 +18,7 @@ i = 1
 while i <= 3: # while뒤의 문장이 참이기 때문에 조건이 참이다. 그래서 아래 들여쓰기 된 부분이 거짓이 될 때까지 반복한다.
     j = 1
     while j <= 4:
-        print('i=' + str(i) +', j = ' + str(j))
+        print('i = ' + str(i) + ', j = ' + str(j))
         j = j + 1         # j에 대한 while반복문이 거짓이 될때까지 반복하고(그러면 밖으로 탈출) 다 하면 
     i = i + 1             # i에 대한 while반복문이 거짓이 될때까지 반복한다.
 
@@ -40,7 +40,7 @@ hap = 0
 while su <= 100: # su가 1이기 때문에 조건이 참이다! ... = su가 100이 될때까지 수행해라.
     if su % 3 == 0: # 1~100까지 숫자 중 3으로 나눈 나머지가 0인 수들이 모이게 됨.
         hap = hap + su # 그 3의 배수들을 모두 더함.
-    su = su + 1 # su값이 1부터 100까지 시행한다.
+    su = su + 1 # su값이 1부터 100까지 시행한다. = 증가치
 
 print('합은 ', hap)
 
@@ -49,7 +49,7 @@ print('끝')
 print()
 
 colors = ["r", "g", "b"] # colors는 ["r","g","b"]라는 하나의 리스트의 주솟값을 가지고 있다.
-num = 0 # 변수가 0부터 시작할거다.
+num = 0 # 변수가 0부터 시작할거다. len(colors) = 3
 while num < len(colors): # num이 colors의 리스트의 갯수보다 작다면...
         print(colors[num]) # colors[num]을 입력해라(해당 번째의 colors변수의 리스트 순서에 해당하는 값을 꺼내라). # colors[0]이라고 적어도 되지만 그러면 0으로 계속 값이 고정되어 colors[]괄호 속에 숫자가 변할 수가 없다.
         num = num + 1 # 그리고 아래식을 만족하고 다시 while로 올라가라. # num이 2가 될때까지 수행한다.
@@ -63,7 +63,7 @@ print ('a')
 time.sleep(5) # 위에 꺼를 하고 5초동안 쉬다가 그 후에 시행한다.
 print('b')
 
-sw = input('폭탄 스위치를 누를까요?[Y/N]') # .. 만약 내가 Y, y도 N, n도 아닌 다른 걸 누른다면? else로간다.
+sw = input('폭탄 스위치를 누를까요?[Y/N]', ) # .. 만약 내가 Y, y도 N, n도 아닌 다른 걸 누른다면? else로간다.
 if sw == 'Y' or sw == 'y':
     count = 5
     #pass # 수행할 능력이 없을 때 pass를 적어준다. 안하면 error가 뜬다.
@@ -71,7 +71,7 @@ if sw == 'Y' or sw == 'y':
         print('%d초 남았어요' %count) # = print(f"{count}초 남았어요")
         time.sleep(2)
         count = count - 1
-    print('폭발')
+    print('쾅!!! 뿌와왕! 뿌수수수슈ㅠ...')
 
 elif sw == 'N' or sw == 'n':
     print('작업취소')
@@ -98,8 +98,8 @@ print('끝')
 print()
 
 print('\n 키보드로 정수를 입력 받아 홀수, 짝수 출력(무한 반복)')
-while True:
-    mysu = int(input('확인할 정수 입력(예:5)'))
+while True: # 조건이 없기에 무한 수행이 가능하다.
+    mysu = int(input('확인할 정수 입력(예:5)', ))
     if mysu == 0 :
         print('프로그램 종료')
         break # while문은 조건이 거짓이 될때까지 계속 반복하는거다. 중간에 끊어주려면 break를 사용한다

@@ -2,12 +2,40 @@
 Closure(클로저) : Scope에 제약을 받지 않는 변수들을 포함하고 있는 코드블럭이다.
 내부 함수의 주소를 반환해 함수 밖에서 함수 내의 멤버를 참조하기
 '''
+
+def outer(): # outer함수 수행
+    x = 10  # x=10 정의
+
+    def inner(): # inner함수 정의
+        print(x)
+
+    return inner # return inner()가 아니다. inner는 return값이 없기 때문이다. 이렇게 하면 outer함수 밖에서 inner함수를 관리할 수 있다.
+# return inner는 현재 inner함수에 있는게 아니라 outer함수의 일부이다. 
+# 즉 return inner는 outer함수의 결과를 받을 f가
+# inner를 가지라고 하는 것이다.
+
+f = outer() # outer함수를 수행하고 그 결과값을 f가 받는다.
+
+f() # f를 수행해. 근데 f는 outer함수야.
+
+        # 10         # outer함수를 시행해라
+print(f()) # 10 / none  # outer함수를 시행하고 return값을 내놓아라
+
+
+print('------------------------------')
+
+
 def funcTimes(a,b):
     c = a*b
     print('c = ', c)
     return c
 
 print(funcTimes(2,3))
+
+# funcTimes(2,3)을 입력하면 funcTimes에 2,3을 입력받은 값 수행 c = a*b 값 도출하고 print('c = ', c) 도출한다. 그리고 return c가 있다
+# return c는 c가 있는 주소를 funcTimes참조한다는 뜻이다.
+
+# print가 있기에 return값을 반환해야한다. 
 # print('c = ', c) #...c는 def 내의 지역변수이지 전역변수가 아니다. =즉 c라는 값은 def밖에 존재하지 않는다.
 # 함수 밖에서 함수 내에는 접근할 수 없다...하지만 난..하고 싶다..!!
 
@@ -66,10 +94,23 @@ def outer():
         return count # inner의 count를 nonlocal을 써서 outer의 변수로 꺼냄.
     return inner # 요것이 클로저 : 내부함수의 객체의 주소를 반환함 ... inner뒤에 ()가 없기에 주소만 반환함. 왜? 함수 내의 count를 수정하기 위해서 # outer()는 실행하면 inner의 주소값을 가지게된다.return inner : inner뒤에()가 없기 때문에 함수를 실행하는 것이 아닌 함수 자체의 주소를 반환한다. 파이썬에서 함수 이름도 결국 함수 객체를 가리키는 이름표이기 때문에, inner라고만 쓰면 그 함수 객체를 가라키는 참조를 그대로 넘기는 것이다.
 var1 = outer() #... var1은 outer함수를 수행하는데 outer함수의 결과는 inner함수의 주솟값만 반환한다. 그래서 var1도 inner의 주솟값만 찍힌다.
-
 print(var1) # inner의 주소만 나옴 # outer의 주소가 아닌 inner의 주소가 나온다.
+
+print()
+
 print('count : ', var1())
-print('count : ', var1()) # 호출할 때마다 count가 늘어난다! ...이건진짜 모름 왜?
+print('count : ', var1()) # 호출할 때마다 count가 늘어난다! ...
+'''
+위 함수를 수행하고 나면 var1은 inner를 return 받게 된다. 
+그러면 
+count = 0
+def inner():
+    nonlocal count
+    count = count + 1
+    return count
+가 되고, var1은 inner함수를 수행한다. 그때 nonlocal count는 자신을 감싸고 있는 바로 바깥의 변수를 쓰겠다는 소리로 0부터 시작한다.
+그때 return count는 1의 값을 반환한다. inner() 실행이 끝났다고 count가 사라지지 않고 inner함수는 계속 count를 기억하고 있다.
+'''
 # count라는 내부함수의 변수를 함수 밖에서 접근할 수는 없다. 그래서 클로저를 이용하여 함수 밖에서 사용할 수 있게 만든다.
 # print(var1.count)와 같이 외부에서 직접적인 접근은 불가능하다.
 print(var1.__closure__) # __명령__ : 파이썬 고유 명령 : 파이썬 내부 확인은 가능 # (<cell at 0x00000159A3F7BBB0: int object at 0x00007FF80BFEE498>,)
@@ -121,8 +162,14 @@ def func1(a, b):
     return a + b
 
 func2 = func1 # ... 1. 함수의 주소를 넘긴것 ... '''모든 변수는 주소를 기억하고 있기 때문이다'''... 값을 넘긴 것이 아니다. 모든경우가 그럼ㅇㅇ
-print(func1(2,3))
-print(func2(2,3))
+print(func1(2,3)) 
+print(func2(2,3)) 
+# func1 vs func1()
+# func1 : 함수 그 자체
+# func1() : 함수의 실행결과
+# print가 있어야 return값을 반환한다.
+
+
 
 #2. 인자로 함수를 전달
 def func3(fu): # 2. 인자로 함수 전달 받음
