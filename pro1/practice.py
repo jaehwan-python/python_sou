@@ -1,25 +1,92 @@
-def dofuc1():
-    print('이것이 함수입니다')
-    return 30
-print(dofuc1())
+# .py이나 .txt파일로 올리기
 
 
-a1 = 10
-b1 = 10
-print(a1 is b1, a1==b1)
+'''
+class Machine:
 
-a2 = [10]
-b2 = [10]
-print(a2 is b2, a2==b2)
+    def __init__(self, cupCount=1): 
+        self.coin_input = CoinIn() # Machine클래스로 인해서 새로 생긴 객체 mac
+        self.cupCount = cupCount
+
+    def showData(self):
+        print('-------------------')
+        coin = int(input("동전을 입력하시오"))
+        self
+        print(coin)
+        cup = int(input('몇 잔을 원하세요?'))
+        print(cup)
+        self.coin_input.culc(cup)
+
+
+class CoinIn: # CoinIn이 새로 만든 객체가 Machine과 연결된다.
+
+    def __init__(self, coin = 0, change = 0):
+        self.coin = coin
+        self.change = change
+
+    def culc(self, cupCount): # 잔돈에 대한 계산
+        self.change = 
+        # 잔돈 = 넣은금액 - 전체 금액
+        # 전체 금액 = 한 컵당 가격 * 갯수
+
+
+mac = Machine() # 
+mac.showData(int(input("몇잔을 원하세요?", )))
+coinin = CoinIn.culc(int(input('코인을 입력하세요', )))
+'''
+
+
+        
+
+
+        
+
+'''
+  elif self.coin == 1: # 100원
+            print('요금부족')
+
+        elif self.coin % Machine.cupCount*100 == 0: # 
+            print(f"커피 {self.coin / 200}잔 출력, 거스름돈 : {self.coin - (Machine.cupCount*100)}원을 받으세요")
+
+        elif self.coin % Machine.cupCount*100 == 1: # 300원
+            print(f"커피 {self.coin / 200}잔 출력, 거스름돈 {self.change - (Machine.cupCount*100)}원을 받으세요.")
+        else : 
+            print('거스름돈은 0원입니다.')
+'''
 
 
 
 
 
 
+class Machine:
+    def __init__(self):
+        self.coin_input = CoinIn(self)
 
+    def showData(self):
+        coin = input('동전 입력')
+        count = input('몇 잔 입력')
+        self.coin_input.coin = int(coin)
+        self.coin_input.calc(int(count))
+        change = self.coin_input.change
 
+        if (change >=0) :
+            print("커피", count, "잔과 돈", change, "원")
+        else:
+            print("잔액이 부족합니다")
 
+class CoinIn:
+    def __init__(self, coin = 0, change = 0):
+        self.price = 200
+        self.coin = coin
+        self.change = change
+
+    def calc(self, cupCount):
+        total = cupCount * self.price
+        self.change = self.coin - total
+
+machine = Machine()
+machine.showData()
 
 
 

@@ -35,6 +35,7 @@ class Poham_Car:
         elif q == 0:
             self.turnShowMessage = "직진"
 
+
 if __name__ == "__main__":  # 응용프로그램의 시작이 이곳이 맞는가?
     tom = Poham_Car("미스터 톰")
     tom.turnHandle(10)  # 양수를 주어줌
