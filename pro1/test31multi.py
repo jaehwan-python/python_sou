@@ -48,8 +48,9 @@ class Liger2(Lion, Tiger):
     def showData(self):
         self.hobby()  # 현재 클래스의 hobby. 없으면 부모 클래스에서 찾는다.
         super().hobby() # Lion의 hobby. hobby를 가지고 있는 최고 부모에서 호출한다.
-        hobby()  # 함수 hobby. 클래스 바깥 : 모듈에서 함수를 호출한다. ... 만약 자식 클래스 -> 부모 클래스 -> 일반함수 -> Object(Makers가 만든 클래스) 이 순서로 클래스를 찾는다. 
-
+        hobby()  # 함수 hobby. 클래스 바깥 : 모듈에서 함수를 호출한다. ... 자식 클래스 -> 부모 클래스 -> 일반함수 -> Object(Makers가 만든 클래스)
+#                                           이 순서로 클래스를 찾는다. 
+        
 # 내일은 추상class 그러니 오늘꺼 다 복습하기
 
 a2 = Liger2()

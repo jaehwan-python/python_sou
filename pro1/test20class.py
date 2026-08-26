@@ -31,7 +31,7 @@ print('car1.color : ', car1.color)
 
 car2 = Car('oscar', 20)
 print('car2 객체주소 : ', car1)
-print('car2 : ', car1.name, ' ', car1.speed, ' ', car1.handle)
+print('car2 : ', car2.name, ' ', car2.speed, ' ', car2.handle)
 
 # print('car2.color : ', car2.color) ... eror car2 class에 없어서 공유멤버(Car class)를 찾아봤는데 공유멤버에도 없다
 

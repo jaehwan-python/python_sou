@@ -47,7 +47,8 @@ class PointPayment(Payment) :  # 포인트 결제 클래스 : 금액만큼 포�
 
 
 # 클래스 공통 처리 함수 : 전달받은 객체의 pay()를 호출
-def process_payment(paymentADDr:Payment, amount:int) -> None :  # 여기서부터는 Function이다. 힌트 : 가독성을 위해서 ' :Payment/int'를 주었다. 반환값은 None이다
+def process_payment(paymentADDr:Payment, amount:int) -> None :  # 여기서부터는 Function이다. 힌트 : 가독성을 위해서 ' :Payment/int'를 주었다. 
+#                                                                 반환값은 None이다
     paymentADDr.pay(amount)
 
 if __name__ == "__main__":

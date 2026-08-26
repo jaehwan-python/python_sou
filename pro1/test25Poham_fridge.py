@@ -35,8 +35,10 @@ class Fridge: # 음식을 보관하는 냉장고 클래스이다.
 fObj = Fridge() # 냉장고 객체를 만들었다.
 
 apple = FoodData("사과", "2026년 9월 6일까지")
-fObj.put(apple) # 문이닫혀있음
-fObj.open()
+fObj.put(apple) # 문이닫혀있음 
+# f.Obj.put(apple) = Fridge.put(fObj, apple)
+# 아직 문을 열어주는 메서드를 실행하지 않았다
+fObj.open() # 이 순간부터 냉장고 문은 열려있어 음식을 넣을 수 있다.
 fObj.put(apple)
 fObj.close()
 
