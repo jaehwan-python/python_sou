@@ -52,6 +52,7 @@ par = Parent()
 par = c1
 par.printData()
 
+par = Parent()
 par = c2
 par.printData()
 
