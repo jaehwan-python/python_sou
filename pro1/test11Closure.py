@@ -73,6 +73,7 @@ print()
 print('--------------클로저를 사용하지 않은 경우----------------')
 def out():
     count = 0
+    
     def inn():
         nonlocal count # ...count는 inn이 아니고 out의 지역변수다. ... global전역변수가 되는것 아니다!
         count = count + 1
@@ -88,11 +89,16 @@ print('------------------클로저를 사용한 경우--------------------')
 
 def outer():
     count = 0
+
     def inner():
         nonlocal count
         count = count + 1
         return count # inner의 count를 nonlocal을 써서 outer의 변수로 꺼냄.
-    return inner # 요것이 클로저 : 내부함수의 객체의 주소를 반환함 ... inner뒤에 ()가 없기에 주소만 반환함. 왜? 함수 내의 count를 수정하기 위해서 # outer()는 실행하면 inner의 주소값을 가지게된다.return inner : inner뒤에()가 없기 때문에 함수를 실행하는 것이 아닌 함수 자체의 주소를 반환한다. 파이썬에서 함수 이름도 결국 함수 객체를 가리키는 이름표이기 때문에, inner라고만 쓰면 그 함수 객체를 가라키는 참조를 그대로 넘기는 것이다.
+    return inner # 요것이 클로저 : 내부함수의 객체의 주소를 반환함 ... inner뒤에 ()가 없기에 주소만 반환함. 왜? 함수 내의 count를 수정하기 위해서 
+#                                 outer()는 실행하면 inner의 주소값을 가지게된다.
+#                                 return inner : inner뒤에()가 없기 때문에 함수를 실행하는 것이 아닌 함수 자체의 주소를 반환한다. 
+#                                                파이썬에서 함수 이름도 결국 함수 객체를 가리키는 이름표이기 때문에, inner라고만 쓰면 
+#                                                그 함수 객체를 가라키는 참조를 그대로 넘기는 것이다.
 var1 = outer() #... var1은 outer함수를 수행하는데 outer함수의 결과는 inner함수의 주솟값만 반환한다. 그래서 var1도 inner의 주솟값만 찍힌다.
 print(var1) # inner의 주소만 나옴 # outer의 주소가 아닌 inner의 주소가 나온다.
 

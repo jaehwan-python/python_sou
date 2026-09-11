@@ -24,8 +24,9 @@ print(doFunc1()) # 함수수행 및 ,return값 반환 / print(함수())는 그 �
 print('어떤 작업 처리')
 
 doFunc1()
-print('함수주소는', doFunc1) # 함수뒤에 괄호를 안붙히면 함수의 주소만 나타나고 수행을 하지는 않는다(중요) = 함수의 객체를 알려준다... 괄호의 유무에 따라 의미가 달라진다!
-print('함수주소는', id(doFunc1)) # 함수의 이름도 주소를 기억한다. 16진수로 적힘. id로 적게 되면 10진수로 나타나게됨.
+print('함수주소는', doFunc1) # 함수뒤에 괄호를 안붙히면 함수의 주소만 나타나고 수행을 하지는 않는다(중요) = 함수의 객체를 알려준다... 
+#                             괄호의 유무에 따라 의미가 달라진다!
+print('함수주소는', id(doFunc1)) # 함수의 이름도 주소를 기억한다. 16진수로 적힘. id로 적게 되면 10진수로 나타나게됨
 print('작업종료')
 
 print()
@@ -59,7 +60,8 @@ def doFunc2(name):
     print('name : ', name) # 함수 안에 들어있는 변수는 매개변수라고 부른다! / name = 매게변수 / 호출할 때 name을 적어줘..라는 뜻
 
 
-'''doFunc2() # ... error : 매개 변수를 안적어서 에러가 뜬다. (name) ... 매개변수(가인수)가 함수명에도 안적혀있으면 실인수값도 안적으면 되지만 가인수에 값이 있으면 실인수는 무조건 값과 형태를 맞춰서 적어줘야한다.'''
+'''doFunc2() # ... error : 매개 변수를 안적어서 에러가 뜬다. (name) ... 매개변수(가인수)가 함수명에도 안적혀있으면 실인수값도 
+안적으면 되지만 가인수에 값이 있으면 실인수는 무조건 값과 형태를 맞춰서 적어줘야한다.'''
 # name이라는 매게변수는 들어오는 자료형에 따라서 자료 type이 바뀐다. - 변수 : 동적이다 
 # 함수에 매개변수가 있으면 실인수도 변수값을 지정해줘야한다.
 doFunc2(7)
@@ -90,7 +92,8 @@ print('-----------------------')
 def doFunc4(a1, a2): # 2개의 매게변수가 들어왔다.
     imsi = a1 + a2 # 2개의 수를 더한다
     if imsi % 2 == 1: # 더한 값이 홀수면..
-        return        # 함수 내에서 return은 함수의 무조건 탈출 = 자기를 부른 곳으로 되돌아간다. / 조건이 참일 경우 return으로 넘어간다. return 뒤에 반환할 값이 없어서 'None'이 실행된 것
+        return        # 함수 내에서 return은 함수의 무조건 탈출 = 자기를 부른 곳으로 되돌아간다. 
+#                        / 조건이 참일 경우 return으로 넘어간다. return 뒤에 반환할 값이 없어서 'None'이 실행된 것
     else:             # 더한 값이 짝수면..
         return imsi # return 뒤에 반환할 값이 imsi로 지정했기 때문에 imsi값이 나온다
 
@@ -113,7 +116,7 @@ print('작업종료')
 
 print()
 
-#f.
+#f. def passResult(kor, eng):
 def passResult(kor, eng):
     ss = kor + eng
     if ss >= 50:
@@ -121,7 +124,8 @@ def passResult(kor, eng):
     else:
         return False
 
-if passResult(20, 50): # passResult함수에 실인수가 가인수자리에 들어가서 나오는 값이 참인지 거짓인지를 따짐. 자기가 있는 함수로 되돌아가 참거짓을 따진다.
+if passResult(20, 50): # passResult함수에 실인수가 가인수자리에 들어가서 나오는 값이 참인지 거짓인지를 따짐. 
+#                        자기가 있는 함수로 되돌아가 참거짓을 따진다.
     print('합격')
 else:
     print('불합격')
@@ -130,16 +134,17 @@ print('작업종료') # print()가 있어야 return값을 반환받을 수 있�
 
 print('---------------------------')
 
-#g.
+#g. def swapFunc(a,b):
 def swapFunc(a, b):
     return b, a # = return = (b, a)
 a = 10; b = 20
 print(a, ' ', b)
-print(swapFunc(a,b)) # tuple은 하나의 값이라고 보고 반환함. 함수는 반환값이 반드시 항상 1개(묶음)이다. print()가 있어야 return값을 반환받을 수 있다!!
+print(swapFunc(a,b)) # tuple은 하나의 값이라고 보고 반환함. 함수는 반환값이 반드시 항상 1개(묶음)이다. 
+#                      print()가 있어야 return값을 반환받을 수 있다!!
 
 print('--------------------------')
 
-#h.
+#h. funcTest() : 함수 안에 함수가 들어갈 수 있다.
 def funcTest():
     print('funcTest 멤버 처리')
     def funcInner(): # 함수 안에 함수를 Inner Fucntion이라고 부름 / inner함수는 test함수 안에서만 수행 가능하다.
@@ -150,14 +155,19 @@ funcTest() # ... 함수 내에 함수가 들어갈 수 있다. 함수를 수행�
 print(f"funcinner와 functest이해하셨죠잉?")
 print('-------------------------')
 
-#i.
-#if 조건식 안에 함수 적용
+#i. if 조건식 안에 함수 적용
 def isOdd(para):
     return para % 2 == 1 # 홀수이면 True 반환
-mydict = {x:x for x in range(11) if isOdd(x)} #0에서10까지의 값이 들어올텐데 그때 값이 함수 isODd에서 참이면 x:x가 되거 거짓이면 적지 않는다. 
+mydict = {x:x for x in range(11) if isOdd(x)} # 0에서10까지의 값이 들어올텐데 그때 값이 함수 isODd에서 참이면 x:x가 되고
+#                                               거짓이면 적지 않는다. 
 print(mydict)
 
+
+
 print('------------함수의 종류 암기!!--------------')
+
+
+
 
 print('변수의 생존 범위(Scope Rule)')
 # 변수가 저장되는 이름공간(name space)은 변수가 어디에서 선언되었는가에 따라 생존시간이 다르다. 
@@ -172,7 +182,9 @@ name = '신기해'
 def funcSoccer():
     name = '이기자' # 지역변수 : 현재함수 내에서만 유효하다.
     city = '서울'
-    print(f"이름은 {name}이고 수준은 {player}다. ") # 어디를 먼저 찾아야 하는가? = {name}에 해당하는 놈은 신기해인가 이기자인가? Local에 있는지 확인부터 먼저하는데 존재한다! name = 이기자 {수준} : local에서 없으면 Global에서 찾는다.
+    print(f"이름은 {name}이고 수준은 {player}다. ") # 어디를 먼저 찾아야 하는가? = {name}에 해당하는 놈은 신기해인가 이기자인가?
+#                                                    Local에 있는지 확인부터 먼저하는데 존재한다! 
+#                                                    name = 이기자 {수준} : local에서 없으면 Global에서 찾는다.
     print(f"지역은 {city}")
 
 funcSoccer() # - return값은 반환하지말고 그냥 함수만 수행시켜!

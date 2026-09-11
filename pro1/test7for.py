@@ -1,11 +1,13 @@
 '''반복문 for 
 for target in object: target에 object의 요소들을 하나씩 대입시켜라! ... 묶음형 자료를 반복!!(일반형 자료X)
         statement
+
 target : 내가 임의로 정한 변수 .. 위에서 따로 target = ~ 할 필요가 없다!
 object : 메모리에 저장된 객체 .. 묶음형 자료를 쓴다.
 target은 object의 객체의 주소값을 저장한다.
-object자리에 묶음형 자료가 온다 .. list[], set{}, tuple() ...* dict형태는 못받는다. 그래서 datas.item()을 통해 리스트 속 튜플 형태의 값으로 형변환을 해준다!
-        ''' 
+object자리에 묶음형 자료가 온다 .. list[], set{}, tuple() ...* dict형태는 못받는다. 그래서 datas.item()을 통해 리스트 속 튜플 형태의 값으로 형변환을
+해준다!
+''' 
 
 for i in [1, 2, 3, 4, 5, 5, 5]: # range안에 있는 자료들이 순서대로 i에 대입되고 모두 대입되어 대입해야 할 자료가 없으면 탈출한다.
     print(i, end = ' ')
@@ -124,7 +126,8 @@ print('다중 for ---------------------------') # for문 안에 for문이 들어
 for n in [2, 3]:
     print(f"{n}단 ~~~")
     for su in [1,2,3,4,5,6,7,8,9]:
-        print(f'{n} * {su} = {n * su}') # for문 안에 for문 넣기 {n = 2}에 대해서 {su = 1,2,3,4,5,6,7,8,9}가 대입되고 나서 {n = 3}에 대해서 {su = 1,2,3,4,5,6,7,8,9}이 대입된다.
+        print(f'{n} * {su} = {n * su}') # for문 안에 for문 넣기 {n = 2}에 대해서 {su = 1,2,3,4,5,6,7,8,9}가 대입되고 나서 {n = 3}에 대해서 
+#                                         {su = 1,2,3,4,5,6,7,8,9}이 대입된다.
 
 # 안쪽 반복문이 끝나고 바깥쪽 반복문을 수행한다.
 
@@ -236,7 +239,8 @@ print()
 
 id_names = {1 : 'tom', 2 : 'james'} # 키와 value값을 뒤집고 싶다!
 print(id_names)
-names_id = {val : key for key, val in id_names.items()} # 리스트 속 튜플 형태로 바뀐 원래 dict형태의 id_names[(1,'tom'), (2,'james')]가 key와 val값에 하나씩 들어가서 / val : key 형태를 이룬다 
+names_id = {val : key for key, val in id_names.items()} # 리스트 속 튜플 형태로 바뀐 원래 dict형태의 id_names[(1,'tom'), (2,'james')]가 key와 
+#                                                         val값에 하나씩 들어가서 / val : key 형태를 이룬다 
 # id_names.keys() : dict자료형(id_names)에서 key값만 뽑아냄 
 # id_names.values() : dict자료형(id_names)에서 value값만 뽑아냄
 # id_names.items() : dict자료형(id_names)에서 key:value 모든 값을 뽑아냄.  - 리스트 속 튜플 형태로
