@@ -1,0 +1,183 @@
+평가
+
+<1번>
+
+im = set(li)
+li = list(im)
+print(li)
+
+[1,2,3,4,5,]
+
+
+<2번>
+
+for반복문이다. for 반복문은 for object in range의 형태로 주로 묶음형 자료형에 대해서 하나씩 값을 뽑아낼 때 사용한다. 지금 묶음형 자료로 set 자료가 왔다. 
+
+지금 range 자리에 set 묶음형 자료가 왔다. set은 중복이 불가능하다는 특징을 가지고 있기에 i는 set자료 중 중복값을 제외하고 받는다.
+
+print(i, end = ' ')는 출력된 값을 아래로 하나씩 쓰지 말고 옆으로 쓰라는 뜻이다.
+
+그래서 값을 출력 1 2 3 4 5 가 된다.
+
+
+<3번>
+
+su = 1
+hap = 0
+hap 0부터 100까지를 하나의 자료로 만들어야 한다.
+for su in hap
+
+if su <= 100:
+       if su % 3 == 0 or su % 4 == 0 and su % 7 ! == 0
+                hap = hap + su # 1부터 100까지 
+
+
+for hap in 
+
+range = []
+for i in 
+
+
+count와 total구하기
+
+
+<4번>
+
+제어문에서 반복을 처리할 때는 for와 while문이 있다. while은 일반 자료형의 반복을 처리할 때 사용하고 for는 묶음형 자료(list, set, tuple)을 처리할 때 사용한다.
+
+함수란 객체지향적인 프로그램에서 자원의 재활용을 위해서 앞에서 자주사용하는 코드를 하나로 묶어 정리한 것을 말한다. 
+함수의 형태는
+def 함수명(가인수):
+       실행문
+        return 값
+함수명(실인수)
+의 형태이다. 여기서 가인수와 실인수는 같은 type의 자료여야하고 return값은 적혀있지 않으면 None을 반환한다.
+함수를 시행할 때 'print(함수명()) vs print(함수)'에는 큰 차이가 있다. 결국 함수도 메모리에서 주소를 참조하게 된다. 단순히 '함수'만 print하게 되면 함수의 주소가 출력되고 함수명()을 하게되면 함수를 수행한 return값을 반환하게 된다.
+
+함수를 이용한 반복 처리에는 Recursive Fucntion이 존재한다. 이 함수는 진행과정에 있어서 내려갈 때는 연산하지 않고 역으로 다시 올라오면서 연산처리를 한다.
+
+
+<5번> 
+5 / 3 은 5를 3으로 나눌 때 나오는 실수값을 의미한다. 즉 이 형태는 float 타입으로 값을 내보낸다.
+5 //3 은 5를 3으로 나눈 몫을 의미한다. 즉, 이 형태는 int 타입으로 값을 내보낸다.
+5 % 3은 5를 3으로 나눌 때의 나머지를 의미한다. 
+
+
+<6번>
+
+global 
+nonlocal
+
+
+global을 하게되면 함수의 완전한 바깥으로 나가서 전역변수로 역할을 하게되고
+nonlocal을 하게되면 자기자신을 감싸고 있는 바로 바깥의 함수로 연결된다.
+
+
+<7번>
+
+원래 하나의 변수는 하나의 값만 받을 수 있다. 하지만
+위에서처럼 3개의 변수가 나란히 있으면서 set집합의 값을 받을 수 있다.
+그때 v1의 변수에 *을 써주면 그 변수는 v2와 v3가 각각 하나의 값만 취하고 남은 나머지 객체들에 대해서 리스트 형태로 하나의 값을 받을 수 있다.
+그러면 저기서 v2 = 4, v3 = 5를 받고 v1이 나머지를 받을까?
+그건 아니다. 보면 집합형 자료가 set으로 표현되어 있다. set은 중복자료를 가질 수 없기에 저 코드는 
+*v1, v2, v3 = {1,2,3,4,5} 로 고칠 수 있다.
+다시 여기서 v2는 4, v3는 5를 가지고 *v1은 [1,2,3]을 가지게 된다.
+
+
+<8번>
+
+람다함수는 삼항연산처럼 아래로 길어보이는 코드를 직렬로 보기 쉽게 쓴 코드이다.
+이전에 함수들은 한번 저장하면 그 메모리가 계속 유지되어 언제든 호출이 가능했지만 이런 람다함수는 한번 사용되면 그걸로 끝으로 더 이상 유효하게 되지 않는다는 특징이 있다.
+
+def Hap(m,n):
+  return m+n *5
+print(Hap(1,2)
+를 람다함수의 형태로 표기하면
+
+print((lamda m, n : m + n *5)(1,2))
+즉 m,n을 매개변수로 가지는 람다함수는 m+n*5를 return한다는 뜻이다.
+
+
+<9번>
+
+'1'에서 '6'이전까지의 수인 '5'까지를 '2'를 증가치로 잡아서 하나씩 빼와서 list자료형으로 저장하라는 뜻이다.
+즉, 여기서 2 는 증가치를 의미한다.
+[1,3,5]를 출력한다.
+
+
+<10번>
+
+git에서 작업을 할 때, Working Directory에서 작업하고 Stage에 올린 뒤(git add files) 최종적으로 History(git commit)에 올린다.
+반대로 History에서 내용을 수정하여 Stage로 내릴 수도 있고(fit reset -- files) Stage에서 Working Directory로 내려갈 수 도 있다.(git checkout -- files)
+
+git commit -m "로그인 기능 추가"를 git bash에 입력한다.
+
+
+<11번>
+
+dot = 1
+star = 10
+
+while star <= 10:
+    print(star * '*', sep = '')
+    star = star - dot
+
+
+<12번>
+
+year = 0
+while  True: 
+    yun_year = int(input('연도 입력'))
+    if yun_year % 4 == 0:
+        print(f'{yun_year}년은 윤년')
+        if yun_year % 100 == 0:
+            print(f'{yun_year}년은 평년')
+            if yun_year % 400 == 0:
+                print(f"{yun_year}년은 윤년")
+            else:
+                print(f'{yun_year}년은 평년')
+        else:
+            print(f'{yun_year}년은 윤년')
+    else:
+        print(f"{yun_year}는 평년")
+        break
+
+
+<13번>
+1) i <=100 and i % 10 != 3   #100 이하의 숫자들 중 3으로 끝나는 숫자만 
+2) print(i)
+3) continue   # 그냥 무시하고 지나친다.
+4) break # 반복문을 빠져나온다.
+
+
+<14번>
+class Gugudan:
+    def print_dan(self):
+        dan = 3
+        i = 1
+        while dan <= 9:
+              if dan % 2 == 1:
+                    result = dan * i
+                    print(result)
+              dan = dan + 1
+gugu = Gugudan()
+gugu.print_data())
+
+
+<15번>
+
+
+class Bicycle:
+
+    def __init__(self, name, wheel, price):
+        self.name = name
+        self.wheel = wheel
+        self.price = price
+
+    def display(self):
+        cost = self.wheel * self.price
+        print(f"{self.name}님 자전거 바퀴 가격 총액은 {cost}원 입니다.")
+         
+gildong = Bicycle('길동', 2, 50000) 
+gildong.display()
+

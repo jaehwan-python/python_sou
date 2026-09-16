@@ -8,7 +8,8 @@ try:
 #   읽을 파일 C:\works\projects\pro2\ftest.txt
 #    f1 = open(os.getcwd() + r'\ftest.txt', mode = 'r', encoding = 'utf-8')  # 외부 파일을 읽을 때 경로를 알려줘야함.mode는 읽기
 #    f1 = open(r'C:\works\projects\pro2\ftest.txt', mode = 'r', encoding = 'utf-8')
-#   위 두가지 statesment 모두 가능하지만 위에 statesment를 보면 os.getcwd()를 통해서 현재있는 내가 속해 있는 파일의 이름을 지정해준다. 그리고 우린 파일명만 적어주면 된다.
+#   위 두가지 statesment 모두 가능하지만 위에 statesment를 보면 os.getcwd()를 통해서 현재있는 내가 속해 있는 파일의 이름을 지정해준다. 
+#   그리고 우린 파일명만 적어주면 된다.
 
     f1 = open(os.getcwd() + r'\ftest.txt', mode = 'r', encoding = 'utf-8')
     print(f1)
