@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지와 링크</title>
+</head>
+<body>
+    이미지 삽입(자기 폴더(pro7web3basic)에서 이미지 폴더(images)를 따로 만들어서 짜장면 사진을 jpeg로 넣어줌)<br>
+    <img src = images/food.jpeg width="100" title="짜장면" alt= "세상에서 제일 맛있는 짜장면~"> 
+    <br>
+    <img src = https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA2cjvMG.img?w=612&h=452&m=6&x=410&y=139&s=173&d=173>
+    <br>
+
+    ** a tag(다른 페이지나 주소로 이동하는 링크를 만듦) 연습 **<br>
+    <!--형식은 
+    <a href = "이동할 주소 or 파일">화면에 보일 글자 </a> = Hyper Text = http의 ht가 hyper text이다.
+    -->>
+    <a href = "web1.html">web 문서 보기 </a><br>
+    <a href = "web1.html" target = "_blank"> 문서 보기(새 탭) </a><br>
+    <a href = "web1.html" target ="_new"> 문서 보기(새 탭) </a><br>
+    <a href = "https://www.kbs.co.kr">kbs 방송보기 </a><br>
+    <a href = "web1.html">
+        <<img src = images/food.jpeg width="100"> <!--이미지에 hyper text를 부여할 수도 있다.-->
+    
+    </a><br>
+    <a href = "sample.txt">text 문서 보기 ... 해석 가능</a><br>
+    <a href = "sample.dat">특수 문서 보기 ... 해석 불가능 (다운로드가 뜸)</a><br>
+
+    <a href = "mailto:pykwon@hanmail.net"> pyk이메일</a><br>
+
+    <a href = "kbs/sbs/aa.html">동일 선상의 폴더의 만들어진 html 불러와서 문서 보기 </a><br>
+    <a href = "mbc/bb.html">동일 선상의 폴더의 만들어진 html 불러와서 문서 보기 </a><br>
+    <a href = "/pro7web3basic/mbc/bb.html">mbc/bb.html의 문서 보기(상대경로)</a><br>
+    <a href = http://127.0.0.1:5500/pro7web3basic/mbc/bb.html>mbc/bb.html로 가서 문서 보기(절대경로)</a><br>
+
+    <hr>
+    -- iframe 연습 --<dr>
+    <!-- frame : Web 브라우저 화면 영역에 html이 표현(랜더링) 되는 영역 : 1개만 존재
+        iframe : frame내에 sub frame을 만들 수 있다. - 한 화면에 여러 개의 html문서 표현이 가능하다
+    -->
+    <iframe src="web1.html" width = "98%" height = '150' style="border: none;" name = "tiger"></iframe>
+    <!--height는 %를 줄 수 없다.-->>
+
+    <a href = "https://www.daum.net" target = "tiger">  daum 페이지 보기 </a><br>
+    <a href = "https://www.korea.com" target = "tiger">  korea 페이지 보기 </a><br>
+    <br><br>
+    작성자 : 홍길동
+</body>
+</html>
+
+<!--마우스 오른쪽 눌러서 live ~누르면 곧바로 web이 만들어지면서 실행된다.-->>

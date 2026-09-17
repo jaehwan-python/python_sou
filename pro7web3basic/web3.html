@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0916 오후 수업</title>
+</head>
+<body>
+    <h3>table tag (표)</h3>
+    <table border = "1"> <!--border를 쓰면 테두리가 생긴다.--> <!--W3C는 border = '1'만 허용한다. 스타일은 css가 담당하도록 한다!! 
+                        ..여기서 html과 css가 연결된다.-->
+        <tr>
+            <th>번호</th><th>이름</th><th>주소</th>  <!--th 태그는 bold, align:center기본값이다.-->
+        </tr> <!--tr은 테이블 안에 하나의 행을 지정할 때 써준다-->
+        <tr>
+            <td width = '100'>1</td><td>김재환</td><td>안동시</td> <!--일반데이터는 td태그에 넣는다-->
+        </tr>
+        <tr>
+            <td>2</td><td>권민석</td><td>구미시</td>
+        </tr>
+        <tr>
+            <td>3</td><td></td><td></td>
+        </tr><!--td,tr,th는 모두 독립적으로 쓸 수 없고 <table>자료 안에서만 쓸 수 있다.-->
+    </table>
+
+    <table border = "1"> 
+        <tr> <!--열병합/행병합 : colspan = '2', : rowspan = "2" : 2의 행/열을 하나로 합친다.-->
+            <td width = "200" colspan = "2">a</td>
+            <td width = "200">b</td>
+            <td width = '450' rowspan = "3">c</td> 
+        </tr> 
+        <tr> 
+            <td>1</td>
+            <td>2</td>
+            <td>3</td> 
+        </tr>
+        <tr>
+            <td> <!--하나의 td를 cell이라고 함. cell 안에 table을 작성할 수 있다.-->
+                <table border = "3">
+                    <tr>
+                        <td>python</td>
+                        <td>JAVA</td>
+                    </tr><tr>
+                        <td>C</td>
+                        <td>JAVA</td>
+                </table>
+            </td>
+            <!--web화면을 예쁘게 꾸미려면 table을 만들고 form 태그 안에 써주어야 크라이언트를 넘길 수 있다.-->
+            <td>kor</td>
+            <td>eng</td> 
+        </tr>
+    </table>
+    <hr>
+    -- form 태그 생성 : 서버로의 전달용 입력 양식 작성 --
+    <form action = "aa.html" method = "get">
+        1. 이름 : <input type="text" name = "name" id = "irum" size = "30"> <br>
+        2. 나이 : <input type="text" name = "age" value = "23" readonly> <br>
+        3. 비밀번호 : <input type = "password" name = "pwd"><br>
+        4. 메시지 : <textarea name = "msg" cols = '50' rows = "5">멀티라인 텍스트 박스</textarea>
+        <br>
+        5. 학년 : 
+            <input type = 'radio' name = 'hak' value = '1'>1학년&nbsp;&nbsp; 
+            <input type = 'radio' name = 'hak' value = '2' checked>2학년&nbsp;&nbsp; 
+            <input type = 'radio' name = 'hak' value = '3'>3학년<br>
+        6. 성별 : 
+            <input type = 'radio' name = 'gender' value = '남' checked>남성&nbsp;&nbsp; 
+            <input type = 'radio' name = 'gender' value = '여'>여성<br> 
+        7. 과목 :
+            <input type = 'checkbox' name = 'gwa' value = 'python' checked>파이썬&nbsp;&nbsp; 
+            <input type = 'checkbox' name = 'gwa' value = 'maria db'>마리아 &nbsp;&nbsp;
+            <input type = 'checkbox' name = 'gwa' value = 'oracle'>오라클 <br>
+        8. 지역 :
+            <select name = "addr">
+                <option value = "c" selected> 시청 </option>
+                <option value = "j" > 종로 </option>
+                <option value = "k" > 강남 </option>
+            </select><br>
+        9. 파일 선택 : <input type = "file" name = "fname"><br>
+        10. 숨김 : <input type="hidden" name = "jumsu" value = "90">
+        <!--form태그 안쪽에서 적는다.-->
+            <br><br>
+        <input type = 'submit' value = '전송확인' /> <!--서버로 자료 전송-->
+        <input type = 'reset' value = '입력취소' /> <!--입력 취소(초기화)-->
+        <!--web server에서 수정사항이 안바뀌면 web에서 shift + F5 눌러라 -->
+    </form>
+</body>
+</html>
+

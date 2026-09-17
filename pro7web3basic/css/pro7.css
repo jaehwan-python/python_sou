@@ -1,0 +1,30 @@
+/* 별도의 css 파일 : 여러 개의 html 문서에서 스타일 적용 가능*/
+#myid2l{
+    background-color: yellow;
+    color: red;
+    font-size: 20px;
+        }
+
+/*pro7.css를 web4css.html과 연결해줘야한다.*/
+
+/* 색깔을 정하는 동적 선택자 */
+/* input:focus{background-color: red;}*/
+/* input:focus{background-color: #ffff00;}*/
+/* input:focus{background-color: rgb(255,255,0);}*/
+input:focus{background-color: rgb(100%,100%,0%);}
+
+a:link{text-decoration: non;} /*a태그의  밑줄을 없앤다.*/
+a:hover{color: orange; font-size: 30px}/*a태그에 마우스를 가져다 대면 글자가 커진다.*/
+
+/*부모, 자식, 자손, 클래스, 아이디 선택 */
+/*div,b  vs div b  vs div > b를 구분해야 한다.*/
+b{font-size: 8px}
+div b{font-size: 16px} /*div tag에 속해있는 b tag들만 16글자 크기로 만들어라 = div의 자식들 중 b tag만 적용 */
+div > b{font-size:20px;color: blue ;}  /*div tag의 직계자식만 해당..div의 바로 밑에 b만 가능하다. */
+/*자식과 자손의 차이를 구별해야한다. 자손은 div와 b tag 사이에 다른 tag가 존재한다.!!*/
+div b#hi{font-size : 30px}     /*id가 hi인 div*/
+div b.hello{font-size : 50px}  /*class가 hello인 div*/
+
+/*이렇게 html과 css를 끝났다.*/
+/*w3c validator(validator.w3.org)에서 내가 만든 css의 코드를 올리면 검사를 해준다.*/
+
