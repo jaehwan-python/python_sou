@@ -1,35 +1,43 @@
+<!--이번시간에는 html구조 안에서 css를 이용하여 웹을 꾸밀 거다.-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>이번시간에는 html에서 css를 이용해보아용t</title>
     <!--인터널 방식 스타일 지정 선언-->
-    <style type = "text/css"> /*css 선언함. 여기서부터는 css 시작*/
+    <!--head부분에서는 실제로 보이는 화면이 아니라 앞으로 이런걸 쓸거야라는 큰 틀을 지정해준다.-->
+    <style type = "text/css"> /*css 선언함. 여기서부터는 css 시작, 그럼 문법도 css 문법을 쓴다. 주석도 형태가 다르다*/
         /* css 주석처리다*/
         h1{
             font-size: 30px; 
             font-family: 궁서; 
             color: red;
             }
+        /*body에 <h1>안녕하세용</h1>이 있으면 자동으로 글꼴과 특성이 바뀐다.*/
+            
         h2, b {font-size: 8px; 
                 color: blue;}
-        
+        /*그룹 선택자로 <h2>와 <b> 둘 다 바뀐다.*/
+
         .cl {  /*선택자 : class명*/
             color : silver;
             font-family: 돋움, 궁서, serif, "Time New Roman";
             }
+        /*선택자 앞에 .이 붙으면 클래스 선택자다.*/
         
         #myid1{  /* 선택자 : id명*/
                 color: cyan;
                 font-style: italic;
         }
+        /*선택자 앞에 #가 붙으면 아이디 선택자다.*/
 
         /*css방식을 적용하면 기존 html방식은 취소된다*/
     </style>
 
 <!--External 스타일 적용-->
-<link rel = 'stylesheet' type = 'text/css' href = 'css/pro7.css'> <!--이렇게하면 외부 파일의 css문을 들고 옴-->>
+<link rel = 'stylesheet' type = 'text/css' href = 'css/pro7.css'> <!--이렇게하면 외부 파일의 css문을 들고 옴-->
 
 
 </head>

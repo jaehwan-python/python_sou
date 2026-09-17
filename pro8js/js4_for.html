@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2> **반복문 for(초기값; 조건;증가값)**</h2>
+    <script>
+        //for(let a = 1; a <= 5; a+a+1){
+        //for(let a = 1; a <= 5; a+=1){
+        for(let a = 1; a <= 5; ++a){   //'a'는 지역변수
+            document.write("a값은" + a + "<br>");
+        }
+        //document.write("for 블럭 수행 후 a 값은" + a + "<br>")
+
+        let a = 1 // a가 전역변수
+        for(let a = 1; a <= 5; ++a){   //'a'는 지역변수
+            document.write("a값은" + a + "<br>");
+        }
+        document.write("for 블럭 수행 후 a 값은" + a + "<br>")
+
+        document.write("<br>"); // 증가치가 2
+        for (let a = 3; a < 11; a+=2){
+            document.write("a값은" + a + "<br>");
+        } 
+
+        document.write("<br>"); 
+        for (let a = 5; a >= 1; a--){
+            document.write("a값은" + a + "<br>");
+        } 
+
+        document.write("<br> 다중 for <br>"); 
+        for (let i = 1; i <= 3; i++){
+            document.write("i값 --> " + i + "&nbsp;&nbsp");
+            for (let j = 1; j <= 4; j++){
+            document.write("j값 ==> " + j + "&nbsp;&nbsp");
+            }
+            document.write("<br>")
+        } 
+
+        document.write("<br>1~10까지의 정수의 합<br>")
+        let hap = 0 // 누적 기억 장소는 초기화
+        for(let su = 1; su <= 10; su++){ // su 값이 1씩 증가|누적
+            hap = hap + su; // hap+=su방법을 추천
+        }
+        document.write(hap);
+
+        document.write("<br>1~100까지의 정수중 2의 배수이거나 5의 배수가 아닌 수의 합의 합<br>")
+        // ==  : 느슨한 동등 비교로 타입을 자동 변환한 후에 값만 비교한다.
+        // === : 엄격한 일치 비교로 데이터 타입이 모두 같아 true를 반환한다. 
+        document.write(10 == "10");  // True : "10"을 10으로 자동변환해서 비교
+        document.write(10 === "10"); // false : type까지 비교...java의 if문에서 비교 시 ===를 써야한다.
+        document.write("<br>")
+
+        let sum = 0 // 누적 기억 장소는 초기화
+        for(let nu = 1; nu <= 100; nu++){ // nu 값이 1씩 증가|누적
+            // if (nu % 2 == 0 && nu % 5 != 0) // hap+=su방법을 추천 // && = and | = or // ==는 비권장, ===권장! 
+            if(nu % 2 == 0 && nu % 5 !== 0)
+                sum = sum + nu;
+        }
+        document.write(sum);
+        // 자바스크립트 코뿔소 완벽가이드로 해보기
+
+        document.write("<br>2~9 구구단 출력 - table에 출력<br>")
+        document.write("<table border = '1'>")
+            for(let a = 2; a < 10; a++){
+                document.write("<tr>");
+                for(let b = 1; b < 10; b++){
+                    // document.write("<td>")
+                    // document.write(a + "*" + b + "=" + a*b);
+                    // document.write("<td>") ... 옛날 방식
+                    document.write(`<td>${a}*${b}=${a*b}&nbsp;&nbsp;</td>`); // 템플릿 문자열
+                    
+                    }
+                document.write("</tr>")
+            }
+            document.write("</table>");
+    </script>
+    
+</body>
+</html>

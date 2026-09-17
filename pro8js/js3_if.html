@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>**조건 판단문 if**</h3>
+    <script>
+        //let ave = prompt("평균 점수 입력: ", "10") // 파이썬에서는 input을 썼다.
+        //document.write("ave : ", ave)
+
+        let ave = 85;
+        if(ave >= 90) // 파이썬에서는 if ave >= 90: ... 들여쓰기 안해도 된다.
+            document.write("점수 : " + ave + "이므로 <b style = 'color:blue'>우수</br>");
+        else if(ave >= 70)
+            document.write("점수 : " + ave + "이므로 <b style = 'color:red'>보통</br>");
+        else
+        document.write("점수 : " + ave + "이므로 <b style = 'color:cyan'>저조</br>");
+    </script>
+
+    <br>**조건 판단문 switch (key)**<br>
+    <script>
+        let result = "B" // 학점 기억 변ㅅ
+
+        switch(result){ // 파이썬, c는 들여쓰기로 자신의 영역을 확보하지만 javascript는 {}자기의 영역을 지정한다.
+        case "A": {
+            document.write("매우우수")
+            document.write("good")
+            break; // break를 통해 case A 탈출
+        }
+        case "B": document.write("우수"); break;
+        case "C": document.write("보통"); break;
+        case "D":                               // 아무것도 없으면 그냥 흘러 내려와서 '불량'이나 '기타'가 나오게 된다.
+        case "F": document.write("불량"); break;
+        default:document.write("기타");
+    }
+    </script>
+    <br>**반복문**<br>
+    <script>
+
+
+    </script>
+
+</body>
+</html>

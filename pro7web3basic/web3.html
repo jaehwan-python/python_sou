@@ -1,3 +1,5 @@
+<!--table만들기 + 셀 병합(열/행) + table안에 table넣기 + form입력 양식 만들기 + get방식으로 서버에 전송하기-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,35 +8,47 @@
     <title>0916 오후 수업</title>
 </head>
 <body>
-    <h3>table tag (표)</h3>
+    <h3><b>table tag <strong>(표)</strong></b></h3>
     <table border = "1"> <!--border를 쓰면 테두리가 생긴다.--> <!--W3C는 border = '1'만 허용한다. 스타일은 css가 담당하도록 한다!! 
                         ..여기서 html과 css가 연결된다.-->
-        <tr>
-            <th>번호</th><th>이름</th><th>주소</th>  <!--th 태그는 bold, align:center기본값이다.-->
+        <tr> <!--첫번째 행 추가-->
+            <th>번호</th> <th>이름</th> <th>주소</th>  <!--th 태그는 bold, align:center기본값이다. 첫번째 행에 <th>각 열(제목table header)에 들어갈 내용-->
+            <!--<th>는 table header이기에 각 열의 제목이라서 굵게 가운데 정렬이 기본값이다.-->
         </tr> <!--tr은 테이블 안에 하나의 행을 지정할 때 써준다-->
-        <tr>
-            <td width = '100'>1</td><td>김재환</td><td>안동시</td> <!--일반데이터는 td태그에 넣는다-->
+        
+        <tr><!--두번째 행 추가-->
+            <td width = '100'>1</td> <td>김재환</td> <td>안동시</td> 
+            <!--일반데이터는 td태그에 넣는다. 각 열의 th의 값들-->
         </tr>
-        <tr>
-            <td>2</td><td>권민석</td><td>구미시</td>
+
+        <tr><!--세번째 행 추가-->>
+            <td>2</td> <td>권민석</td> <td>구미시</td>
         </tr>
-        <tr>
-            <td>3</td><td></td><td></td>
+
+        <tr><!--네번째 행 추가-->>
+            <td>3</td> <td></td> <td></td>
         </tr><!--td,tr,th는 모두 독립적으로 쓸 수 없고 <table>자료 안에서만 쓸 수 있다.-->
     </table>
 
+    <br>
+
     <table border = "1"> 
-        <tr> <!--열병합/행병합 : colspan = '2', : rowspan = "2" : 2의 행/열을 하나로 합친다.-->
+        <tr> <!--첫번째 행--> 
+            <!--열병합/행병합 : colspan = '2', : rowspan = "2" : 2의 행/열을 하나로 합친다.-->
             <td width = "200" colspan = "2">a</td>
+            <!--colspan = "2" : 가로방향으로 2칸 병합-->
             <td width = "200">b</td>
             <td width = '450' rowspan = "3">c</td> 
         </tr> 
-        <tr> 
+
+        <tr> <!--두번째 행-->
             <td>1</td>
             <td>2</td>
             <td>3</td> 
         </tr>
-        <tr>
+
+        
+        <tr> <!--세번째 행-->
             <td> <!--하나의 td를 cell이라고 함. cell 안에 table을 작성할 수 있다.-->
                 <table border = "3">
                     <tr>
@@ -48,37 +62,52 @@
             <!--web화면을 예쁘게 꾸미려면 table을 만들고 form 태그 안에 써주어야 크라이언트를 넘길 수 있다.-->
             <td>kor</td>
             <td>eng</td> 
-        </tr>
+        </tr> 
+        
     </table>
-    <hr>
+    <br>
+    <br>
     -- form 태그 생성 : 서버로의 전달용 입력 양식 작성 --
-    <form action = "aa.html" method = "get">
+    <form action = "/pro7web3basic/kbs/sbs/aa.html" method = "get"> 
+        <!--지금 내가 치는 아래 10가지의 form에 대한 값들이 aa.html로 이동한다.-->
         1. 이름 : <input type="text" name = "name" id = "irum" size = "30"> <br>
-        2. 나이 : <input type="text" name = "age" value = "23" readonly> <br>
+        <br>
+        2. 나이 : <input type = "text" name = "age" value = "23" readonly> <br>
+        <br>
         3. 비밀번호 : <input type = "password" name = "pwd"><br>
+        <br>
         4. 메시지 : <textarea name = "msg" cols = '50' rows = "5">멀티라인 텍스트 박스</textarea>
         <br>
-        5. 학년 : 
+        5. 학년 : <!--선택하는 기능은 radio-->
             <input type = 'radio' name = 'hak' value = '1'>1학년&nbsp;&nbsp; 
             <input type = 'radio' name = 'hak' value = '2' checked>2학년&nbsp;&nbsp; 
             <input type = 'radio' name = 'hak' value = '3'>3학년<br>
+        <br>
         6. 성별 : 
             <input type = 'radio' name = 'gender' value = '남' checked>남성&nbsp;&nbsp; 
             <input type = 'radio' name = 'gender' value = '여'>여성<br> 
-        7. 과목 :
+        <br>
+        7. 과목 : <!--여러가지를 체크할 때checkbox-->
             <input type = 'checkbox' name = 'gwa' value = 'python' checked>파이썬&nbsp;&nbsp; 
             <input type = 'checkbox' name = 'gwa' value = 'maria db'>마리아 &nbsp;&nbsp;
             <input type = 'checkbox' name = 'gwa' value = 'oracle'>오라클 <br>
+        <br>        
         8. 지역 :
             <select name = "addr">
                 <option value = "c" selected> 시청 </option>
                 <option value = "j" > 종로 </option>
                 <option value = "k" > 강남 </option>
             </select><br>
+        <br>
+
         9. 파일 선택 : <input type = "file" name = "fname"><br>
+        <br>
+        
         10. 숨김 : <input type="hidden" name = "jumsu" value = "90">
         <!--form태그 안쪽에서 적는다.-->
-            <br><br>
+            <br>
+            <br>
+
         <input type = 'submit' value = '전송확인' /> <!--서버로 자료 전송-->
         <input type = 'reset' value = '입력취소' /> <!--입력 취소(초기화)-->
         <!--web server에서 수정사항이 안바뀌면 web에서 shift + F5 눌러라 -->

@@ -1,3 +1,5 @@
+<!--이번에는 이미지 삽입 + a tag + 상대/절대경로 + iframe-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,34 +10,41 @@
 <body>
     이미지 삽입(자기 폴더(pro7web3basic)에서 이미지 폴더(images)를 따로 만들어서 짜장면 사진을 jpeg로 넣어줌)<br>
     <img src = images/food.jpeg width="100" title="짜장면" alt= "세상에서 제일 맛있는 짜장면~"> 
+    이런식으로 이미지를 따로 저장하여 그 파일의 경로를 적어줘도 되고
     <br>
     <img src = https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA2cjvMG.img?w=612&h=452&m=6&x=410&y=139&s=173&d=173>
+    이런 식으로 이미지의 url주소를 복붙해도 된다
     <br>
 
+
     ** a tag(다른 페이지나 주소로 이동하는 링크를 만듦) 연습 **<br>
+    <!--html에서 글자를 굵게하려면 <b>나 <strong>을 써야 한다.-->
     <!--형식은 
     <a href = "이동할 주소 or 파일">화면에 보일 글자 </a> = Hyper Text = http의 ht가 hyper text이다.
     -->>
-    <a href = "web1.html">web 문서 보기 </a><br>
-    <a href = "web1.html" target = "_blank"> 문서 보기(새 탭) </a><br>
-    <a href = "web1.html" target ="_new"> 문서 보기(새 탭) </a><br>
+    <a href = "web1.html">web 문서 보기 </a><br> <!--해당 페이지가 곧바로 web1.html로 바뀜-->
+    <a href = "web1.html" target = "_blank"> 문서 보기(새 탭1) </a><br> <!--targe = "_blank" = 해당 페이지 말고 다른 페이지를 만들어서 그 페이지에 해당 url주소를 보냄-->
+    <a href = "web1.html" target ="_new"> 문서 보기(새 탭2) </a><br>
     <a href = "https://www.kbs.co.kr">kbs 방송보기 </a><br>
     <a href = "web1.html">
-        <<img src = images/food.jpeg width="100"> <!--이미지에 hyper text를 부여할 수도 있다.-->
+        <img src = images/food.jpeg width="100"> <!--이미지에 hyper text를 부여할 수도 있다.-->
     
-    </a><br>
-    <a href = "sample.txt">text 문서 보기 ... 해석 가능</a><br>
+    </a>
+    <br>
+
+    <a href = "sample.txt" target = "_blank">text 문서 보기 ... 해석 가능</a><br>
     <a href = "sample.dat">특수 문서 보기 ... 해석 불가능 (다운로드가 뜸)</a><br>
 
     <a href = "mailto:pykwon@hanmail.net"> pyk이메일</a><br>
 
     <a href = "kbs/sbs/aa.html">동일 선상의 폴더의 만들어진 html 불러와서 문서 보기 </a><br>
     <a href = "mbc/bb.html">동일 선상의 폴더의 만들어진 html 불러와서 문서 보기 </a><br>
-    <a href = "/pro7web3basic/mbc/bb.html">mbc/bb.html의 문서 보기(상대경로)</a><br>
+    <a href = "/pro7web3basic/mbc/bb.html">mbc/bb.html의 문서 보기(상대경로)</a><br> 
+    <!--링크를 넣을 때 앞에 '/'가 곧바로 붙으면 상대경로로 현재 서버의 루트 기준으로 찾는다'-->
     <a href = http://127.0.0.1:5500/pro7web3basic/mbc/bb.html>mbc/bb.html로 가서 문서 보기(절대경로)</a><br>
-
+    <!--경로의 모든 주소를 다 적어주게 되면 절대경로다.-->
     <hr>
-    -- iframe 연습 --<dr>
+    -- iframe 연습 --<br>
     <!-- frame : Web 브라우저 화면 영역에 html이 표현(랜더링) 되는 영역 : 1개만 존재
         iframe : frame내에 sub frame을 만들 수 있다. - 한 화면에 여러 개의 html문서 표현이 가능하다
     -->
@@ -46,6 +55,15 @@
     <a href = "https://www.korea.com" target = "tiger">  korea 페이지 보기 </a><br>
     <br><br>
     작성자 : 홍길동
+
+    <!-- <iframe
+    src="web1.html"
+    width="98%"
+    height="150"
+    style="border: 1;"
+    name="tiger">
+    </iframe> --> <!--이게 iframe의 기본 구조이다.-->
+
 </body>
 </html>
 

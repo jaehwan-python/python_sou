@@ -1,0 +1,238 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: white;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(215,25,32,0.08), transparent 25%),
+        linear-gradient(135deg, #0d0d0d, #1a1a1a 50%, #0b0b0b);
+
+    min-height: 100vh;
+}
+
+
+/* 상단 */
+
+.main-header {
+    text-align: center;
+
+    padding-top: 35px;
+    padding-bottom: 25px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(40,40,40,0.95),
+            rgba(20,20,20,0.95)
+        );
+
+    border-top: 4px solid #d71920;
+    border-bottom: 2px solid #333;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+
+/* 메인 제목 */
+
+.main-header h1 {
+    margin: 0 0 18px 0;
+}
+
+
+.logo {
+    text-decoration: none;
+
+    color: white;
+
+    font-family: "Arial Black", Impact, sans-serif;
+
+    font-size: 42px;
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+
+/* 상단 메뉴 */
+
+.top-menu {
+    font-family: "Arial Black", Arial, sans-serif;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+.top-menu a {
+    text-decoration: none;
+
+    color: #dddddd;
+
+    margin: 0 8px;
+
+    transition: 0.2s;
+}
+
+
+.top-menu a:hover {
+    color: #d71920;
+}
+
+
+/* Build Your Body */
+
+.intro {
+    text-align: center;
+
+    padding: 30px 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(35,35,35,0.9),
+            rgba(24,24,24,0.9)
+        );
+
+    border-bottom: 2px solid #333;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.05),
+        0 6px 18px rgba(0,0,0,0.35);
+}
+
+.intro h2 {
+    margin: 0;
+
+    font-size: 34px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.intro p {
+    margin-top: 10px;
+    margin-bottom: 0;
+
+    font-size: 15px;
+
+    color: #bcbcbc;
+}
+
+
+/* 운동 5개 */
+
+.workout-menu {
+    display: flex;
+
+    width: 100%;
+}
+
+
+/* 운동 박스 */
+
+.workout-box {
+    width: 20%;
+
+    box-sizing: border-box;
+
+    min-height: 380px;
+
+    padding: 22px;
+
+    text-decoration: none;
+
+    color: white;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #202020,
+            #121212
+        );
+
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
+
+    box-shadow:
+        inset 1px 1px 0 rgba(255,255,255,0.06),
+        inset -1px -1px 0 rgba(0,0,0,0.7),
+        0 8px 18px rgba(0,0,0,0.35);
+
+    transition: 0.25s;
+}
+
+
+.workout-box:first-child {
+    border-left: 1px solid #333;
+}
+
+
+/* 운동 이름 */
+
+.workout-box h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    font-family: "Arial Black", Arial, sans-serif;
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* 사진 */
+
+.workout-box img {
+    width: 100%;
+    height: 230px;
+
+    object-fit: cover;
+
+    display: block;
+
+    border: 1px solid #444;
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.6);
+}
+
+
+/* 마우스 올렸을 때 */
+
+.workout-box:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #2b2b2b,
+            #181818
+        );
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 14px 28px rgba(0,0,0,0.55);
+}
+
+
+.workout-box:hover h2 {
+    color: #d71920;
+}
+
+
+.workout-box:hover img {
+    border-color: #d71920;
+}

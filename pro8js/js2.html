@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>** 변수 연습 **</h2>
+    <script>
+        // 기본형(원시타입) 변수
+
+        var kor; 
+        // 전통적인(옛날) 변수 선언 방식.
+        // 함수 단위 선언.
+        // 같은 이름으로 재선언 가능
+        var kor
+
+        let aa;
+        // 현대적인(최신) 변수 선언 방식.
+        // EcmaScript 형식을 따름
+        // 블록 단위.
+        // 같은 이름으로 재선언 불가능
+        // let aa; 한번 더 하면 에러남
+        aa = 100;
+        
+        let bb = 20.5
+        bb = bb+10
+
+        const cc = 300; // 상수로 선언. 값 수정 불가
+        // cc = cc + 10 <- 에러남
+        
+        let dd = false; // Boolean 값 기억
+        let msg = "변수 선언 이해"; // 문자열 기억  
+
+        document.write(aa," ", bb, " ", cc, " ", dd," ", msg);
+        document.write("<br>")
+        document.write("type 확인 : ", typeof(aa), " ", typeof(bb), " ", typeof(dd)," ", typeof(msg))
+        document.write("<br>")
+        document.write("type 확인 : ", typeof(1), " ", typeof(1.5), " ", 
+                        typeof(true), " ", typeof("안녕"), " ", typeof(null)," ", typeof(undefined))
+        document.write("<br>")
+
+        // 참조형(참조 타입) 변수 -  개체의 주소 기억
+        let kbs = {name : "kbs방송"};
+        let mbc = kbs;
+        document.write(kbs.name, " ", mbc.name)
+
+        document.write("<br>")
+        {
+            // {독립 영역을 선언} 변수 scope - 영향을 미치는 영역
+            let v1 = 1;
+
+            // 전역 변수, 관리하기 어려움
+            var kk = 50; // 호이스팅(hoisiting) 발생 -> 전역변수
+            document.write("<br>", v1, " ", kk);
+            {
+                let v2 = 2;
+                document.write("<br>", v2, " ", kk);
+                {
+                    // 현재 영역에서만 유효 - 지역변수
+                    let v3 = 3;
+
+                    document.write("<br>", v1, " ", kk);
+                    document.write("<br>", v2, " ", kk);
+                    document.write("<br>", v3, " ", kk);
+                }
+                // document.write("<br>", v3, "", kk);
+                // err : v3 영역 밖에서 호출 불가
+                // 이 영역에서는 v1, v2만 있음
+            }
+        }
+        // document.write("<br>",v1);   // err : v1 영역 밖에서 호출 불가
+        // err: Uncauth ReferenceError : v1, v2, v3, is not defined
+        document.write("<br>", kk)
+    </script>
+    <br><br>
+    <h2>**js 연산자**</h2>
+    <script>
+        let x = 5, y = 2;
+        document.write("<br>", x, " ", y);
+        document.write("<br>산술 연산 : ", x+y, " ", x/y, " ", x % y);
+        document.write("<br>관계(비교) 연산 : ", x>y, " ", x>=y, " ", x == y, " ", x!=y);
+        document.write("<br>논리 연산(&& : and, || : or) : ", x > y && x <= y, " ", x > y || x<=y);
+        document.write("<br>누적 연산 : ", x, x = x + 1, " ", x += 1, " ", ++x);
+        document.write("<br>삼항 연산 : ", (x > y)?1000:3+4); // 참이면 ?뒷부분을 거짓이면 : 뒤부분을 출력하게 함.
+        // 연산자 우선순위 : 파이썬과 동일
+
+        document.write("<br>", "a" + "b" + "77" + "만세"); // = 문자열 더하기
+        
+        let e, n, g; // 3개의 변수가 있다.
+        e = n = g = 6 + 5; // 할당(치환) 연산 체이닝
+        document.write("<br>", e, " ", n, " ", g);
+
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!--javascript도 결국 css처럼 html에 기생하는 존재이다.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    **<b>JavaScript</b> : 클라이언트 side Script(프론트엔드 언어이기에 css처럼 파이썬을 쓸 수 없다)**<br>
+
+    <script>
+    window.document.write("환영한다. JS세상에 온결") <!--포함관계로 이미 전문가가 만들어둔 클래스를 사용한다.--> // 한 줄 주석. 브라우저 화면으로 저걸 출력해라는 뜻이다.
+    // javascript의 v8엔진에 의해 저 값을 출력한다.
+    // 브라우저가 해석하면 무조건 클라이언트이고 프론트엔드이다. 그러기에 파이썬을 사용하지 않는다.
+    // 오른쪽 버튼 누르면 브라우저이고 페이지 원문이 웹이다.
+    // 오류가 생기면 vscode에서 고치는 것이 아닌 페이지 원문에서 오류를 발견하여 고친다.
+    // 프론트엔드 프로그램은 한군데서만 돌리지 마라. edge, chrome, sapari, fox(4개의 주요 브라우저)에서 돌려봐야한다.
+    // javascript를 볼 때 원문을 항상 보고 작업을 해야 한다.
+    document.write("환영한다. JS세상에 온결")
+    console.log("개발자를 위해 표준 출력 장치로 출력 - 기본화면에서는 보이지 않는다."); 
+    // 세미 콜론은 써도 되고 안써도 된다.
+    </script>
+    여기서부터는 다시 html이다
+    <br>
+    <script>
+    document.write("<b>굵은 문장열 출력</b><br>")
+    document.write("<i>이테리체의 문장열 출력</i><br>")
+    document.write("<a href ='https://www.google.com'>구글로 이동</a><br>");
+    </script>
+    <br>
+    여기는 html 공간<br>
+    <script>
+    // 다시 html에서 script공간으로 들어왔다.
+    document.write("여기는 자바스크립트")
+
+    let a = 10
+    let b = a + 10
+    document.write("b는 ", b);
+    </script>
+    <br>
+    자바스크립 변수값을 html 태그에 출력<br>
+    b의 값은? <span id = "result"></span>
+    <!-- spav vs div : 일부 행 지정 vs 전체 행 지정-->
+    
+    <script>
+        document.getElementById("result").textcontent = b;
+        // java script에서 변수를 선언하고 html에서 수행하였다. html에서는 변수를 선언할 수가 없기에 Java에서 변수를 선언해준다.
+        // script에서 v8엔진을 이용해서 필요한 부분은 인터프리터를 이용해서 해석한다.
+    
+    </script>
+</body>
+</html>
