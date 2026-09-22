@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        // 주문 객체 : 객체 object literal 이용한 객체 생성
+        // 객체를 왜 사용할까? : 관련 있는 여러 값을 하나로 묶어서 관리하기 위해서
+        const order = {
+            // '멤버 변수1'
+            orderNo : "a1001", // 단순 참조형 변수1 -> orderNo
+            
+            // '멤버 변수2'
+            customer : { // 참조형 변수2 -> customer
+                name : "고릴라",
+                tel : "010 - 8755 - 5926"
+            },
+
+            // '멤버 변수3'
+            products:[ // 배열의 형태의 변수3 -> products
+                {name : "노트북", price : 2345000, qty : 1},
+                {name : "말랑이", price : 5000,    qty : 3},
+                {name : "노트북", price : 3000,    qty : 5}
+            ],
+            
+            // '멤버 메서드'
+            // 총 주문 금액 계산 
+            getTotal:function(){
+                let total = 0
+                this.products.forEach(pro => { // this : 메서드를 호출한 객체
+                    total += pro.price * pro.qty;
+                })
+                return total;
+            }
+        }
+
+            // 실행
+            function showOrder(){
+                let str = "";
+                str += `<h3> 주분번호 : ${order.orderNo} </h3>`;
+                str += `고객명 : ${order.customer.name}<br>`;
+                str += `고객전화 : ${order.customer.tel}<br>`;
+                str += "<br><b>상품목록</b>"
+
+                order.products.forEach(product => {
+                    str += `
+                    <br>
+                    상품명 : ${product.name}<br>
+                    가격 : ${(product.price).toLocaleString()}원<br>
+                    수량 : ${product.qty}<br>
+                    금액 : ${(product.price * product.qty).toLocaleString()}원<br>
+                    `;
+                });
+
+                str+= `<h3>총 주문 금액 : ${order.getTotal().toLocaleString()}원</h3>`;
+                document.querySelector("#result").innerHTML = str;
+                
+            }
+
+    </script>
+</head>
+<body>
+    <h2>객체를 만드는 가장 큰 이유는 서로 관련 있느 여러 데이터와 기능을 하나로 묶어서 관리하기 위함이다</h2>
+    <h1>쇼핑몰 주문 정보</h1>
+    <button onclick = "showOrder()"> 주문 정보 찾기 </button>
+
+    <br>
+
+    <div id = "result"></div>
+</body>
+</html>

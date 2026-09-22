@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Js Array(배열) : 순서가 있는 여러개의 자료를 대표명을 주고 첨자로 각 기억장소르 구분하는 자료<br>
+    <br> 반복처리가 효과적<br>
+    형식 : 배열명 = New Array();
+    <hr>
+    <script type = "text/javascript">
+        let aa = new Array() // 배열 객체가 선언, 배열을 선언하였다, 크기는 변할 수 있고 new Array(3)도 가능하나 권장하지는 않는다
+        // 기억장소를 하나하나씩 선언할 수도 있고
+        // 여러 기억장소의 대표명을 주고 첨자로 그 위치를 찾는다  = array()
+        aa[0] = 10, aa[1] = 5.6; aa[3] ='결과는'; aa[4] = "안녕";
+        aa[5] = true; aa[6] = {kbs:9, sbs:5}; // 배열 요소값 type는 마음대로, json type도 가능하다
+        document.write("배열크기 : ", aa.length) 
+        document.write("배열 type : ", typeof(aa));
+        // 배열을 선언하고 값을 주어봤다
+
+        let su = 0, bunho = 0
+        document.write(`<br> ${aa[0]} ${aa[1]} ${aa[su]} ${aa[bunho]}`);
+        //  첨자는 상수 또는 변수 가능
+
+        document.write("<br>");
+        let bb = new Array(100, 200, 300); // 배열 선언 시 초기치 부여
+        document.write(`<br> ${bb[0]} ${bb[1]} ${bb[2]}`);
+
+        document.write("br")
+        let cc = []; // 배어있는 배열 선언, 배열 리터럴
+        
+        cc[0] = "oscar";
+        cc.push("seoul")  
+        // push 메서드로 배열에 값을 저장할 수도 있다
+        // 앞에서부터 차례대로 넣는다.
+        cc.push(2026, 9, 18);
+        document.write(`<br> ${cc[0]}, ${cc[1]}, ${cc[2]}, ${cc[3]}, ${cc[4]} ${cc[5]}`);
+        
+        cc[99] = 'wow';
+        document.write(`<br> cc배열의 크기는  ${cc.length}`)
+        // 0번째부터 99번째까지 만들었다.
+
+        document.write("<hr>")
+        let dd = new Array(); 
+        // 일반적으로 array는 []를 쓰지만 new Array를 할 때는 소괄호를 쓴다.
+        // 배열 선언 후 for를 이용해 자료 입출력 ... while보단 for와 궁합이 더 좋다!!
+        for (let m=0; m < 10; m++){
+            dd[m] = m + 1;
+        } // dd에 1부터 9까지 배열이 들어갔다
+        document.write("dd[0] : ", dd[0])
+
+        document.write("<br>")
+        
+        for(let m=0; m < 10; m++){
+            document.write(dd[m] + "&nbsp;&nbsp&nbsp;");
+            // 일반 사용자에게 출력한다
+            console.log(dd[m]) // 이렇게 하면 dd[m]이 콘솔창에만 나타나서 개발자들을 위한 statesment이다
+            }
+        
+        // 전역으로 m이 있기에 또 못쓰지 않냐? -> 그렇지 않다. 지역변수로 지정될 땐 let은 변수를 중복으로 지정이 가능하다.
+        // 진짜 너무 잠온다. 잠 와 죽을 것 같다. 오후에 커피 또 마셔야겠다. 
+        
+        document.write("<br>")
+
+        let myarr = [
+            "안녕~",
+            true,
+            2.3,
+            {name: '한가해'},
+            function(){
+                document.write("<br>난 함수야~");
+            }
+        ] 
+        // my arr를 let으로 지정 0번째는 안녕, 1번째는 true, 2번째는 2.3, 3번째는 name:한가해, 4번째는 function()
+        document.write(myarr[0])
+        document.write(myarr[3].name)
+        myarr[4]() // 함수는 지정하고 실행시 ()괄호가 뒤에 붙어야 시행가능하다. = 배열 내의 함수를 시행하였다
+
+        document.write("<hr>");
+
+        let korea = ["가을", "미세먼지 없음", "쾌청"];
+        // for를 이용하여 배열 요소값을 출력한다.
+        
+        // 방법1.
+        for(let i=0; i < korea.length; i++){
+            document.write(korea[i] + " ");
+        }
+
+        // 방법2. -> of는 array의 값을 하나씩 꺼낸다.
+        for(let i of korea){
+            document.write(i + " ");
+        }
+        
+        // 방법3. ->  in은 array의 인덱스를 하나씩 꺼낸다. 그래서 korea의 i번째라고 적어줘야 나온다.
+        for(let i in korea){
+            document.write(korea[i] + " ");
+        }
+
+        // 배열 요소 제거 : delete, splice
+        // delete
+        document.write("<hr>")
+        let ar = ['i', 'go', 'home'];
+        delete ar[1] // 1번째의 값인 'go' 삭제이지만 go의 자리는 남아있다. 여전히 [0], [1], [2]이다
+        // delete는 대괄호를 써서 표현한다.
+        document.write(ar, " ", ar.length);
+        
+        document.write("<br>")
+
+        // splice
+        ar = ['i', 'go', 'home'];
+        ar.splice(1,1); // 인덱스 1부터 1개 삭제. splice를 사용하면 인덱스까지도 사라져 0,3만남게 된다 
+        // splice는 소괄호에 두 개의 숫자를 지정해 해당 인덱스부터 00개 인덱스 제거를 의미한다.
+        document.write(ar, " ", ar.length);
+
+        document.write("<hr>");
+        // 구조 분해 할당 : 배열, 객체의 값들을 추출하여 한 번에 여러 변수에 할당
+        // = 
+        let nums = [1, 2, 3, 4];
+        let [a1, a2, a3] = nums
+        // 이렇게 되면 nums가 가지고 있는 값을 인덱스 차례대로 a1, a2, a3가 가지게 된다.
+        document.write(`${a1} ${a2} ${a3}`);
+
+        document.write("<br>")
+        let [b1, , ,b4] = nums; 
+        // 필요없는 값은 건너뛰기 가능
+        document.write(`${b1} ${b4}`)
+
+        document.write("<br>")
+        let saram = {irum : "홍길동", nai : 23} // key : value타입으로 참조형 변수이다.
+        let {irum, nai} = saram;
+        document.write(`${irum} ${nai}`);
+
+        document.write("<br>")
+        
+        // 전개 연산자 : ...
+        // 배열이나 객체의 요소를 펼쳐서 복사하거나 결함할 때 사용
+        let fruits = ['apple', 'peach', 'melon'];
+        let imsi = [...fruits]; // fruits 배열을 풀어서 imsi 배열에 저장 = 배열을 복사
+        // fruits가 가지고 있는 배열을 펼쳐서 다시 imsi가 배열 형태로 저장하는 것
+        // 두 배열은 서로 다른 객체이다.
+        
+        document.write(imsi, " ", imsi.length);
+        document.write(fruits === imsi); // false : 두 배열 객체는 값은 같지만 서로 다른 주소를 참조하고 있기 때문
+        let fr = fruits; // 주소를 치환
+        document.write(fruits === imsi); // True
+        
+        document.write("<br>")
+        // 배열 합치기
+        const a = ['apple', 'peach'];
+        const b = ['melon', 'banana'];
+        // 두 개의 배열이 있다
+        const c = [...a, ...b]; // 이렇게 두 배열을 합쳐버림
+        document.write(c)
+        document.write(c.join(" ")); // 배열 요소들을 하나의 문자열로 합친다. 공백으로 구분한다. 즉 콤마가 없다
+
+    </script>
+</body>
+</html>
+
+<!--이렇게 javaScript의 기본이 끝났다...이게 말이 되노-->

@@ -1,0 +1,123 @@
+<!--실무적인 방법의 ajax-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- axiois cdn -->
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h3> 실무적인 AJAX 처리 방법 3가지 </h3>
+    <button id = "btn1"> 1. fetch then </button>
+    <button id = "btn2"> 2. fetch then </button>
+    <button id = "btn3"> 3. fetch then </button> 
+
+    <hr>
+
+    <div id = "result"></div>
+
+
+    <script>
+        document.querySelector("#btn1").onclick = funcFetch;
+        document.querySelector("#btn2").onclick = funcAsync;
+        document.querySelector("#btn3").onclick = funcAxios;
+
+        // < ajax 처리가 되었는지 확인하는 방법 3가지 >
+
+        // 1. fetch + then 방식
+        function funcFetch(){
+            fetch("sangpum.json")
+                .then(response =>{
+                    if (!response.ok){ // response가 ok(성공)가 아닌 경우
+                        throw new Error("서버 오류");
+                    }
+                    return response.json(); // 반환값 수신 성공인 경우 json을 반환한다.
+                })
+                .then(data =>{ // response.json()의 결과를 받음
+                    let output = "<b> fetch + then 결과 </b><br>"
+                    data.forEach(item => {
+                        output += "코드;" + item.code + ", 품명:" + item.sang + "<br>" 
+                    });
+                    document.getElementById("result").innerHTML = output;
+                })
+                .catch(error => {
+                    document.getElementById("result").innerHTML = "에러 발생 : " + error;
+                });   
+        } 
+
+        // 2. async + await fetch 방식
+        async function funcAsync() {
+            try {
+                // 1. 서버에 sangpum.json 요청
+                const response = await fetch("sangpum.json");
+
+                // 2. HTTP 요청 성공 여부 확인
+                if (!response.ok) {
+                    throw new Error("HTTP 오류 : " + response.status);
+                }
+
+                // 3. 서버에서 받은 JSON 데이터를
+                // JavaScript 객체/배열로 변환
+                const data = await response.json();
+
+                // 4. 출력할 문자열 준비
+                let output = "<b>async fetch 결과</b><br>";
+
+                // 5. JSON 배열의 각 객체를 하나씩 꺼냄
+                data.forEach(item => {
+
+                    output +=
+                        "코드: " + item.code +
+                        ", 품명: " + item.sang +
+                        "<br>";
+                });
+
+                // 6. result 태그의 내부 내용 변경
+                document.getElementById("result").innerHTML = output;
+
+            } catch(error) {
+                // 에러 발생 시 화면에 출력
+                document.getElementById("result").innerHTML =
+                    "에러 발생 : " + error;
+            }
+        }
+
+        // 3. axios 방식
+        async function funcAxios(){
+            try{
+                // 1. axios로 sangpum.json 파일을 GET 방식으로 요청
+                const response = await axios.get("sangpum.json");
+
+                // 2. axios는 JSON 데이터를 자동으로 JavaScript 객체로 변환해줌
+                // 실제 데이터는 response.data에 들어있음
+                const data = response.data;
+
+                // 3. 출력할 문자열 준비
+                let output = "<b>axios 결과</b><br>";
+
+                // 4. 배열의 각 객체를 하나씩 꺼냄
+                data.forEach(item => {
+
+                    output +=
+                        "코드: " + item.code +
+                        ", 품명: " + item.sang +
+                    "<br>";
+                });
+
+                // 5. result 태그 안의 내용을 결과 문자열로 변경
+                document.getElementById("result").innerHTML = output;
+
+            } catch(error){
+
+                // 6. 에러가 발생하면 에러 메시지를 출력
+                document.getElementById("result").innerHTML =
+                    "에러 발생 : " + error;
+            }
+        }
+    </script>
+</body>
+</html>

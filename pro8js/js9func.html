@@ -1,0 +1,118 @@
+<!--화살표 함수-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화살표 함수</title>
+</head>
+<body>
+ES6부터는 화살표 함수(arrow fuction)라는 새로운 문법 방식으로 함수를 만들 수 있게 되었다
+화살표함수는 => 기호를 사용하여 function 키워드를 생략한다 <br>
+함수표현식보다 단순한 문법으로 함수 처리가 가능해진다 <br>
+형식 : let 변수 = (매개변수1,...) => {표현식}
+파이썬의 람다함수와 비슷하다
+    <script>
+        //참고 : 'use strict';는 JavaScript를 엄격 모드(Strict Mode)로 실행하도록 하는 선언
+        'use strict';
+        // use strict가 없으면 느슨한 모드라서 let이 있든 없든 상관 ㄴㄴ
+
+
+        // a = 10; // 넌 안돼
+        let a = 10; // 와우 넌 잘 돼~
+        // let을 빼면 error다. 선언을 해주지 않아서
+        console.log(a);
+
+        // <script type = 'module'>하게 되면 'use strict';가 자동으로 적용된다.
+    
+        function hap0(a, b){ // 얘는 함수에 이름이 있다.
+            return a+b
+        }
+
+        document.write(hap0(3, 4))
+        let niceFunc = hap0;
+        document.write(niceFunc(3,4))
+
+        document.write("<br>")
+
+        //화살표 함수
+        let hap1 = function(a, b){ // 1. 얘는 함수에 이름이 없고 변수가 함수를 받았다. 그리고 그 함수의 주소를 변수가 참조한다
+            return a + b;
+        }
+        document.write(hap1(3, 4));
+        document.write("<br>")
+        
+        let hap2 = (a, b) => a + b;  // 2. 위 함수를 화살표 함수로 표현함
+        document.write(hap2(3, 4));
+
+        let hap3 = (a, b) => {return a + b};  // 일반 함수보다 화살표함수의 형식으로 더 많이 쓰인다.
+        document.write(hap3(3, 4));
+        document.write("<br>")
+
+        let double1 = (n) => {return n * 2};
+        document.write(`<br>결과는 ${double1(3)}`);
+
+        let sayHi = () => document.write(`<br> 안녕안녕~!!`);
+        sayHi()
+
+        document.write("<hr>");
+        // 삼항 연산자 사용
+        let age = 25;
+        let welcome = (age < 30)? () => document.write('<br>안녕 반가워'):document.write('<br>꺼져')
+        welcome();
+
+        document.write("<br>")
+        // 합계산
+        let sumFunc = (a, b) => {
+            let result = a + b;
+            return result;
+            }
+        
+        document.write(`<br> 두 수의 합은${sumFunc(5, 6)}`);
+
+        let calcFunc = (a, b, op) => {
+                if(op ==="+") return a + b;
+                else if(op === "-") return a - b
+                else if(op === "*") return a*b
+                else if(op === "/") return a/b
+                else return 0;            
+            }
+
+            document.write("<br>")
+            // 배열 고차 함수 활용...아래 3가지 함수는 중요!!
+            // 'filter()' : 조건에 맞는 데이터 추출
+            // 'map()' : 데이터를 원하는 형태로 반환
+            // 'forEach()' : 데이터를 하나씩 반복 처리
+            const employees = [// 배열 값으로 json데이터를 넣었다.
+                {name : "가나다", pay : 280},
+                {name : "김칫국", pay : 350},
+                {name : "박치기", pay : 400},
+                {name : "이겨라", pay : 500}
+            ]
+            // 급여가 300 이상인 직원만 선택
+            const highPay = employees.filter(emp => emp.pay >= 300);
+            // const highPay = employees.filter(function(emp){...})위와 같은 의미
+            document.write("highPay : ", highPay);
+            console.log(highPay)
+
+            // 급여가 10% 인상합니다.
+            // highPay.map() : 배열의 각 요소를 하나씩 꺼내서 원하는 형태로 반환한다.
+            const result = highPay.map(emp => { // function(emp){...}
+                return {
+                    name : emp.name,
+                    pay : emp.pay,
+                    newPay : emp.pay * 1.1
+                }
+            })
+            console.log(result);
+
+            document.write("<br>")
+            result.forEach(emp => {
+                document.write(`${emp.name} : 기존 ${emp.pay}만원 -> 인상 ${emp.newPay}만원}`);
+            });
+    </script>
+    
+</body>
+</html>
+...하 ㅅㅂ 자고 싶다.. 다음에는 event이다

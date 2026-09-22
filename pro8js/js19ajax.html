@@ -1,0 +1,107 @@
+<!--전통적인 방법의 ajax-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        window.onload = () => { // 페이지가 다 로드되면 함수를 수행
+            document.querySelector("#btn1").onclick = funcJson;
+            document.querySelector("#btn2").onclick = funcCsv;
+        }
+
+        // 1. funcJson
+        function funcJson(){
+            let xhr = new XMLHttpRequest(); 
+            // 서버와 통신을 담당하는 Javascript 객체 생성 = 브라우저와 서버 사이에서 움직이는 통신 담당 직원
+
+            xhr.open("GET", "sangpum.json", true);
+            // ajax 객체 변수.open(요청방식(GET or POST), 요청대상, 동기or비동기 여부(true or false))
+            // xhr이 서버로부터 sangpum.json파일을 비동기 방식으로 GET방식으로 가져와라
+            // = 서버에게 요청하는 것
+
+            xhr.onreadystatechange = function(){
+            // readystatechange 이벤트 발생을 하면 function이 실행    
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // 현재 ajax객체가 서버에 한 요청이 실제로 성공했는지 검사
+                    // 모두 true = 서버 응답을 모두 받았다
+
+                    // 1. type 확인
+                    // let data = xhr.responseText;
+                    // alert(typeof(data)); // string : javaScript 객체 모양을 가진 문자열이다.
+                    
+                    // 2. type 확인
+                    let data = JSON.parse(xhr.responseText);
+                    //xhr.responseText는 서버에서 받은 sangpum.json 응답본문의 문자열들만 ... string만 나온다.
+                    //JSON.parse가 그 문자열들을 JavaScript의 객체로 만든다.
+                    // alert(typeof(data)); // object : JS객체이다.
+                    // 서버에서 받은 JSON 문자열을 JavaScript에서 사용할 수 있는 배열/객체로 바꾸어서 data로 넣어라
+
+                    //------------------------------------------- ajax가 서버로부터 데이터(sangpum.json)를 받았음
+
+                    // ajax가 받은 데이터를 web page에 출력
+                    let output = "JSON 반환 결과 <br>"
+                    
+                    output += "코드 &nbsp;&nbsp;&nbsp;품명<br>";
+                    for(let i=0; i < data.length; i++){
+                        output += data[i].code + "&nbsp;&nbsp;&nbsp;" + data[i].sang + "<br>"
+                    }
+                    document.querySelector("#result").innerHTML = output;
+                } 
+                else {
+                    document.querySelector("#result").innerText = "로딩실패:" + xhr.status
+                }
+            }
+            xhr.send()
+        }
+
+        // 2. CSV
+        function funcCsv() {
+            let xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "sangpum.csv", true);
+            xhr.onreadystatechange = function(){
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    
+                    // 1. type 확인
+                    let data = xhr.responseText.trim(); // trim() : 문자열 앞뒤 공백 자름
+                    // alert(typeof(data)); // string : javaScript 객체 모양을 가진 문자열이다.
+
+                    let lines = data.split("\n") // 행단위로 분리
+
+                    let output = "CSV 반환 결과 <br>"
+
+                    for(let i=0; i < lines.length; i++){
+                        if (lines[i] !== ""){
+                            let parts = lines[i].split(",") // ,를 기준으로 lines의 요소를 i만큼 잘라라
+                            let code = parts[0];
+                            let sang = parts[1];
+                            output += "코드는 " + code + ", 상품명은 " + sang + "<br>"
+                        }
+                    }
+                    document.querySelector("#result").innerHTML = output;
+                }
+                else {
+                    document.querySelector("#result").innerText = "로딩실패:" + xhr.status
+                }
+            }
+            xhr.send()
+        }
+
+
+    </script>
+
+</head>
+<body>
+    <h3> Ajax 전통적 방법으로 처리 </h3>
+    <button id = "btn1"> JSON 문서 읽기 </button>
+    <button id = "btn2"> CSV 문서 읽기 </button>
+
+    <hr>
+
+    <div id = "result"> 출력 </div>
+</body>
+</html>

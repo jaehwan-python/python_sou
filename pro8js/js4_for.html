@@ -14,7 +14,8 @@
         for(let a = 1; a <= 5; ++a){   //'a'는 지역변수
             document.write("a값은" + a + "<br>");
         }
-        //document.write("for 블럭 수행 후 a 값은" + a + "<br>")
+        // document.write("for 블럭 수행 후 a 값은" + a + "<br>")
+        // 중괄호에 의해서 영역이 전개되기 때문에 들여쓰기를 굳이 안해도 되지만 가독성을 높이기 위해서 좀 하자.
 
         let a = 1 // a가 전역변수
         for(let a = 1; a <= 5; ++a){   //'a'는 지역변수
@@ -63,6 +64,7 @@
         }
         document.write(sum);
         // 자바스크립트 코뿔소 완벽가이드로 해보기
+        // bootstrap 사이트에가면 각 태그 별 사용법을 알 수 있다.
 
         document.write("<br>2~9 구구단 출력 - table에 출력<br>")
         document.write("<table border = '1'>")
@@ -73,7 +75,7 @@
                     // document.write(a + "*" + b + "=" + a*b);
                     // document.write("<td>") ... 옛날 방식
                     document.write(`<td>${a}*${b}=${a*b}&nbsp;&nbsp;</td>`); // 템플릿 문자열
-                    
+                    // 이렇게 위 3줄을 이렇게 적어도 된다.
                     }
                 document.write("</tr>")
             }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+    <script>
+        window.onload = () => {
+            document.querySelector("#btnGet").onclick = getFunc;
+            document.querySelector("#btnPost").onclick = postFunc;
+        }
+
+
+        let xhr;
+        
+        // 1. get 방식의 Ajax
+        function getFunc(){
+            const irum = frm.name.value;
+            const nai = frm.age.value;
+            // alert(irum + nai)
+
+            // 여기서부터 Ajax
+            xhr = new XMLHttpRequest(); // 비동기 처리를 가능하게함 
+            // 브라우저에서 웹서버와의 비동기 통신을 위한 객체를 xhr로 지정함
+            
+            // xhr.open("GET", "js18.py", true); 
+            // true : 비동기
+            // false : 동기
+            // = "js18.py파일을 GET방식을 이용해라.""   
+            // html은 문서만 처리하지 따로 DB로부터 데이터를 가져올 수 없다. 즉, 웹서버에 있지만 클라이언트 브라우저에 끌려가서 브라우저에서 파싱(html해석)이 이루어진다.
+            // 하지만 파이썬은 브라우저가 아닌 웹서버에서 수행이 된다. ?? : 파이썬을 통해 DB에서 데이터를 가져오기 위해
+            // 우리는 get방식을 사용한 형태로 볼 것이다.
+
+            //let fname = "js18.py"; // 이건 get 방식이지만 변수값이 없다. 변수값도 있어서 효율적으로 만드려면 아래처럼 만든다
+            let fname = "js18.py?irum=" + irum + "&nai=" + nai; // = 이것이 get방식
+            // 비동기 방식이라서 이 내용이 url에 보이지 않는다.
+            xhr.open("GET", fname, true)
+            xhr.onreadystatechange = function(){ // onreadystatechange에 이름이 없는 일회용함수를 주어준다.
+                /*
+                alert(xhr.readyState); 
+                // readyState : 0 ~ 4를 반환한다.
+                //              4라는 값이면 통신 양호를 의미한다. = readyState는 클리언트와 서버간의 통신연결이 양호한지를 확인한다. 4가나오면 양호
+                if (xhr.readyState === 4);
+                    alert(xhr.status);
+                // status : 통신상태가 양호하다면(4) 내가 요청한 정보와 그 정보가 있는지를 확인한다. 현재는 401, 402, 403, 404는 오류
+                //          아직 파일을 안만들었기에 통신상태는 양호하지만 server에 파일이 없어 404가 뜬다. 
+                //          방금 파일을 만들어서 200이 뜬다. = 내가 요청한 파일이 존재함.
+
+                // 즉, readyState가 4이고 status가 200이어야 통신상태가 양호하여 자료를 받을 수 있음을 의미한다. 위 내용(코드)를 요약하면
+                */
+                
+                if (xhr.readyState === 4 && xhr.status === 200) {// 순서 중요! 통신상태가 양호하고 서버의 파일이 존재하는지 이 순서대로 확인한다. 클라이언트가 웹서버에 요청이 성공한 상태로 기다리고 있다.
+                    process1(); // 이 안에 함수를 다 적기 보기 안좋아서 밖에다가 따로 뺀다.  
+                // 이제 이 순간부터 웹서버와 클라이언트가 통신하는 것이 아니라 그 사이에 웹서버와 클라이언트 서버의 ajax(javascript)가 통신하는 것이다. 그래서 클라이언트는 따로 개별 업무를 수행할 수 있다.
+                }
+            }
+            xhr.send();
+            // 이게 있어야 받은 값을 다시 보낸다.
+        }
+        
+        function process1(){
+            // alert("xhr.responseText")
+            document.querySelector("#show").innerText = xhr.responseText;
+
+        }
+// 현재 우리는 http server인 live server(vs code)를 이용하기에 js18.py를 통해 DB의 데이터를 불러 올 수 없다.
+// 우리는 WAS server를 이용해야 하는데 live server는 http server라서 python을 이용할 수 없다 
+// Flask에 가서 WAS server를 이용할 수 있다.
+
+        // 2. post 방식의 Ajax
+        function postFunc(){  // 현재 post방식은 실습불가능하다. 현재 우리가 live server를 사용하기 때문이다.
+            const irum = frm.name.value;
+            const nai = frm.age.value;
+
+            // 여기서부터 Ajax
+            xhr = new XMLHttpRequest(); 
+            let fname = "js18.py";  // 전송시 값 전달할 때 여기서 주지 않는다.
+            xhr.open("POST", fname, true);
+
+            xhr.onreadystatechange = function(){ 
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    process2();
+                }
+            }
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("irum=" + irum + "&nai" + nai);
+        }
+        
+        function process2(){
+            alert(xhr.responseText)
+        }
+        
+    </script>
+
+</head>
+<body>
+    <h2> Ajax 이해 </h2>
+    <form name = "frm">
+        이름 : .<input type = "text" name = "name" value = "tom"> <br>
+        나이 : .<input type = "text" name = "age" value = "23"> <br>
+        <input type = "button" value = "get방식" id = "btnGet"> 
+        <input type = "button" value = "post방식" id = "btnPost"> 
+    </form>
+
+    <hr>
+
+    <div id = "show"></div> <!--<b>나 <i>를 쓰면 대상 값의 모양이 바뀌어서 싫다. 그래서 고유값의 형태를 유지하기 위해 div나 span을 쓴다.-->
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script>
+        function colorFunc(){
+            //alert("a");
+            //document.body.style.backgroundColor = "yellow";
+            
+            document.body.style.backgroundColor = document.frm.bc.value;
+            // 배경색
+            
+            document.body.style.color = document.frm.tc.value;
+            // 글자색
+
+            // 웬만하면 body영역에서 javascript와 css의 영역을 두지 않는 것을 추천한다.
+        }
+
+    </script>
+
+</head>
+<body>
+    <h2>이벤트 연습 : 색변경</h2>
+    <form name="frm">
+        <table border = "1" width = "200" > <!--w3c가 싫어하는 방식이긴 하다-->
+            <tr>
+                <td colspan="2">배경 색상 선택</td>
+            </tr>
+            <!--tr은 행만 선택하고 실제 데이터는 td에 적는다!!-->
+            <tr>
+                <td><b>배경색</b></td>
+                <td>
+                    <select name = 'bc'>
+                        <option value = 'black'>검정</option>
+                        <option value = 'blue'>파랑</option>
+                        <option value = 'green'>초록</option>
+                        <option value = 'white' selected>하양</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><b>글자색</b></td>
+                <td>
+                    <select name = 'tc'>
+                        <option value = 'black' selected>검정</option>
+                        <option value = 'blue'>파랑</option>
+                        <option value = 'green'>초록</option>
+                        <option value = 'white'>하양</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type = "button" value = "변 경" onclick="colorFunc()">
+                    <!--이벤트 핸들러가 되는 colorFunc()가 있다. 배경색과 글자색을 바꾸는 오른쪽 열에 대해서도 이벤트를 줄 수 있다.-->
+                    <!--버튼에 이벤트를 걸었다.-->
+                </td>
+        </table>
+    </form>
+</body>
+</html>

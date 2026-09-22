@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        // window.onload = function(){}; 이번에는 화살표함수 형태로 해보자.
+        window.onload = () => {
+            // alert("a"); 제대로 작동하는지 시험해보기 위해서 alert해봄
+            /*
+            // 1. 색깔 지정 옛날방식
+            document.getElementById("colorW").onclick = function(){
+                document.bgcolor = "#00ff00"; // 색깔을 이런 식으로 16진수로 주어줄 수 도 있다.
+            }
+            
+            // 2. 색깔 지정 옛날방식
+            document.getElementById("colorG").onclick = function(){
+                document.bgcolor = "white";
+            }
+
+            // 3. 색깔 지정 옛날방식
+            document.getElementById("colorR").onclick = function(){
+                document.bgcolor = "rgb(255, 0 0)";
+            }
+            // 이렇게 3가지 방식으로 색깔을 지정해줄 수 있다.
+            
+            // 4. 요새는 색깔을 지정할 때 이런 방식을 많이 쓴다
+            document.getElementById("colorR").onclick = function(){
+                document.body.style.backgroundColor = "rgb(255, 0, 0)" 
+            }
+            */
+
+            // 5. 3가지 버튼 모두 칸 모두 현대식 색깔지정 방식으로 바꾼다.
+            document.getElementById("colorW").onclick = function(){
+                document.body.style.backgroundColor = "white"
+            }
+
+            document.getElementById("colorG").onclick = function(){
+                document.body.style.backgroundColor = "green" 
+            }
+
+            document.getElementById("colorR").onclick = function(){
+                document.body.style.backgroundColor = "rgb(255, 0, 0)" 
+            }
+
+            // < 이벤트 종류 경험하기(요이) >
+            // 아래에서 만들었던 3개의 button이 실행할 event를 여기서 만들어준다.
+
+            // 1. 인사하세요 버튼(onclick)
+            document.querySelector(".hello").onclick = () => {
+                // 클래스가 hello인 녀석을 지정함(#hello로 해서 id로 지정해도 됨)
+                document.querySelector("#show").innerText = "안녕하세요";
+                // 해당 클래스를 가진 녀석이 show라는 자리에서 innerText로 "안녕하세요"를 출력하게 함.
+            }
+
+            // 2. 계산하세요 버튼(ondblclick)
+            document.querySelector("#calc").ondblclick = () => {
+                // id가 calc인 녀석을 지정함
+                let ss = `연산 결과는 ${10 + 20}`
+                document.querySelector("#show").innerText = + ss;
+                // 해당 id를 가진 녀석이 show라는 자리에서 innerText로 "계싼하세요"를 출력하게 함.
+            }
+
+            // 3. 이름이에요 버튼(mouseover : 마우스롤 해당 버튼에 올리기만 해도 값이 뜬다) = 마우스 포인터가 해당 요소 위로 들어왔을 때 발생
+            document.querySelector("#name").onmouseover = () => {
+                // id가 mouse인 녀석을 지정함. 마우스를 버튼 위에 올리기만 하면 함수가 실행된다.
+                document.querySelector("#show").innerText = "이름입니다이";
+                // 해당 id를 가진 녀석이 show라는 자리에서 innerText로 "이름입니다이"를 출력하게 함.
+            }
+
+            // 4. 이름이에요 버튼(mouseout : 마우스롤 해당 버튼에 올렸다가 나갈때 값이 뜬다) = 마우스 포인터가 해당 요소 밖으로 나갔을 때 발생
+            document.querySelector("#name").onmouseout = () => {
+                document.querySelector("#show").innerText = "";
+            }
+
+            // < a tag : click이벤트가 기본 장착됨. 그래서 클릭을 하면 자동으로 넘어간다. >
+            // 하지만 나는 그 클릭 이벤트를 없애고 싶다.
+            document.querySelector("#daum").onclick = function(eevveenntt){ // 이벤트 관련 정보를 얻을 수 있다. parameter안에 아무 이벤트명을 적어주면 관련정보를 얻을 수 잇다.
+                eevveenntt.preventDefault(); // 해당 tag의 고유기능(a tag, submit, reset ...)이 삭제가 된다.
+                console.log(eevveenntt); // a tag를 눌러도 다음 사이트로 가지 않는다.   
+                document.title = "새로운 제목"; // 이걸 쓰면 원래 web page의 제목인 Document가 "새로운 제목"이라는 이름으로 바뀌었다.          
+            }
+
+            // < select >
+            const sdata = document.querySelector("#sel");
+            /*
+            sdata.onclick = function(){ // 항목 선택 시 click 이벤트 발생
+                document.querySelector("#show").innerHTML = sdata.value;
+                console.log(sdata.value);
+            }
+            */
+            
+            sdata.onchange = function(){ // 항목 선택 시 change 이벤트 발생
+                document.querySelector("#show").innerHTML = sdata.value;
+                console.log(sdata.value); 
+            // 아까 위의 sel에서 console로 sdata.value를 보면 아까는 동일한 값을 찍으면 계속 콘솔창에 같은 값이 떴는데 onchange를 해주니까 같은 값을 클릭
+            // 해도 바뀌지 않는다.
+            // 그래서 select를 쓸 때는 웬만하면 onchange를 써라.
+            }
+
+
+            // < 입력 자료 오류 검사 >
+            // 다음 파일에서...
+
+        }
+    </script>
+
+
+</head>
+
+
+<body>
+    **여러 이벤트 경험하기** 
+    
+    <br>
+    
+    <input type "button" value = "흰색" id = colorW>;
+    <!--
+    <input type "button" value = "녹색" id = colorG>;
+    <input type "button" value = "적색" id = colorR>;
+    -->
+    <!--꼭 버튼이 아니어도 된다.-->
+
+    <span id = "colorG"> 녹색 </span>
+    <b id = "colorR"> 적색 </b>
+    <!--버튼이 아니어도 녹색이라는 칸을 클릭하면 이벤트에 의해서 색깔이 바뀐다!-->
+
+    <br>
+    <hr>
+    <br>
+
+    **이벤트 종류(요이)**
+    <button id = "hello" class = "hello"> 인사하세요 </button>
+    <button id = "calc"> 계산하세요 </button>
+    <button id = "name"> 이름이에요 </button>
+    // 3개의 버튼이 존재한다. 버튼처럼 보이는 텍스트로 아직 아무 이벤트도 수행하지 못한다.
+
+    <br>
+    <hr>
+    <br>
+
+    <a href = "https://m.daum.net" id = "daum"> 앵커 태그 클릭 </a>
+
+    <br>
+    <hr>
+    <br>
+
+    <select id = "sel">
+        <option value = "프로그래머"> 프로그래머 </option>
+        <option value = "웹퍼블리셔"> 웹퍼블리셔 </option>
+        <option value = "프로게이머"> 프로게이머 </option>
+    </select>
+
+
+    <br>
+    <hr>
+    <br>
+
+
+    <div id = "show">  출력장소 </div>
+
+
+</body>
+</html>

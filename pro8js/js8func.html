@@ -1,0 +1,35 @@
+<!--대화상자-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>js의 대화상자 관련 내장 함수</h3>
+
+    <script>
+        let irum = "홍길동";
+        let tel = '8755-5926'
+        
+        //1. alert()
+        alert("이름은" + irum + "\n전화번호는" + tel);
+        // alert가 메시지 창이 먼저 생기고
+        console.log("이름은" + irum + "\n전화번호는" + tel)
+        // 콘솔은 웹페이지에 안보인다. 하지만 생긴다.
+        document.write("<br>alert함수 수행 후 계속")
+
+        //2. confirm()
+        let result = confirm("계속할까여?");
+        // alert에 이어서 선택창이 생긴다.
+        document.write("<br>선택한 값은" + result);
+        // true False
+
+        //3. prompt
+        let juso = prompt("사는 곳 입력", "안기동");
+        document.write("<br>사는 곳은" + juso);
+
+    </script>   
+</body>
+</html>
