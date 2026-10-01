@@ -1,0 +1,17 @@
+{% extends "base.html" %} <!--상속을 의미한다.-->
+
+{% block title %} 메인 {% endblock %}
+
+{% block content %}
+<h3> 메인 : 레이아웃 html 상속, 템플릿 엔진으로 조건문, 반복문, 필터 </h3>
+<ul>
+    <li><a href = "/condition"> 조건문 </a></li>    
+    <li><a href = "/loop"> 반복문 </a></li>    
+    <li><a href = "/filter"> 필터 </a></li>    
+</ul>
+{% endblock %}
+
+<!--base.html의 block title과 block content안에 있는 내용만 index.html의 자료로 바뀐다-->
+
+
+<!--base.html이 index.html내용을 모두 가지고 있기에 base.html로 부터 정보를 상속받는다. 그래서 앞뒤 내용을 지움. 상속받을 내용만 내둠-->

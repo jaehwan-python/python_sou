@@ -12,6 +12,8 @@
             let arrData = datetime.split("-");
             console.log(`${arrData[0]}년 ${arrData[1]}월 ${arrData[2]}일`)
         }
+            // .split() : 문자열 데이터를 쪼개서 배열 데이터로 저장한다.
+            // 그래서 쪼갠 arrData는 인덱스를 꼭 붙여줘야 한다.
         </script>
 </head>
 
@@ -22,11 +24,14 @@
     예시: 버튼 클릭, 마우스 이동, 키보드 입력, 값 변경, 페이지 로딩, form 자료 전송...<br>
 
     <a href = "https://www.naver.com"> 네이버 : click event 발생 </a><br>
-    <a href = "javascript:func()"> event handler func 호출1(이벤트 핸들러 사용 안함) </a><br>
+    <a href = "javascript:func()"> event handler func 호출1(이벤트 핸들러 사용) 이 방법은 비권장 </a><br>
+    <!--네이버와 func모두 수행이 되지만 아래있는 방식은 권장하지 않는다-->
+    <!--href안에서 이벤트 핸들러 함수를 사용하려면 javascript:를 꼭 적어줘야한다.-->
     <br>이벤트 핸들러는 on이벤트 종류 = 핸들러함수()
     <br>
 
     <a href = "javascript:onclick = func()"> event handler func 호출2(이벤트 핸들러 사용함) </a><br>
+    <!--href에서 'event hadnler func 호출2'라는 태그에서 (on)click이라는 동작을 수행하면 func()를 수행해라-->
     on 하고 뒤에 오는 이벤트 핸들러에는 클릭, 더블 클릭 등등 많은 이벤트 핸들러 함수가 존재한다
     일반 사용자가 a 태그를 누르면서 이벤트 처리(func()를 부른다)가 된다
     <br>
@@ -36,9 +41,21 @@
     이벤트 발생은 사용자가 하는거다. 그 환경은 개발자가 만드는 것이다. 이벤트 대상자(button)를 먼저 만들고 그 다음 handler(onclick)를 만들어야 한다. 
     그 다음 핸들러 처리 함수(Func())를 만들어줘야한다.
     <br>
-    <input type = "button" value="이벤트 처리 함수 호출 4"/> 이렇게 되면 단순히 버튼이다 하지만 이벤트 핸들러 처리를 위해서 onclick을 넣어줘야한다
-    <input type = "button" value="이벤트 처리 함수 호출 4" onclick="func()"/> 이렇게 되면 이벤트 핸들러를 처리하는 함수가 생겼다
+    <input type = "button" value="이벤트 처리 함수 호출안해용 4"/> 이렇게 되면 단순히 버튼이다 하지만 이벤트 핸들러 처리를 위해서 onclick을 넣어줘야한다
+    <input type = "button" value="이벤트 처리 함수 호출해용 4" onclick="func()"/> 이렇게 되면 이벤트 핸들러를 처리하는 함수가 생겼다
     <!--결국 사용자가 어떤 기능을 하게 되면 그 기능에 대한 작동으로 함수를 실행하게 된다. 이때 사용자가 하는 기능이 이벤트이고 그 이벤트가 발생했을 때
     발생하는 작동이 이벤트 핸들러 함수이다.-->
+
+    <!--
+    
+    1. <button onclick="func()"> 이벤트 처리 함수 호출3</button>
+    -> 시작태그와 종료태그 사이에 내용을 넣어서 글자뿐만 아니라 다른 태그도 넣을 수 있다
+    
+    2. <input type = "button" value="이벤트 처리 함수 호출 4" onclick="func()"/>
+    -> 종료태그가 없고 버튼에 표시할 문자를 value로 지정한다
+    
+    1,2는 같지만 표현 방식이 다른 것이다
+    -->
+
 </body>
 </html>

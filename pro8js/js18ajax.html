@@ -8,10 +8,13 @@
         window.onload = () => {
             document.querySelector("#btnGet").onclick = getFunc;
             document.querySelector("#btnPost").onclick = postFunc;
-        }
+        } // button이 없기 때문에 여기서 미리 로드를 해둠 = window.onload
+          // = 페이지가 다 로딩되고 body의 버튼들이 만들어진 뒤 이 코드를 실행해라 
 
 
         let xhr;
+        // xhr이라는 변수를 미리 만들어둠. 
+        // XMLHttpRequest 객체를 담을 공용 변수
         
         // 1. get 방식의 Ajax
         function getFunc(){
@@ -21,7 +24,8 @@
 
             // 여기서부터 Ajax
             xhr = new XMLHttpRequest(); // 비동기 처리를 가능하게함 
-            // 브라우저에서 웹서버와의 비동기 통신을 위한 객체를 xhr로 지정함
+            // 브라우저에서 웹서버와의 비동기 통신을 위한 객체를 만들고
+            // 그 역할을 해줄 친구로 xhr로 지정함
             
             // xhr.open("GET", "js18.py", true); 
             // true : 비동기
@@ -33,9 +37,14 @@
 
             //let fname = "js18.py"; // 이건 get 방식이지만 변수값이 없다. 변수값도 있어서 효율적으로 만드려면 아래처럼 만든다
             let fname = "js18.py?irum=" + irum + "&nai=" + nai; // = 이것이 get방식
-            // 비동기 방식이라서 이 내용이 url에 보이지 않는다.
+            // 이 코드가 get방식의 핵심!!
+            // : fname = js18.py?irum=tom$nai=33
+            // 브라우저의 요청을 ajax가 받아서 get방식으로 요청을 서버에 보냄
+            // 이 부분은 get방식의 url구조를 만들라는 뜻이다.
+            
             xhr.open("GET", fname, true)
             xhr.onreadystatechange = function(){ // onreadystatechange에 이름이 없는 일회용함수를 주어준다.
+                // 통신상태가 어떤지 확인하는 함수이다.
                 /*
                 alert(xhr.readyState); 
                 // readyState : 0 ~ 4를 반환한다.
@@ -55,14 +64,17 @@
                 }
             }
             xhr.send();
-            // 이게 있어야 받은 값을 다시 보낸다.
+            // 이게 있어야 실제 요청을 보낸다.
         }
         
         function process1(){
             // alert("xhr.responseText")
             document.querySelector("#show").innerText = xhr.responseText;
-
         }
+        // 브라우저가 특정 정보를 get방식으로 서버에게 요청했고 ajax는 xhr객체를 만들어서 통신상태를 확인하고 양호하면 process1()함수를 통해서 수정 정보를 문자열로 받는다.
+        // xhr.responseText : 서버가 보내준 응답 내용을 문자열로 가져온다.
+        // show라는 id를 가진 브라우저의 태그의 innerText를 xhr이 가져온 서버로 부터 받은 수정내용(xhr.responseText)로 바꾼다 
+
 // 현재 우리는 http server인 live server(vs code)를 이용하기에 js18.py를 통해 DB의 데이터를 불러 올 수 없다.
 // 우리는 WAS server를 이용해야 하는데 live server는 http server라서 python을 이용할 수 없다 
 // Flask에 가서 WAS server를 이용할 수 있다.
@@ -93,6 +105,8 @@
     </script>
 
 </head>
+
+
 <body>
     <h2> Ajax 이해 </h2>
     <form name = "frm">

@@ -8,10 +8,13 @@
     <title>화살표 함수</title>
 </head>
 <body>
-ES6부터는 화살표 함수(arrow fuction)라는 새로운 문법 방식으로 함수를 만들 수 있게 되었다
+ES6(JavaScript문법의 큰 업데이트 버전)부터는 화살표 함수(arrow fuction)라는 새로운 문법 방식으로 함수를 만들 수 있게 되었다
 화살표함수는 => 기호를 사용하여 function 키워드를 생략한다 <br>
 함수표현식보다 단순한 문법으로 함수 처리가 가능해진다 <br>
-형식 : let 변수 = (매개변수1,...) => {표현식}
+
+<!--앞으로 함수를 쓸 때 이렇게 화살표함수로 쓸 것이다!!-->
+
+<h1>형식 : let 변수 = (매개변수1,...) => {표현식}</h1>
 파이썬의 람다함수와 비슷하다
     <script>
         //참고 : 'use strict';는 JavaScript를 엄격 모드(Strict Mode)로 실행하도록 하는 선언
@@ -26,35 +29,49 @@ ES6부터는 화살표 함수(arrow fuction)라는 새로운 문법 방식으로
 
         // <script type = 'module'>하게 되면 'use strict';가 자동으로 적용된다.
     
+        // 1. 일반적인 함수의 형태
         function hap0(a, b){ // 얘는 함수에 이름이 있다.
             return a+b
         }
 
         document.write(hap0(3, 4))
         let niceFunc = hap0;
+        // niceFunc이라는 변수가 hap0함수의 주소를 받음
+        // = niceFunc도 hap0함수를 사용할 수 있다.
+        // 하지만 hap0()을 받으면 return값을 받는 것이기 때문에 함수 수행이 불가능하다
         document.write(niceFunc(3,4))
 
         document.write("<br>")
 
-        //화살표 함수
+
+        // 2. 이제부터 화살표 함수 시작
+        
+        // <일반적인 함수>
         let hap1 = function(a, b){ // 1. 얘는 함수에 이름이 없고 변수가 함수를 받았다. 그리고 그 함수의 주소를 변수가 참조한다
             return a + b;
         }
         document.write(hap1(3, 4));
         document.write("<br>")
         
-        let hap2 = (a, b) => a + b;  // 2. 위 함수를 화살표 함수로 표현함
+        // <화살표함수>
+        let hap2 = (a, b) => {a + b};  // 2. 위 함수를 화살표 함수로 표현함
         document.write(hap2(3, 4));
 
+        // 1. 매개변수가 2개인 경우
         let hap3 = (a, b) => {return a + b};  // 일반 함수보다 화살표함수의 형식으로 더 많이 쓰인다.
         document.write(hap3(3, 4));
         document.write("<br>")
 
+        // 2. 매개변수가 1개인 경우
         let double1 = (n) => {return n * 2};
         document.write(`<br>결과는 ${double1(3)}`);
 
+        // 3. 매개변수가 없는 경우
         let sayHi = () => document.write(`<br> 안녕안녕~!!`);
         sayHi()
+
+        // 이름없는 어떤 함수를 sayHi로 지정하고 그 함수의 매개변수 갯수만큼의 실인수를 넣어주면 => 뒷부분을 수행한다.
+        // 화살표함수 = 익명의 함수 표현식을 간단하게 만든 것
 
         document.write("<hr>");
         // 삼항 연산자 사용
@@ -62,6 +79,7 @@ ES6부터는 화살표 함수(arrow fuction)라는 새로운 문법 방식으로
         let welcome = (age < 30)? () => document.write('<br>안녕 반가워'):document.write('<br>꺼져')
         welcome();
 
+        // 예시1)
         document.write("<br>")
         // 합계산
         let sumFunc = (a, b) => {
@@ -69,27 +87,44 @@ ES6부터는 화살표 함수(arrow fuction)라는 새로운 문법 방식으로
             return result;
             }
         
+        // 예시2)
         document.write(`<br> 두 수의 합은${sumFunc(5, 6)}`);
 
         let calcFunc = (a, b, op) => {
-                if(op ==="+") return a + b;
-                else if(op === "-") return a - b
-                else if(op === "*") return a*b
-                else if(op === "/") return a/b
+                if(op ==="+") 
+                return a + b;
+                
+                else if(op === "-") 
+                return a - b
+                
+                else if(op === "*") 
+                return a*b
+                
+                else if(op === "/") 
+                return a/b
+                
                 else return 0;            
             }
+        document.write(`이건 계산기 입니다. ${calcFunc(3,2)}`)
 
+        
             document.write("<br>")
+
+        // 예시3)
             // 배열 고차 함수 활용...아래 3가지 함수는 중요!!
+
             // 'filter()' : 조건에 맞는 데이터 추출
             // 'map()' : 데이터를 원하는 형태로 반환
             // 'forEach()' : 데이터를 하나씩 반복 처리
-            const employees = [// 배열 값으로 json데이터를 넣었다.
+            // = 위 3가지 모두 배열에서 요소를 하나씩 꺼내서 처리하는 매서드
+
+            const employees = [ // 배열 값으로 json데이터를 넣었다.
                 {name : "가나다", pay : 280},
                 {name : "김칫국", pay : 350},
                 {name : "박치기", pay : 400},
                 {name : "이겨라", pay : 500}
             ]
+            
             // 급여가 300 이상인 직원만 선택
             const highPay = employees.filter(emp => emp.pay >= 300);
             // const highPay = employees.filter(function(emp){...})위와 같은 의미
@@ -111,6 +146,7 @@ ES6부터는 화살표 함수(arrow fuction)라는 새로운 문법 방식으로
             result.forEach(emp => {
                 document.write(`${emp.name} : 기존 ${emp.pay}만원 -> 인상 ${emp.newPay}만원}`);
             });
+            // result에서 값을 하나씩 빼서(forEach) 그 값에 대해서 뒤에 있는 ()속 화살표함수를 수행해라
     </script>
     
 </body>

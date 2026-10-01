@@ -8,7 +8,9 @@
     <script>
         // 주문 객체 : 객체 object literal 이용한 객체 생성
         // 객체를 왜 사용할까? : 관련 있는 여러 값을 하나로 묶어서 관리하기 위해서
-        const order = {
+        
+        // 1. literal 방식으로 클래스 사용
+        const order = { // 클래스를 사용하는 literal 방식
             // '멤버 변수1'
             orderNo : "a1001", // 단순 참조형 변수1 -> orderNo
             
@@ -27,7 +29,7 @@
             
             // '멤버 메서드'
             // 총 주문 금액 계산 
-            getTotal:function(){
+            getTotal: function(){
                 let total = 0
                 this.products.forEach(pro => { // this : 메서드를 호출한 객체
                     total += pro.price * pro.qty;
@@ -36,28 +38,29 @@
             }
         }
 
-            // 실행
-            function showOrder(){
-                let str = "";
-                str += `<h3> 주분번호 : ${order.orderNo} </h3>`;
-                str += `고객명 : ${order.customer.name}<br>`;
-                str += `고객전화 : ${order.customer.tel}<br>`;
-                str += "<br><b>상품목록</b>"
+        // 2. 사용자 정의 함수로 클래스 실행
+        function showOrder(){
+            let str = "";
+            str += `<h3> 주분번호 : ${order.orderNo} </h3>`;
+            str += `고객명 : ${order.customer.name}<br>`;
+            str += `고객전화 : ${order.customer.tel}<br>`;
+            
+            str += "<br><b> 상품목록 </b>"
 
-                order.products.forEach(product => {
-                    str += `
-                    <br>
-                    상품명 : ${product.name}<br>
-                    가격 : ${(product.price).toLocaleString()}원<br>
-                    수량 : ${product.qty}<br>
-                    금액 : ${(product.price * product.qty).toLocaleString()}원<br>
-                    `;
-                });
+            order.products.forEach(product => {
+                str += `
+                <br>
+                상품명 : ${product.name}<br>
+                가격 : ${(product.price).toLocaleString()}원<br>
+                수량 : ${product.qty}<br>
+                금액 : ${(product.price * product.qty).toLocaleString()}원<br>
+                `;
+            });
 
-                str+= `<h3>총 주문 금액 : ${order.getTotal().toLocaleString()}원</h3>`;
-                document.querySelector("#result").innerHTML = str;
+            str+= `<h3>총 주문 금액 : ${order.getTotal().toLocaleString()}원</h3>`;
+            document.querySelector("#result").innerHTML = str;
                 
-            }
+        }
 
     </script>
 </head>

@@ -7,6 +7,13 @@
 
     <script>
         // window.onload = function(){}; 이번에는 화살표함수 형태로 해보자.
+        // `<body>`에서 `id="aa"`인 버튼을 만들고, `<head>`의 JavaScript에서 `getElementById("aa").onclick = function(){...}`으로 이벤트 핸들러를 연결한다. 
+        // 그런데 JavaScript가 `<head>`에서 너무 일찍 실행되면 아직 `<body>`의 버튼이 생성되지 않았기 때문에 버튼을 찾을 수 없다. 
+        // 그래서 `window.onload`를 사용하여 페이지 로딩이 완료된 뒤 버튼을 찾아 이벤트 핸들러를 연결한다. 
+        // 이후 사용자가 버튼을 클릭하면 등록해 둔 함수가 실행된다. 
+        // 그럼 결국 body의 tag에서 이벤트 핸들러가 한번에 있는 번거로움을 해결하기 위해 <head>에 따로 이벤트 핸들러의 함수를 선언하는 건데 
+        // 이를 위해서 window\.onload가 필요한것이다
+        // = 아래에서 위로 올라오기 위해 미리 로딩을 걸어두는 것이다. 
         window.onload = () => {
             // alert("a"); 제대로 작동하는지 시험해보기 위해서 alert해봄
             /*
@@ -29,7 +36,10 @@
             // 4. 요새는 색깔을 지정할 때 이런 방식을 많이 쓴다
             document.getElementById("colorR").onclick = function(){
                 document.body.style.backgroundColor = "rgb(255, 0, 0)" 
-            }
+            }   
+                // colorR이라느 id를 가진 tag를 찾아서 클릭이라는 이벤트가 발생하면 function()을 수행해라
+                // 이전에는 body의 tag에서 한번에 이벤트 핸들러와 이벤트 핸들러 함수를 선언햇지만
+                // 이제부터는 head의 영역에서 선언하고 body에서 불러다 쓸 것이다.
             */
 
             // 5. 3가지 버튼 모두 칸 모두 현대식 색깔지정 방식으로 바꾼다.
@@ -44,6 +54,7 @@
             document.getElementById("colorR").onclick = function(){
                 document.body.style.backgroundColor = "rgb(255, 0, 0)" 
             }
+            // 해당 칸을 클릭하게 되면 window.onload에 의해서 미리 로딩이 된 이 이벤트핸들러함수들이 수행된다.
 
             // < 이벤트 종류 경험하기(요이) >
             // 아래에서 만들었던 3개의 button이 실행할 event를 여기서 만들어준다.
@@ -53,12 +64,14 @@
                 // 클래스가 hello인 녀석을 지정함(#hello로 해서 id로 지정해도 됨)
                 document.querySelector("#show").innerText = "안녕하세요";
                 // 해당 클래스를 가진 녀석이 show라는 자리에서 innerText로 "안녕하세요"를 출력하게 함.
-            }
+            } 
+            // hello라는 클래스를 가진 태그를 클릭하게 되면 화살표 함수가 수행된다.
+            // 화살표함수 : show라는 id를 가진 태그의 innerText를 "안녕하세요"로 바꾼다.
 
             // 2. 계산하세요 버튼(ondblclick)
             document.querySelector("#calc").ondblclick = () => {
                 // id가 calc인 녀석을 지정함
-                let ss = `연산 결과는 ${10 + 20}`
+                let ss = `연산 결과는 ${10 + 20}` // 이 함수를 수행하고 아래 문장을 출력한다.
                 document.querySelector("#show").innerText = + ss;
                 // 해당 id를 가진 녀석이 show라는 자리에서 innerText로 "계싼하세요"를 출력하게 함.
             }
@@ -81,16 +94,21 @@
                 eevveenntt.preventDefault(); // 해당 tag의 고유기능(a tag, submit, reset ...)이 삭제가 된다.
                 console.log(eevveenntt); // a tag를 눌러도 다음 사이트로 가지 않는다.   
                 document.title = "새로운 제목"; // 이걸 쓰면 원래 web page의 제목인 Document가 "새로운 제목"이라는 이름으로 바뀌었다.          
-            }
+            } // 여기서 "앵커 태그 클릭"을 누르면 2가지가 실행된다
+                // 첫번째. 기존 앵커 태그가 가지고 있던 자동 이벤트 핸들러 함수가 preventDefault()에 의해 삭제되어 클릭이라는 이벤트가 발생해도 이동하지 않는다.
+                // 두번째. document.title에 의해 제목이 바뀐다
 
             // < select >
             const sdata = document.querySelector("#sel");
-            /*
+            // sdata는 select 전부를 의미한다.
             sdata.onclick = function(){ // 항목 선택 시 click 이벤트 발생
                 document.querySelector("#show").innerHTML = sdata.value;
+                // sdata.value를 통해 option의 해당 값들이 뜬다.
+                // sdata.value = select에서 현재 선택된 option의 value값을 가져와라.
+                // 내가 option값들을 누르면 그 값들이 출력장소(id = show)에 뜬다
                 console.log(sdata.value);
             }
-            */
+            
             
             sdata.onchange = function(){ // 항목 선택 시 change 이벤트 발생
                 document.querySelector("#show").innerHTML = sdata.value;
@@ -147,6 +165,7 @@
     <hr>
     <br>
 
+    <!--selection과 option은 하나의 세트이다. select안에서 option은 그 선택요소들을 만드는 것이다.-->
     <select id = "sel">
         <option value = "프로그래머"> 프로그래머 </option>
         <option value = "웹퍼블리셔"> 웹퍼블리셔 </option>

@@ -12,17 +12,21 @@
 
         function bb(){
             document.write('bb 함수 실행 성공');
+            
+            // 1. bb함수 속 cc함수
             cc(10); // 함수가 다른 함수 호출 가능
             cc(1, 2, 3) // 파라미터 갯수가 일치하지 않아도 수행된다.
             let re = cc(5); 
             // 반환 값 처리
             document.write(`<br>re는 ${re}`)
             
+            // 2. bb함수 속 dd함수
             dd(7); // 파라미터 갯수가 일치하지 않아도 된다
             dd(7,8,9);
             dd(7);
             dd()
         }
+        // 아래 body에서 bb()를 하게 되면 cc함수와 dd함수도 수행된다. 
 
         function cc(para){
             let kk = para + 10;
@@ -66,7 +70,7 @@
         // 문자열을 str에 저장함
 
         document.write(`<br>str.charAt(2) : ${str.charAt(2)}`);
-        // 해당 문자열에서 index [2]의 문자를 가져와.
+        // str가 가지고 있는 문자열에서 index[2]의 문자를 가져와.
 
         document.write(`<br>str.bold() : ${str.bold()}`);
         // 잘 사용...x
@@ -98,12 +102,13 @@
     // 사용자 정의 함수
     <div><h1>돈까스 / 마라탕 / 삼계탕 / 짜장면 / 무엇을 먹을까요오오~ 요이~~~~~~</h1></div>
         <script>
-            aa();
+            aa(); // 3번째 부르는 것이기 때문에 "3번 수행"으로 뜬다
         </script>
 
         <hr>
 
-        <div><b>생각의 전환 : </b> html 선언부에 JS코드(함수)를 작성 후 함수를 호출</div>
+        <div><b>생각의 전환 : </b> 
+            html 선언부(헤드)에 JS코드(함수)를 작성 후 함수를 호출</div>
         
         <script>
             bb(); //bb함수 호출 후 수행

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2> get 방식 요청(요청명 또는 요청명?변수=값&변수=값 또는 form tag 사용) </h2>
+    핵심 : GET은 값을 URL 뒤의 Query String에 붙여서 전송한다.주로 소량의 데이터가 노출되어도 상관없을 때 넘긴다. 주로 조회작업에서 쓰인다
+    <br>
+
+    방법1 : <br>
+    <a href = "/get_result?username=손오공&age=23"> get(url)으로 자료전달 </a> <br>
+    
+    방법2 : <br>
+    <form action="/get_result" method = "get">
+        이름 : <input type = "text" name = "username" value = "사오정"><br>
+        나이 : <input type = "number" name = "age" value = "23">
+    <input type = "submit" value = "전송">
+    </form>
+
+    <!--두 방식 실행해보고 url창 보기!! = url에 전송되는 값이 적힌다.-->
+
+</body>
+</html>

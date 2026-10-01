@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %} 반복문 {% endblock %}
+
+{% block content %}
+    <h3> 반복문 예제 </h3>
+    <u1>
+        {% for user in users %} <!--for in 반복문-->
+        <li>{{loop.index}}번째 사람 : {{user}}</li>
+        {% endfor %} <!--endfor를 통해서 반복을 수행한다-->
+    </u1>
+    <p> 총 인원 수 : {{users | length}} </p>
+{% endblock %}
