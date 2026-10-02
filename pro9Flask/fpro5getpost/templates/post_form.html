@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- post방식으로 전송버튼을 눌렀을 때 발생하는 이벤트1 : alert창 띄우기 -->
+    <!--
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // document.getElementsByName("form")
+            const form = document.querySelector("form[name='postform']")
+            const btn = document.querySelector("#btnSend")
+
+            btn.addEventListener("click", () => {
+                alert("a")
+            })
+            // 전송 버튼을 누르면 alert창이 뜨도록 한다. form태그에 name속성을 주고, querySelector로 선택한다. 
+
+        })
+        
+    </script>
+    -->
+
+    <!-- post방식으로 전송버튼을 눌렀을 때 발생하는 이벤트2 : 전송버튼을 눌러도 '이름'과 '이메일' 입력이 안되면 alert창이 뜨고 전송이 안되게 하는 이벤트함수 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector("form[name='postform']")
+            const btn = document.querySelector("#btnSend")
+
+            
+            btn.addEventListener("click", () => {
+                form.requestSubmit(); // 입력자료검증 후 자료 전송
+            })
+
+            // form입력자료 검사 -> 이름과 이메일 확인
+            form.addEventListener("submit", (event) => {
+                const name = document.querySelector("#username").value.trim()
+                const email = document.querySelector("#email").value.trim()
+
+
+                // 이름 입력이 안된 경우
+                if(!name){
+                    alert("이름을 입력하세요")
+                    event.preventDefault() // 전송버튼을 눌렀을 때, 이름이 입력되지 않으면 alert창이 뜨고, 전송이 되지 않도록 한다.
+                    return;
+                }
+
+                // 이메일 입력이 안된 경우
+                if(!email || !email.includes("@")){
+                    alert("올바른 이메일을 입력하세요")
+                    event.preventDefault() // 전송버튼을 눌렀을 때, 이메일이 입력되지 않으면 alert창이 뜨고, 전송이 되지 않도록 한다.
+                    return;
+                }
+            
+            })
+            
+            // 이름 입력이 안된 경우
+            if(!name){
+                // alert("이름을 입력하세요")
+                event.preventDefault() // 전송버튼을 눌렀을 때, 이름이 입력되지 않으면 alert창이 뜨고, 전송이 되지 않도록 한다.
+                return;
+            }
+
+            // 이메일 입력이 안된 경우
+            if(!email || !email.includes("@")){
+                // alert("올바른 이메일을 입력하세요")
+                // event.preventDefault() // 전송버튼을 눌렀을 때, 이메일이 입력되지 않으면 alert창이 뜨고, 전송이 되지 않도록 한다.
+                form.requestSubmit() // form.requestSubmit()은 form태그의 submit버튼을 눌렀을 때 발생하는 이벤트를 발생시키는 메서드이다. 이 메서드를 사용하면, form태그의 submit버튼을 눌렀을 때 발생하는 이벤트를 발생시킬 수 있다.
+                return;
+
+            }
+        
+        })
+
+
+
+    </script>
+</head>
+<body>
+    <h3> post 방식 처리 </h3>
+    <form action = "/post_result" method = "post" name = "postform"> <!--이런 식으로 post방식은 명명해주어야 한다.-->
+        이름 : <input type = "text" name = "username" id = "username" value = "손오공"><br>
+        이메일 : <input type = "text" name = "email" id = "email" value = "abc">
+        <input type = "button" value = "전송" id = "btnSend">
+    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2> *상품 정보* </h2>
+    <!--flash 메세지 관 출력-->
+    {% if messages %}
+        <ul>
+            {% for m in messages %}
+            <li>{{m}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <p>
+        <a href="{{url_for('add_form')}}"> [ 상품 추가 ] </a> <!-- url요청 후 함수실행까지 수행함-->
+        <!-- = <a href="/add_form"> [ 상품 추가 ] </a> : url 요청명-->
+    </p>
+    <table border = "1">
+        <tr>
+            <th> 코드 </th>  <th> 상품명 </th>  <th> 수량 </th>  <th> 단가 </th>  <th> 관리 </th>
+        </tr>
+        
+        <!--수정 / 삭제 버튼 만들기-->
+        {% for r in rows %}
+        <tr>
+            <td>{{r.code}}</td>
+            <td>{{r.sang}}</td>
+            <td>{{r.su}}</td>
+            <td>{{r.dan}}</td>
+            <td><a href = "{{url_for('edit_form', code=r.code)}}"> [수정(get방식)] </a>
+            <!-- 요청방법1 : <td><a href = "/edit/1/"> 수정 </a></td> 위 방식과 동일-->
+            <!-- 요청방법2 : <td><a href = "/edit?code=1"> 수정 </a></td> -->
+            <!--이건 무조건 get방식이다. [삭제]는 post방식으로 만들어보자. post방식은 form태그 안에 정보를 적어주어야한다.-->
+            /
+            <form action = "{{url_for('delete_row', code=r.code)}}" method = "post" 
+                style="display: inline;" 
+                onsubmit="return confirm('정말 삭제할까요...? 진짜..?')">
+                <button type = "submit"> [삭제(post방식)] </button>
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+</body>
+</html>

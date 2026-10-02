@@ -1,0 +1,30 @@
+<!--form_add.html과 form_edit.html은 비슷하다-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3> 상품수정 </h3>  
+    {% if messages %}
+        <ul>
+            {% for m in messages %}
+            <li>{{m}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action = "{{url_for('edit_save', code=row.code)}}" method = 'post'>
+        <p> 코드 : <b>{{row.code}}</b> {PK(Primary Key)는 수정에서 제외한다. 그래서 보기로 처리한다}</p>
+        <p> 품명 : <input name="sang" value="{{row.sang}}"></p>
+        <p> 수량 : <input name="su" value="{{row.su}}"></p>
+        <p> 단가 : <input name="dan" value="{{row.dan}}"></p>  <!--javascript를 쓸 것이 아니기에 id를 빼주었고 type = text는 생략가능하다!-->
+        <button type = "submit"> [수정] </button>
+        <a href="{{url_for('show_list')}}"> [수정 취소] </a>
+    </form>
+</body>
+</html>

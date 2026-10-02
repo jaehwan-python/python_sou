@@ -1,0 +1,32 @@
+상속
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2> 장바구니(cart)목록 </h2>
+{% if cart %} <!--만약 장바구니(cart)에 내용물이 있으면-->
+    <table border="1">
+        <tr>
+            <th> 상품명 </th>  <th> 가격 </th>  <th> 수량 </th>  <th> 함계 </th>  <th> 삭제 </th>
+        </tr>
+        {% for name, info in cart.items() %}
+            {% set subtotal = info.price * info.qty %} <!--jinja에서 변수는 set이다-->
+            <tr>
+                <td>{{name}}</td>  
+                <td>{{info.price}}</td>
+                <td>{{info.qty}}</td>
+                <td>{{subtotal}}</td>
+                <td><a href = "/remove/{{name}}"> (현재 상품에 대한) 주문 삭제 </a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p> 총 금액 : {{total}}원 </p>
+    <a href = "/clear"> 모든 주문 삭제(장바구니 비우기) </a>
+
+{% else %} <!--장바구니에 아무것도 없으면-->
+    <p> 장바구니가 비어있습니다 </p>
+
+{% endif %}
+
+{% endblock %}

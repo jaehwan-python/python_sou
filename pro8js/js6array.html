@@ -6,12 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    Js Array(배열) : 순서가 있는 여러개의 자료를 대표명을 주고 첨자로 각 기억장소르 구분하는 자료<br>
+    Js Array(배열) : 순서가 있는 여러개의 자료를 대표명을 주고 첨자로 각 기억장소를 구분하는 자료<br>
     <br> 반복처리가 효과적<br>
     형식 : 배열명 = New Array();
+    배열을 사용하는 이유 : 여러개의 값을 하나로 묶어서(순서 ㅇ) 관리하기 위해
     <hr>
 
-    <script type = "text/javascript">
+    <script type = "text/javascript"> // 과거에 사용한 방식으로 type 뒷부분 생략가능
         //1. 빈 배열 객체 생성
         let aa = new Array() // 배열 객체가 선언, 배열을 선언하였다, 크기는 변할 수 있고 new Array(3)도 가능하나 권장하지는 않는다
         // 기억장소를 하나하나씩 선언할 수도 있고
@@ -24,21 +25,24 @@
 
         let su = 0, bunho = 1
         document.write(`<br> ${aa[0]} ${aa[1]} ${aa[su]} ${aa[bunho]}`);
-        //  첨자는 상수 또는 변수 가능
+        // 첨자는 상수 또는 변수 가능
         // aa[su=0], aa[bunho=1]이기에 같은 값으로 나온다.
+        // js에서 `${변수값}`을 쓰면 파이썬의 f-string처럼 사용가능하다.
 
         // 2. 배열에 값이 있는채로 초기치가 있는 채로 배열 객체 생성
         document.write("<br>");
         let bb = new Array(100, 200, 300); // 배열 선언 시 초기치 부여
         document.write(`<br> ${bb[0]} ${bb[1]} ${bb[2]}`);
 
-        // let 변수 = new Array() -> 소괄호
+        // let 변수 = new Array() -> 소괄호 
+        // -> 1. 빈 새 배열 객체 생성 후 값 넣기
+        // -> 2. 배열에 값이 있는채로 초기치가 있는 새 배열 객체 생성
         // let 변수 = [] -> 대괄호 : new Array란 말 없이 곧바로 배열 객체 생성
 
         document.write("br")
         
         // 3. 배열 객체 생성
-        let cc = []; // 배어있는 배열 선언, 배열 리터럴
+        let cc = []; // 비어있는 배열 선언, 배열 리터럴
         
         cc[0] = "oscar";
         cc.push("seoul")  
