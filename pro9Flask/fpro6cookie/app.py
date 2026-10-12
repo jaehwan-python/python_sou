@@ -23,6 +23,7 @@ HOME_HTML = """
     """ 
     #text로 작성한 형태의 html이다.
 
+# 보통은 templates/home.html을 만들어서 저장한다. 그런데 짦으니 그냥 곧바로 적어서 저장하였다.
 # 각 브라우저의 쿠키의 위치는 검색하면 나온다. 크롬은 개발자도구 -> application -> storage -> cookies에 들어가면 확인 가능하다. 자신의 정보를 담아두어야 하기 때문이다. 
 # naver에 들어가서 검사 -> application -> storage -> cookies에 들어가면 naver의 쿠키를 확인할 수 있다. = 서버가 클라이언트(브라우저)에게 정보를 저장해둠. 
 
@@ -34,19 +35,20 @@ def index():
     return render_template_string(HOME_HTML)
 '''
 
-# 라우트라고 쓰면 범용적이고 해당 정보 취득 방식을 아래처럼 적어줘도 된다(get, post)
+# 라우트(route)라고 쓰면 범용적이고 해당 정보 취득 방식을 아래처럼 적어줘도 된다(get, post)
 # 1. get방식
 @app.get("/")
 def home():
     return render_template_string(HOME_HTML)
+# render_template("home.html"....) : templates 폴더의 html 파일을 사용
+# render_templat_string(HOME_HTML) : python문자열로 작성된 html사용
+
 
 # 2. post방식
 @app.post("/set_cookie")
 def set_cookie():
-
     # 1. 쿠키저장
     irum = request.form.get("name", "anonymous") # form으로 받은 name값을 가져온다.
-
 
     # 2. 응답객체 생성
     # 클라이언트에 쿠키를 심으려면 응답 객체가 필요하다

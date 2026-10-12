@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id = "loadBtn"> 상품 자료 읽기(fetch방법) </button>
+    <table id="resultTable">
+    </table>
+    
+    <script>
+        document.getElementById("loadBtn").addEventListener("click", function(){
+            
+            // [fetch방법]
+            // [fetch]
+            fetch("/api/sangdata")
+            // api/sangdata를 요청하고 있다.
+            
+            // [.then1]
+            .then(response => {
+                if(!response.ok){
+                    throw new Error("서버오류");
+                }
+                return response.json();
+            })
+
+            // [.then2]
+            .then(data => {
+                const table = document.getElementById("resultTable");
+                table.innerHTML = "";
+                
+                if(data.length === 0){
+                    table.innerHTML = "<tr><td> 자료 없음 </td></tr>"
+                    return;
+                }
+
+                let headerRow = "<tr>";
+                Object.keys(data[0]).forEach(key => {
+                    headerRow += `<th>${key}</th>`;
+                })
+                headerRow += "</tr>" ;
+                table.innerHTML = headerRow;
+
+
+                // 자료 채우기
+                data.forEach(row => {
+                    let rowHtml = "<tr>";
+                    Object.values(row).forEach(value => {
+                        rowHtml += `<td> ${value} </td>`
+                    })
+                    rowHtml += "</tr>";
+                    table.innerHTML += rowHtml
+                })
+                // ajax는 새로고침을 하여도 새로고침을 하여도 새로고침이 깜빡이지 않는다. json파일만 준 것이기 때문이다. 
+            })
+        })
+    </script>
+</body>
+</html>

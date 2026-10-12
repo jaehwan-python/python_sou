@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+
+<body>
+    <button id = "loadBtn"> 상품 자료 읽기(fetch방법) </button>
+    <table id="resultTable">
+    
+
+    <script>
+        document.getElementById("loadBtn").addEventListener("click", loadData);
+        
+        // [axios방법]
+        async function loadData(){
+            try{
+                const response = await axios.get("/api/sangdata");
+                // axoios방법은 내가 따로 json객체를 만들지 않아도 된다.
+                const data = response.data
+
+                // .then(response => {
+                // if(!response.ok){
+                //     throw new Error("서버오류");
+                // }
+                // return response.json();
+                // }) 
+                // axios가 따로 json객체를 만들기 때문에 상관이 이resonse.json이 필요없다!
+
+                // axios와 fetch then의 차이는 json파일을 직접 만드냐 안만들어도 되냐의 차이다!!
+
+                const table = document.getElementById("resultTable");
+                table.innerHTML = "";
+                
+                if(data.length === 0){
+                    table.innerHTML = "<tr><td> 자료 없음 </td></tr>"
+                    return;
+                }
+
+                let headerRow = "<tr>";
+                Object.keys(data[0]).forEach(key => {
+                    headerRow += `<th>${key}</th>`;
+                })
+                headerRow += "</tr>" ;
+                table.innerHTML = headerRow;
+
+
+                // 자료 채우기
+                data.forEach(row => {
+                    let rowHtml = "<tr>";
+                    Object.values(row).forEach(value => {
+                        rowHtml += `<td> ${value} </td>`
+                    })
+                    rowHtml += "</tr>";
+                    table.innerHTML += rowHtml
+                })
+
+            }catch(error){
+                alert("에러 : " + error);
+            }
+        }
+        
+    </script>
+</body>
+</html>

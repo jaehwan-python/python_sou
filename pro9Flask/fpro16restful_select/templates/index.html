@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--javascript 선언방식-->
+    <script src="/static/js/app.js" defer></script>
+    
+    <!--css 선언방식(bootstrap을 이용하여 짠다.)
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    -->
+</head>
+
+<body>
+    <h2> RESTFul직원(1, 2) / 부서 정보 조회(3, 4) </h2>
+
+    <hr>
+
+    <h3><b> 직원 정보 </b></h3>
+    <h4> 1. 직원 전체 조회 </h4>
+    <button id = "btnJikwon"> 직원 전체 보기 </button>
+
+    <h4> 2. 직원 1명 조회 </h4>
+    직원번호 : <input type = "text" id = "jikwonno">
+    <button id = "btnOne"> 일부 직원 보기 </button>
+
+    <hr>
+
+    <h3><b> 부서 정보 </b></h3>
+    <h4> 3. 부서 전체 조회 </h4>
+    <button id = "btnBuser"> 부서 전체 보기 </button>
+
+    <h4> 4. 특정 부서의 직원 조회 </h4>
+    부서번호 : <input type = "text" id="buserno">
+    <button id = "btnBuserPart"> 해당 부서 직원 보기 </button>
+    <br>
+    <hr>
+    <br>
+
+    <h3><b> 조회결과 </b></h3>
+    <div id="msg"> // </div>
+
+    <br>
+    <!--table 속에 table을 만들 때 thead(표의 머리)와 tbody(표의 내용)로 새 html 구조을 만든다.-->
+    <table border = "1">
+        <thead id = "thead"></thead>
+        <tbody id = "tbody"></tbody>
+    </table>
+</body>
+</html>

@@ -1,7 +1,9 @@
 '''
+
 예외처리 : 파일, 네트워크, DB작업, 실행오류 등의 Error에 대처
 try ~ except ~ finally는 실행 중 발생할 수 있는 오류(Exception)를 처리해서 프로그램이 갑자기 종료되지 않도록 하는 문법
 try에는 오류가 발생할 가능성이 있는 코드를 작성하고, except에는 해당 오류가 발생했을 때 어떠헥 처리할지를 작성한다.
+= 오류가 나타나도 자연스럽게 대응이 가능하도록!
 
 <형태>
 
@@ -15,7 +17,7 @@ finally:
 
 '''
 
-def divideFunc(a, b):
+def divideFunc(a, b): # 일반적인 파이썬에서 함수선언방식
     return a / b
 
 print('이런 저런 작업을 하다가 ...')
@@ -43,7 +45,8 @@ try:
 
     # 보조기억장치에 있는 파일 읽기
     open('c:/work/abc.txt') # c드라이브에 work파일에 ok.txt파일을 열어라라는 뜻..그런데 없다.
-
+    # 즉 open 명령어를 실행하면 여기서부터 error가 뜬다.
+    
 except ZeroDivisionError: # index Error는 못잡고 ZeroDivisionError만 잡을 수 있다.
     # 에러 발생시 처리하는 영역
     print('두번째 값은 0을 주면 안돼요.') # 에러가 발생하는 값이라면 이 statesment를 출력해요.

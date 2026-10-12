@@ -15,7 +15,7 @@ def login():
     if request.method == "GET": # get요청이면
         return  """ 
             <h2> 로그인 페이지 </h2>
-            <form action = "/login" method = "post">
+            <form action = "/login" method = "post"> <!--get방식으로 입력받은 정보(username)를 다시 /login으로 보내는데 post방식으로 보내겠다. 그럼 아래에 있는 post에 대한 request.method 조건문이 실행된다 -->
                 사용자명 : 
                 <input type = "text" name = "username" placeholder = "사용자 이름을 입력해용">
                 <button type = "submit"> 로그인 </button>

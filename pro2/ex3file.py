@@ -18,7 +18,6 @@ try:
     # 파일 읽기
     with open('ftest3.txt', mode = 'r', encoding = 'utf-8') as fobj2:
         print(fobj2.read())
-
     # close를 안써도 되기에 강력 추천한다.
 
     print('저장 완료')

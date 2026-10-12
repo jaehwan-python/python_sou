@@ -7,8 +7,11 @@
 
 # 1. 개발용 서버 
 
-from flask import Flask # Web Server(Was Application Server) 생성에 필요하다. 현재 http 서버가 아니라 was 서버이다.
+from flask import Flask 
+# Web Server(Was Application Server) 생성에 필요하다. 현재 http 서버가 아니라 was 서버이다.
 # 현재 WAS 서버 : py 프로그램 코드를 실행해서 요청을 처리하는 서버
+# 지금까지는 vs code에서 지원하는 live server를 사용하였지만 이제부터는 flask 프레임워크를 사용하여 flask서버를 사용할 것이다. 그래서
+# 이제 부터는 open with liveserver를 누르지 않아도 된다.
 
 # Flask 기본 Web 서버는 실무용이 아니라 개발/학습(실습)용이다. = Light Weight Server
 # 실무형 서버 : gunicorn, waitress, Nginx ...
@@ -17,8 +20,11 @@ from flask import Flask # Web Server(Was Application Server) 생성에 필요하
 from waitress import serve # 실무형 서버 제작
 
 
-
 app = Flask(__name__) # flask 객체를 생성. 현재 모듈의 이름을 생성자에 전달
+
+# 라우팅이란?
+# 브라우저가 어떤 url 주소로 요청했을 때, Flask가 어떤 python 함수를 실행할지 연결해주는 것
+
 
 # 라우팅1
 @app.route("/") 
@@ -27,7 +33,7 @@ app = Flask(__name__) # flask 객체를 생성. 현재 모듈의 이름을 생�
 # 클라이언트 요청이 '/'일 때 아래 함수 수행
 def abc(): # client 요청을 처리(수정하고자하는 정보 전달)하는 핸들러 함수 
     return "<h2> 안녕하세요 </h2> 반가워요"; # client 브라우저에 반환(전달)
-
+# 우리는 라우팅이 된 함수를 뷰함수라고 부른다.
 
 # 라우팅2
 @app.route("/about")

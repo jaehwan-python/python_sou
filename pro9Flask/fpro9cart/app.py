@@ -1,3 +1,6 @@
+# 상품목록에서 상품을 클릭하면 Flask가 그 상품을 세션의 장바구니에 저장하고,
+# 장바구니 페이지에서 jinja가 세션데이터를 html로 만들어 브라우저에 보여주는 프로그램.
+
 from flask import Flask, render_template, render_template_string, request, session, redirect, url_for
 from datetime import timedelta
 
@@ -5,6 +8,7 @@ app = Flask(__name__)
 
 app.secret_key = "abcd1234"
 app.permanent_session_lifetime = timedelta(minutes = 5) # 세션 만료 시간 5분 = 장바구니에 담아두고 5분이내 다른 상품을 안넣으면 초기화된다.
+# 이후 아래에서 해당 세션을 생성하고 session.permanent = True까지 적어줘야 적용된다.
 
 # 현재는 아직 DB를 불러오지 않고 직접 만들어서 사용해보자.
 products = [
@@ -15,7 +19,7 @@ products = [
 ]
 
 
-# 라우팅 정보 1
+# 라우팅 정보1
 @app.route("/")
 def product_list():
     return render_template("products.html", products = products)
@@ -25,37 +29,48 @@ def product_list():
 @app.route("/cart")
 def show_cart(): # cart 목록 보기
     cart = session.get("cart", {})
+    # session생성은 아래 add_to_cart에서 생성이 되었다.
+    # Flask가 준비한 세션에 아직 "cart"키가 없다
+    # = "cart = {}"이 된다.
+
     total = sum(info["price"] * info["qty"] for info in cart.values()) 
     # 단가 * 수량을 하여 금액을 구하는 것이다.
+    
     return render_template("cart.html", cart=cart, total=total)
 
 
 # 라우팅 정보 3
 @app.route("/add/<int:product_id>")
 def add_to_cart(product_id):
-    # print("product_id : ", product_id)
-    
+
     # 세션 cart가 없으면 빈 dict 생성
     cart = session.get("cart", {})
     # session이라는 것은 여러 키와 그 키에 대한 값을 가지고 있다. 우리는 그 중 cart라는 키를 사용하고 있다.
+    # 현재 "노트북"을 선택했어도 빈 세션이 없기에 빈 {}가 cart에 저장된다.
+    # 처음에는 cart = {} 것이 된다.
 
+    product = next((p for p in products if p["id"] == product_id), None)
     # next(..., None) : 묶음형 자료에서 다음 값 1개를 꺼내는 함수
     # 주문상품이 product에 기억된다.
-    product = next((p for p in products if p["id"] == product_id), None)
+    # products에서 상품들을 값들을 하나씩 빼서 p에 저장하고 그때 빼낸 값(p)에서 id가 
+    # 내가 선택한 "노트북"(product_id)과 같으면 p를 반환하라. 그리고 그 p값을 product변수에 저장해라.
+    # products.html에서 name으로 상품을 선택한 것이 아니라 id로 찾았다.
 
-    # 주문 상품이 상품 목록에 없는 경우
+    # 1. 주문 상품이 상품 목록에 없는 경우
     if product is None:
         return "주문상품을 찾을 수 없습니다", 404
     
-    # 주문 상품이 상품 목록에 있는 경우 -> 장바구니에 추가
+    # 2. 주문 상품이 상품 목록에 있는 경우 -> 장바구니에 추가
     item_name = product["name"]
+    # 위에서 id로 상품을 찾았고 이번에는 name으로 찾는다
 
-    # 이미 상품이 장바구니에 있는데 또 넣을 경우(동일상품) -> 갯수 누적
+    # 3. 이미 상품이 장바구니에 있는데 또 넣을 경우(동일상품) -> 갯수 누적
     if item_name in cart:
         cart[item_name]["qty"] += 1 
     else:
         cart[item_name] = {"price":product["price"], "qty":1}
         # 장바구니에 최초 상품일 경우는 수량1(qty요소(key) 생성)
+
 
     # 실무에서 이러지 않지만 우리는 연습이니까 session에 무엇이 어떻게 들어가는지 확인하기 위해 적어줌
     session["cart"] = cart # 변수cart를 session "cart"키에 값으로 저장

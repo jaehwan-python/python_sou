@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+
 <body>
     <h3>**조건 판단문 if**</h3>
     <script>
@@ -13,15 +15,17 @@
 
         let ave = 85;
         if(ave >= 90) // 파이썬에서는 if ave >= 90: ... 들여쓰기 안해도 된다.
-            document.write("점수 : " + ave + "이므로 <b style = 'color:blue'>우수</br>");
+            document.write("점수 : " + ave + "이므로 <b style = 'color:blue'> 우수 </b></br>");
         else if(ave >= 70)
-            document.write("점수 : " + ave + "이므로 <b style = 'color:red'>보통</br>");
+            document.write("점수 : " + ave + "이므로 <b style = 'color:red'> 보통 </b></br>");
         else
-        document.write("점수 : " + ave + "이므로 <b style = 'color:cyan'>저조</br>");
+        document.write("점수 : " + ave + "이므로 <b style = 'color:cyan'> 저조 </b></br>");
+
      // 파이썬에서는 문자열들을 이어서 나열할 때 ,를 썼지만 js에서는 +로 문자열들의 나열을 이어붙여준다
     </script>
 
-    <br>**조건 판단문 switch (key)**<br>
+
+    <br><h3>**조건 판단문 switch(key)**<h3><br>
     <script>
         let result = "B" // 학점 기억 변수
 
