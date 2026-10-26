@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>직원 자료 통계</title>
+</head>
+<body>
+
+    <h2> 퀴즈용 자료 통계 </h2>
+    <a href="/">메인 페이지</a>
+    <form action="/dbshow" method="get">
+        <label for="dept">부서명:</label>
+        <input id="dept" type="text" name="dept" value="{{ dept }}" placeholder="예:총무부">
+        <button type="submit">조회</button>
+    </form>
+    <hr>
+
+    <h3>예제 1. 직원 목록</h3>
+    {{ jikwondata | safe }}
+
+
+    <h3>예제 2. 부서명, 직급별 연봉 합계와 평균</h3>
+    {{ statsdata | safe }}
+
+
+    <h3>예제 3. 부서별 연봉 합계와 평균 그래프</h3>
+    {% if chartdata %}
+        <img src="data:image/png;base64,{{ chartdata }}" alt="부서별 연봉 합계와 평균 막대그래프" style="max-width:100%;">
+    {% else %}
+        <p>해당 정보가 없습니다</p>
+    {% endif %}
+
+
+    <h3>예제 4. 성별, 직급별 빈도표</h3>
+    {{ crossdata | safe }}
+
+
+    <h3>예제 5. 부서별 최고 연봉자</h3>
+    {{ topdata | safe }}
+
+
+    <h3>예제 6. 부서별 직원 비율</h3>
+    <p>조회된 총 인원: {{ total }}명 (비율은 조회 결과 기준)</p>
+    {{ ratiodata | safe }}
+
+</body>
+</html>
