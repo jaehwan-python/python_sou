@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3> 커피 전문점에 대한 소비자 인식 조사 </h3>
+    <form action = "/coffee/surveyprocess" method="post">
+        <table>
+
+            <!--[성별]-->
+            <tr>
+                <td> 너의 성별은? </td>
+                <td> 
+                    <label for = "genM"> 남 </label> 
+                    <input type = "radio" id = "genM" name="gender" value="남" checked> 
+                    &nbsp; &nbsp;
+
+                    <label for = "genFM"> 여 </label> 
+                    <input type = "radio" id = "genFM" name="gender" value="여" checked> 
+                    &nbsp; &nbsp;
+                    <!--성별을 분류-->
+
+                </td>
+            </tr>
+
+
+            <!--[나이]-->
+            <tr>
+                <td> 너의 나이은? </td>
+                <td> 
+                    <label for = "age10"> 10대 </label> 
+                    <input type = "radio" id = "age10" name="age" value="10" checked> 
+                    <!--labe for와 id값은 같아야 한다-->
+                    &nbsp; &nbsp;
+
+                    <label for = "age20"> 20대 </label> 
+                    <input type = "radio" id = "age20" name="age" value="20" checked>
+                    &nbsp; &nbsp;
+                    
+                    <label for = "age30"> 30대 </label> 
+                    <input type = "radio" id = "age30" name="age" value="30" checked> 
+                    <!--labe for와 id값은 같아야 한다-->
+                    &nbsp; &nbsp;
+
+                    <label for = "age40"> 40대 </label> 
+                    <input type = "radio" id = "age40" name="age" value="40" checked>
+                    &nbsp; &nbsp;
+
+                    <label for = "age50"> 50대 </label> 
+                    <input type = "radio" id = "age50" name="age" value="50" checked> 
+                    &nbsp; &nbsp;
+                    <!--labe for와 id값은 같아야 한다-->
+                    <!--나이대로 분류-->
+                </td>
+            </tr>
+
+
+            <!--[좋아하는 커피 브랜드]-->
+            <tr>
+                <td> 너가 좋아하는 커피 브랜드는?? </td>
+                <td> 
+                    <label for = "starbucks"> 스타벅스 </label> 
+                    <input type = "radio" id = "strabucks" name="co_survey" value="스타벅스" checked> 
+                    &nbsp; &nbsp;
+
+                    <label for = "paulbasset"> 폴바셋 </label> 
+                    <input type = "radio" id = "paulbasset" name="co_survey" value="폴바셋" checked>
+                    &nbsp; &nbsp;
+
+                    <label for = "edyia"> 이디야 </label> 
+                    <input type = "radio" id = "edyia" name="co_survey" value="이디야" checked>
+                    &nbsp; &nbsp;
+
+                    <label for = "tomntoms"> 탐앤탐스 </label> 
+                    <input type = "radio" id = "tomntoms" name="co_survey" value="탐앤탐스" checked>
+                    &nbsp; &nbsp;
+                    <!--좋아하는 브랜드별로 분류-->
+                </td>
+            </tr>
+
+            
+            <!--테이블 구조 구조화-->
+            <tr>
+                <td colspan = "2" style="text-align: center;">
+                    <br>
+                    <input type="submit" value="설문완료">
+                    <input type="reset" value="초기화">
+                </td>
+            </tr>
+        </table>
+</body>
+</html>
