@@ -12,14 +12,25 @@
 # 두 변수는 상관관계 및 인과관계가 있어야 한다.
 # 정성적(X), 정량적(O)인 모델을 생성한다.
 
+
 import statsmodels.api as sm
 from sklearn.datasets import make_regression
 import numpy as np
 
 np.random.seed(12)
-x, y, _ = make_regression(n_samples=50, n_features=1, bias=50, coef=True, noise=50)
+
+# 공부시간과 시험점수 데이터
+# 독립변수(x, feature) : 공부시간(1~10)
+x = np.linspace(1, 10, 50).reshape(-1, 1) # 2차원
 print(x)
+# 종속변수(y, label, clas) : 시험점수 ----점수 = 5 * 공부시간 + 
+y = 5 * x.ravel() + 40 + np.random.normal(0, 3, 50)
+# .ravel()을 이용하면 차원을 1차원으로 떨어트려 연산이 되게 만든다.
 print(y)
+
+x, y, _ = make_regression(n_samples=50, n_features=1, bias=50, coef=True, noise=50)
+
+
 # 결과 :
 # [[-1.70073563]
 #  [-0.67794537]
@@ -52,10 +63,10 @@ model = LinearRegression()
 fit_model = model.fit(x, y)
 # 해당 함수 속을 까보면 우리가 ex4ols.py에서 만든 클래스와 거의 동일하게 생겼다.
 # 내부를 보자. ... fit()함수의 역할!!
-# 1) 독립변수(x)와 종속변수(y)를 입력 받음
-# 2) 예측값과 실제값 사이의 오차제곱합이 최소가 되도록 계산
-# 3) 최적의 회귀계수(기울기, 절편)를 구함
-# 4) 계산된 계수를 모델에 저장
+#  1) 독립변수(x)와 종속변수(y)를 입력 받음
+#  2) 예측값과 실제값 사이의 오차제곱합이 최소가 되도록 계산
+#  3) 최적의 회귀계수(기울기, 절편)를 구함
+#  4) 계산된 계수를 모델에 저장
 # 단순선형회귀 모델에서는 y = wx+b와 같은 단순한 형태의 수식을 가진 모델이 만들어진다.
 # 이런 선형회귀방정식이 모든 AI모델의 근간이다.
 
@@ -67,7 +78,10 @@ print('절편(편향, bias) : ', fit_model.intercept_)
 # 기울기(가중치, weight, slope) :  95.13485039
 # 절편(편향, bias)              :  56.308777652449876
 # yhat = 95.13485039 * x + 56.308777652449876 = 추세선 완성
-#                                             = 예측값(y)을 확인가능해졌다
+#                                             = 예측값(y)을 확인가능해졌다.
+#                                             = 잔차 제곱의 합이 최소가 되는 추세선이다!!
+#                                             = 각 데이터와 평균을 나타내는 선의 차이가 가장 작다.
+#                                             = 예측을 했을때 예측값이 그나마 가장 정확하다.
 
 # 예측값을 확인!
 # 1. 기존의 값을 넣었을 때의 예측값
@@ -82,3 +96,43 @@ y_newpred2 = fit_model.predict(np.array([[0.12345], [0.3], [0.5]]))
 print('예측값2 : ', y_newpred2)
 # 예측값2 :  [ 68.05317493  84.84923277 103.87620285]
 # 경험하지 못한 x값에 대해서도 결과인 y값을 줄 수 있다.
+
+# 3. 여러 개의 예측값 확인
+new_x = np.array([[2.34], [6.21], [8.123]])
+# 이 시간만큼 공부를 해본 적은 없지만 저 시간만큼 공부했을때의 점수는?
+y_new_preds = fit_model.predict(new_x)
+for hour, score in zip(new_x.ravel(), y_new_preds):
+    print(f"공부시간 : {hour : .0f}시간 -> 예상점수 : {score : 2.2f}점")
+
+
+print("----------------------------------------------------------")
+
+print("\n 모델 작성 방법2 : , ols(Ordinary Least Squares)사용-모델 생성")
+# 잔차제곱합(RSS)을 최소화하는 가중치 벡터를 구하는 방법
+# 실제 계산은 수치 선형대수 알고리즘을 사용
+import statsmodels.formula.api as smf
+import pandas as pd
+
+data = np.array([x.ravel(), y])
+df = pd.DataFrame(data.T)
+df.columns = ['x', 'y']
+print(df.head(3))
+
+model2 = smf.ols(formula='y~x', data=df).fit()
+print(model2.summary())
+# summary 표가 모든 검정통계량을 포함한 특성을 설명한다.(단 선형회귀 방정식은 나타나지 않는다.)
+# = ols Regression Result를 제공
+print('가중치 : ', model2.params['x'])
+print('편향 : ', model2.params['Intercept'])
+
+# 예측값 확인
+new_df = pd.DataFrame({'x', [2.34, 6.21, 8.123]})
+print('예측점수 : ', model2.predict(new_df))
+
+# LinearRegression               vs                OLS
+#    예측중심                             통계적 추론, 회귀분석 중심
+#   최소제곱법                                   최소제곱법
+#   p-value제공X                                p-value 제공O
+#   회귀분석 결과표X                            회귀분석 결과표O
+
+

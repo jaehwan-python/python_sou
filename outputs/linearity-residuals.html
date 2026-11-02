@@ -1,0 +1,31 @@
+<div id="linearity-demo">
+  <h3>잔차 그림 비교 · 설명용 가상 데이터</h3>
+  <div class="viz-row text-small"><span>● 잔차</span><span style="color:var(--viz-series-2)">━ 잔차의 평균적 흐름</span><span>┄ 잔차 0 기준선</span></div>
+  <div class="plots" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+    <div><h3>선형성에 큰 문제가 없는 모습</h3><svg data-kind="flat" role="img" aria-label="잔차가 0 위아래로 흩어지고 평균 흐름이 수평인 예시"></svg></div>
+    <div><h3>비선형 관계가 남아 있는 모습</h3><svg data-kind="curve" role="img" aria-label="잔차에 U자 모양이 남는 예시"></svg></div>
+  </div>
+</div>
+<script>
+(() => {
+ const root=document.getElementById('linearity-demo');
+ const ns='http://www.w3.org/2000/svg';
+ function draw(svg){
+  const w=svg.parentElement.clientWidth,h=240,left=48,right=w-15,top=18,bottom=193;
+  svg.setAttribute('viewBox',`0 0 ${w} ${h}`);svg.style.width='100%';svg.style.height=h+'px';svg.replaceChildren();
+  function el(tag,attrs,text){const e=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));if(text)e.textContent=text;svg.appendChild(e);return e;}
+  const x=t=>left+t*(right-left), y=v=>top+(3-v)/6*(bottom-top);
+  const curve=t=>svg.dataset.kind==='curve'?8*(t-.5)**2-.7:0;
+  el('path',{d:`M${left},${top}V${bottom}H${right}`,fill:'none',stroke:'var(--border)'});
+  el('line',{x1:left,x2:right,y1:y(0),y2:y(0),stroke:'var(--foreground)','stroke-dasharray':'5 5'});
+  for(let i=0;i<45;i++){const t=(i+.5)/45,noise=.65*Math.sin(i*2.39)+.3*Math.cos(i*4.1);el('circle',{cx:x(t),cy:y(curve(t)+noise),r:3,fill:'var(--viz-series-1)',opacity:.75});}
+  const pts=Array.from({length:61},(_,i)=>{const t=i/60;return `${i?'L':'M'}${x(t)},${y(curve(t))}`}).join(' ');
+  el('path',{d:pts,fill:'none',stroke:'var(--viz-series-2)','stroke-width':2.5});
+  const ta={fill:'var(--foreground)','font-size':12};
+  el('text',{...ta,x:left-9,y:y(0)+4,'text-anchor':'end'},'0');
+  el('text',{...ta,x:(left+right)/2,y:227,'text-anchor':'middle'},'예측 판매량 →');
+  el('text',{...ta,x:14,y:108,transform:'rotate(-90 14 108)','text-anchor':'middle'},'잔차 (실제 − 예측)');
+ }
+ const obs=new ResizeObserver(()=>root.querySelectorAll('svg').forEach(draw));root.querySelectorAll('svg').forEach(s=>obs.observe(s.parentElement));
+})();
+</script>
