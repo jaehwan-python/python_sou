@@ -19,7 +19,7 @@ print(mtcars.head(3), type(mtcars))
 # 1. 연비(mpg), 
 # 2. 실린더 수(cyl), 
 # 3. 배기량(disp), 
-# 4. 마력(hp), 
+# 4. 마력(hp),  
 # 5. 무게(wt) 등의 정보를 담고 있다.
 # 결과 : 
 #                 mpg  cyl   disp   hp  drat     wt   qsec  vs  am  gear  carb
