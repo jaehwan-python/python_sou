@@ -136,3 +136,5 @@ print('예측 맥주 소비량 :', model.predict(new_data))
 
 # 지금까지 우리는 '선형회귀분석'에 대해서 학습하였고 그 때 보이는 3가지 모델로 LinearRegression, ols, Lingress가 있다.
 # 이제부터는 '비선형회귀분석'에 대해서 학습할 것이다.
+
+

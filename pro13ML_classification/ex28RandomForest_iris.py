@@ -1,5 +1,8 @@
 # Decision Tree이용 - 다항분류(softmax함수 사용) - iris dataset으로 실습 ... 이항분류가 기본이지만 다항분류도 해보자
 # iris데이터는 0,1,2로 다항 함수 처리의 예시로 사용하기 좋다.
+
+# 하지만 이번에는 'RandomForest'를 사용했다!!  
+
 # 2개(이항분류)로 분류 할때는      ->  "sigmoid"
 # 3개 이상(다항분류)을 분류할 때는 ->  "softmax"
 # 를 사용한다.
@@ -114,8 +117,8 @@ print()
 
 
 # 분류 모델 생성
-from sklearn.tree import DecisionTreeClassifier
-model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 5, random_state =0 )
+from sklearn.ensemble import RandomForestClassifier
+model = RandomForestClassifier(criterion = 'entropy', max_depth = 5, random_state =0 )
 print(model)
 
 model.fit(x_train, y_train)
@@ -263,6 +266,7 @@ plot_decision_regionFunc(X=x_combined_std, y=y_combined, classifier=read_model, 
 # - 성능점수(F1 Score) : 정밀도와 민감도의 조화 평균
 #                    -> 수식: 2 * 정밀도 * 민감도 / (정밀도 + 민감도)
 # 이들은 모두 오차 행렬에 기반해서 만들어진다.
+
 # 오차행렬 표 해석 :
 #                                     <예측>
 #                         Positive             Negative

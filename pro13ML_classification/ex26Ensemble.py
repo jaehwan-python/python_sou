@@ -145,3 +145,12 @@ print('roc_auc_score : \n : ', roc_auc_score(y_test, votingModel.predict_proba(x
 #                      [ 2   70] ]
 # roc_auc_score : 
 #                  0.994047619047619
+
+# 랜덤포레스트는 '의사결정나무모델'을 500개 이상 연결하여 앙상블을 만든 것이다. 그때 의사결정나무모델은 sample data을 모두 다 다르게 받는다. = bagging  ->  random-forest
+# 그때 앙상블의 기법(voting / bagging / boosting) 중 하나인 '배깅(bagging)'을 쓴다.
+# https://bkshin.tistory.com/entry/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-11-%EC%95%99%EC%83%81%EB%B8%94-%ED%95%99%EC%8A%B5-Ensemble-Learning-%EB%B0%B0%EA%B9%85Bagging%EA%B3%BC-%EB%B6%80%EC%8A%A4%ED%8C%85Boosting
+# 위 url 배깅과 부스팅에 대한 설명 있음
+
+# boosting : 하나의 샘플 데이터를 모든 모델이 공유받아서 Decision Tree를 받는다. 한번 처리한 후 모두가 공유하는 sample data를 조금씩 수정한다. = boosting  ->  xgboost 
+# 부스팅이 성능은 좋지만 과적합에 걸릴 확률이 높아서 거의 bagging을 많이 쓴다.
+# = Random Forest를 사용한다.

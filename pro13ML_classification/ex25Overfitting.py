@@ -190,12 +190,13 @@ from sklearn.model_selection import GridSearchCV
 #  min_impurity_decrease: Float = 0,
 #  class_weight: Mapping | str | Sequence[Mapping] | None = None,
 #  ccp_alpha: float = 0
-# )
-# 편의상 일부 parameter만 사용. 원래는 위와 같이 길게 적어주어야 한다.
+#  )
+# 편의상 일부 parameter만 사용한다. 원래는 위와 같이 길게~ 적어주어야 한다.
+# ex)
 # max_depth : 노드의 최대 깊이
 # min_sample_split : 노드 분할을 위한 최소한의 샘플수 (과적합 제어와 관련)
 
-# parameter가 너무 많다. 그래서 우리는 GridSearchCV의 도움을 받는다.
+# parameter가 너무 많다. 그래서 우리는 GridSearchCV의 도움을 받는다.  ->  이 메서드가 직접 parameter를 정해주기 때문에 과적합이 최대한 안나게 도와준다.
 
 parameters = {'max_depth' : [1, 2, 3], 'min_samples_split' : [2, 3]}
 grid_tree = GridSearchCV(estimator=df_clf, param_grid=parameters, cv=3, refit=True)
