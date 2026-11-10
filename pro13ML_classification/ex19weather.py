@@ -70,7 +70,7 @@ my_formula = 'RainTomorrow ~ ' + col_select
 model = smf.logit(formula = my_formula, data=train).fit()
 # .fit()으로 모델을 생성하여 앞서 주었던 데이터(trian과 test 데이저 중 data = train을 사용)를 학습하여 그 결과로 회귀계수와 절편을 생성
 
-print(model.summary())   # 각 변수별 p-value  >  0.05인 경우 제거후 고민한다.
+print(model.summary())   # 각 변수별 p-value  >  0.05인 경우 제거 후 고민한다.
 # 결과 : 
 #                            Logit Regression Results                           
 # ==============================================================================
@@ -80,7 +80,7 @@ print(model.summary())   # 각 변수별 p-value  >  0.05인 경우 제거후 �
 # Date:                Wed, 04 Nov 2026   Pseudo R-squ.:                  0.4589
 # Time:                        15:04:41   Log-Likelihood:                -52.477
 # converged:                       True   LL-Null:                       -96.986
-# Covariance Type:            nonrobust   LLR p-value:                 2.562e-15
+# Covariance Type:            nonrobust   "LLR p-value":               2.562e-15  ->  모델의 학습과 통계적 적합도 평가에 사용!
 # ==============================================================================
 #                  coef    std err          z      P>|z|      [0.025      0.975]
 # ------------------------------------------------------------------------------
@@ -105,7 +105,14 @@ print(model.summary())   # 각 변수별 p-value  >  0.05인 경우 제거후 �
 # Sunshine      -0.402560
 # Temp           0.560347
 # WindSpeed     -0.021242
-# 모든 독립변수에 대해서 회귀계수(기울기)를 만나보았다
+# 모든 독립변수에 대해서 회귀계수(기울기)를 만나보았다.
+
+# LLR p-value :
+# ols표(LinearRegression)에서는 p-value가 회귀계수가 0인지 아닌지를 보았다면
+# Logistic Regression에서는 
+# 귀무가설 : "독립변수없이 절편만 사용하는 모델이다."" 
+# 대립가설 : "독립변수를 함께 사용하는 모델이다.""
+# 를 저 LLR p-value를 통해 판단한다.
 
 print(model.params)
 # 학습된 모델(logit)의 회귀계수를 보여준다.
@@ -116,7 +123,7 @@ print("실제값 : ", test['RainTomorrow'][:5].values)
 
 
 # 분류 정확도
-# < Train데이터만 가지고 분류 정확도 확인 > ... pred_table()
+# < Train데이터만 가지고 "분류 정확도" 확인 > ... pred_table()
 # pred_table() : 기본적으로 모델 학습에 사용한 train 데이터만 대상으로 혼동행렬을 생성하기 때문에 
 #                train에 대한 정확도만 구하고 test에 대한 정확도는 구하지 못한다.
 pred_mat = model.pred_table()
@@ -124,9 +131,10 @@ print(pred_mat)
 
 print("분류 정확도(Accuracy) : ", (pred_mat[0][0] + pred_mat[1][1]) / len(train))
 # train데이터만 가지고 평가함
+# accuracy를 직접 계산함
 
 
-# < Test데이터를 가지고 분류 정확도 확인 > = conf_mat
+# < Test데이터를 가지고 "분류 정확도" 확인 > = conf_mat
 from sklearn.metrics import accuracy_score, confusion_matrix
 pred = model.predict(test)
 # accuracy_score는 confusion_matrix 둘 다 test 데이터를 가지고 혼동행렬을 만든다.
@@ -146,9 +154,9 @@ print('분류 정확도(Accuracy) : ', accuracy_score(test['RainTomorrow'], (pre
 # train데이터로는 분류 정확도가 잘 나왔는데 test데이터로 해보니 분류정확도가 잘 안나온다면(차이가 '10'이상 난다면)
 # 과적합 문제가 있는 것이다.
 
-# model.pred_table()  : 모델 학습에 사용한 "train용 데이터"의 혼동행렬을 생성한다.
-# confusion_matrix(실제값, 예측값)  : 전달받은 값으로 혼동행렬을 생성한다.
-# accuracy_score(실제값, 예측값)  : 전달받은 값으로 정확도를 바로 계산한다.
+# model.pred_table()               : 모델 학습에 사용한 "train용 데이터"의 혼동행렬을 생성한다.
+# confusion_matrix(실제값, 예측값)  : 전달받은 값으로 혼동행렬을 생성한다.-> 우리가 따로 정확도를 계산해야한다.
+# accuracy_score(실제값, 예측값)    : 전달받은 값으로 정확도를 바로 계산한다.
 
 # 이때 model.pred_table()과 confusion_matrix(실,예)의 차이는
 # 평가할 데이터를 어디서 가져오는지가 다르다는 점이다.

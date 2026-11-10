@@ -52,6 +52,7 @@ print('양성 종양 수 : ', np.sum(y==1))
 
 # 0과 1의 비율
 counter = Counter(y)
+# y에 있는 각 값이 몇 번 나오는지 세는 도구
 total = sum(counter.values())
 for cls, cnt in counter.items():
     print(f"class {cls} : {cnt}개 ({cnt / total :.2f})")
@@ -60,10 +61,10 @@ for cls, cnt in counter.items():
 print()
 
 # train / test split
-# train -> x,y값
-# test -> x,y값
+# train  -> x,y값
+# test   -> x,y값
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=12, stratify=y)
-# stratify=y : trian, testy 비율 유지(불균형한 데이터 모델 평가 시 왜곡 방지)
+# stratify=y : trian, testy 비율 유지(불균형한 데이터 모델 평가 시 왜곡 방지) y_train데이터와 y_test데이터 모두 37%:63% 비율이 나오게 한다.
 
 y_li = y.tolist()
 ytr_li = y_train.tolist()
@@ -79,10 +80,14 @@ print()
 
 # 개별모델 작성
 # make_pipeline : 전처리와 모델을 일체형 객체로 처리
-# make_pipeline을 할때 표준화와 정규화도 해야만한다.
+# make_pipeline을 할 때, 표준화와 정규화도 해야만한다.
+
+# 서로 다른 모델들을 합친 것         = Enesemble모델  ->  bagging / boosting방법
+# DecisionTree모델들(500개 이상)을 여러개 합친 것 = RandomForest모델
 
 # 모델1 : Logistic Regression
 logi = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000, solver='lbfgs', random_state=42))
+# make_pipeline메서드를 통해서 따로 데이터 전처리 과정을 복잡하게 적지 않고 곧바로 메서드 안에 "정규화"를 적을 수 있게 되었다.
 
 # 모델2 : Decision Tree ... tree계열 model은 스케일이 달라도 분할 로직에는 영향을 미치지 않는다. = 표준화/정규화가 필요없다.
 tree = DecisionTreeClassifier(max_depth=5, random_state=12)
@@ -91,7 +96,7 @@ tree = DecisionTreeClassifier(max_depth=5, random_state=12)
 # 모델3 : KNN 
 knn= make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=5))
 
-# 이제부터 이 3가지 모델을 하나로 합치자 = 앙상블 모델
+# 이제부터 이 3가지 모델을 하나로 합치자 = 앙상블 모델  ->  VotingClasifier
 votingModel = VotingClassifier(estimators = [('LR', logi), ('KNN', knn), ('DT', tree)], voting ='soft')
 # estimator : “어떤 모델들의 예측을 모아 최종 판단할 것인가”를 지정하는 역할
 # voting에는 hard와 soft가 있는데 우리는 soft를 사용한다.

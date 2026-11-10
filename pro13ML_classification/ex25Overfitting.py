@@ -17,8 +17,8 @@ train_data = iris.data
 train_label = iris.target
 print(train_data[:3])
 print(train_label[:3])
-# train_data : 학습용 입력값 — 꽃받침 길이·너비, 꽃잎 길이·너비                       = 독립변수
-# train_label : 학습용 정답 — 각 꽃의 품종 (0: setosa, 1: versicolor, 2: virginica)  = 종속변수
+# train_data  : 학습용 입력값  —>  꽃받침 길이·너비, 꽃잎 길이·너비                       = 독립변수
+# train_label : 학습용   정답  —>  각 꽃의 품종 (0: setosa, 1: versicolor, 2: virginica)  = 종속변수
 
 # 분류(Classification) 모델 생성
 df_clf = DecisionTreeClassifier()

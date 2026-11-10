@@ -4,7 +4,7 @@
 
 # 앙상블 기법(voting / Bagging / Boosting) 중 Bagging(Bootstrap Aggregation)을 사용한다
 # : 복수의 sample data와 DiscisionTree를 학습시키고 결과를 모으는 방식!!
-# DecisionTree가 10개라면 sample data도 서로다른 data로 10개가 있어야한다.
+# DecisionTree가 10개라면 sample data도 서로 다른 data로 10개가 있어야한다.
 
 # 참고 : 우수한 성능은 Boosting, 과적합이 걱정된다면 Bagging을 선택해라
 
@@ -84,6 +84,7 @@ print()
 train_x, test_x, train_y, test_y = train_test_split(df_x, df_y, test_size=0.3, random_state=1)
 print(train_x.shape, test_x.shape, train_y.shape, test_y.shape)
 # 결과 : (499, 3) (215, 3) (499,) (215,)
+
 # <Overfitting 해결방법>
 # 1. train / test split
 # 2. k fold 
@@ -112,8 +113,9 @@ print('전체 대비 맞춘 비율 : ', sum(test_y == pred) / len(test_y))
 
 # 7. 평가
 # 현재 RandomForest모델을 쓰는데 이러한 알고리즘은 500개의 DecisionTree가 각각 임의의 sample data를 받고 결과를 0과 1로 분류하고 있음을 알고 있어야 한다.
-# 평가 방법 - 모델 학습 및 통계적 적합도 평가 - 가능성(우도) 
-#           - 분류 정확도 평가 - "accuracy_score"  ->  Acccuracy, Precision, Recall, F1-score, ROC-AUC
+# 평가 방법 - ** 모델 학습 및 통계적 적합도 평가 - 가능성(우도) 
+#           - ** 분류 정확도 평가 - "accuracy_score"  
+#                                - "cross matrix"   ->  Acccuracy, Precision, Recall, F1-score, ROC-AUC
 print('분류 정확도 : ', accuracy_score(test_y, pred))
 
 

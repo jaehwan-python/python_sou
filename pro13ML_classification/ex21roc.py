@@ -107,20 +107,20 @@ print('accuracy(정확도) : ', accuracy_score)
 # 분류성능평가
 cl_rep = metrics.classification_report(y, y_hat)
 print('**분류모델 성능 평가 보고서** : \n', cl_rep)
-#                            precision   recall   f1-score   support
+#                                precision      recall   f1-score   support
 
-#            0             "0.85"      "0.92"     0.88        48
-#            1              0.92        0.85      0.88        52
+#                     0             "0.85"      "0.92"       0.88        48
+#                     1              0.92        0.85        0.88        52
 
-#     accuracy                                    0.88       100
-#    macro avg(평균)        0.88       0.88       0.88       100
-# weighted avg(가중평균)     0.88       0.88      0.88       100
+#              accuracy                                      0.88       100
+#        macro avg(평균)              0.88       0.88        0.88       100
+# weighted avg(가중평균)              0.88       0.88        0.88       100
 
-# Precision : 예측한 것 중 맞힌 비율 (예측의 정확성)
-# Recall    : 실제 정답 중 찾아낸 비율 (정답 탐지 능력)
-# F1-score  : Precision과 Recall의 조화평균
+# ** Precision ** : 예측한 것 중 맞힌 비율 (예측의 정확성)
+# ** Recall **    : 실제 정답 중 찾아낸 비율 (정답 탐지 능력)
+# ** F1-score **  : Precision과 Recall의 조화평균
 # Support   : 실제 클래스별 데이터 개수
-# Accuracy  : 전체 데이터 중 올바르게 분류한 비율
+# ** Accuracy **  : 전체 데이터 중 올바르게 분류한 비율
 # Macro avg : 클래스별 성능의 단순평균
 # Weighted avg : 클래스별 데이터 개수를 고려한 가중평균
 

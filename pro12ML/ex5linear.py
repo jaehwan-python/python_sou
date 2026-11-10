@@ -22,13 +22,27 @@ np.random.seed(12)
 # 공부시간과 시험점수 데이터
 # 독립변수(x, feature) : 공부시간(1~10)
 x = np.linspace(1, 10, 50).reshape(-1, 1) # 2차원
+# np.linspace(1, 10, 50) :  1부터 10까지 일정한 간격으로 숫자 50개를 만들다.
+# .reshape(-1, 1)        :  50개의 숫자들을 50행 1열인 2차원 배열(행렬)로 바꾼다. -1은 행 개수를 자동으로 계산하라는 뜻이다.
+# 즉, 학생 50명의 공부시간을 가상으로 만든 것이다. = 50행 1열 구조이다.
+
 print(x)
-# 종속변수(y, label, clas) : 시험점수 ----점수 = 5 * 공부시간 + 
+# 종속변수(y, label, clas) : 시험점수 = 5 × 공부시간 + 40 + 무작위 오차
 y = 5 * x.ravel() + 40 + np.random.normal(0, 3, 50)
 # .ravel()을 이용하면 차원을 1차원으로 떨어트려 연산이 되게 만든다.
+# x.ravel()                  :  현재 2차원 구조인x를 1차원 배열로 펼쳐서 점수 계산에 사용한다.
+# np.random.normal(0, 3, 50) :  평균 0, 표준편차 3인 정규분포에서 오차 50개를 뽑는다.
 print(y)
 
 x, y, _ = make_regression(n_samples=50, n_features=1, bias=50, coef=True, noise=50)
+# n_samples==50 : 데이터 50개 생성
+# n_features=1  : 독립변수 1개 사용
+# bias=50       : 절편을 50으로 설정
+# coef=True     : 데이터 생성에 사용한 기울기를 반환
+# noise=50      : 평균 '0', 표준편ㅇ가 '50'인 잡음 추가
+# 즉, 
+# y = 무작위로 정한 기울기 × x + 50 + 잡음
+# 이런 형태의 회귀선을 만든다는 것이다.
 
 
 # 결과 :
@@ -126,7 +140,7 @@ print('가중치 : ', model2.params['x'])
 print('편향 : ', model2.params['Intercept'])
 
 # 예측값 확인
-new_df = pd.DataFrame({'x', [2.34, 6.21, 8.123]})
+new_df = pd.DataFrame({'x': [2.34, 6.21, 8.123]})
 print('예측점수 : ', model2.predict(new_df))
 
 # LinearRegression               vs                OLS

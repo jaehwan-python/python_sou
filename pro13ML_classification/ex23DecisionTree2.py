@@ -10,7 +10,7 @@ from sklearn.tree import DecisionTreeClassifier,plot_tree
 x = [[180, 15], [177, 42], [156, 35], [174, 65], [161, 25], [160, 45], [170, 65], [155, 55], [163, 5], [180, 15]]
 y = [  'man',    'woman',   'woman',    'man',    'woman',   'woman',   'woman',   'woman',    'man',    'man']
 # 내가 임의로 만든 x,y값
-# 독립변수 : 키(x1), 머리카락 길이(x2)
+# 독립변수 : 키(x1), 머리카락 길이(x2)  ->  독립변수가 2개이다.
 # 종속변수 : 남녀(y) -> 0과 1로 주지 않고 대립되는 두 개의 값('man'과 'woman')으로 주어졌다.
 
 feature_names = ['height', 'hair_length'] # 독립변수 명

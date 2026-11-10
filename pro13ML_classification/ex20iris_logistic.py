@@ -57,7 +57,7 @@ print('\n train / test split (7:3)')
 
 # train / test split : 이미 확보한 데이터 전체를 무작위로 나눠서 train용과 test용으로 구분하는 것. 새로운 데이터를 만들어내는 건 아니다.
 # 모델이 처음 보는 데이터도 잘 예측하는지 확인하려고
-# 모델은 800개로만 학습하고, 남겨둔 200개로 평가
+# 모델은 800개로만 학습하고, 남겨둔 200개의 데이터는 평가용으로 쓰인다.
 # 모델이 학습할 때 보지 않은 데이터
 # 이미 전체 1,000개로 학습했다면, 그중 200개를 나중에 test로 골라도 제대로 된 평가가 안 돼. 모델이 이미 봤기 때문이다. 이 경우에는 데이터를 먼저 나눈 뒤 모델을 새로 학습하거나, 별도로 수집한 새 데이터로 평가해야 한다.
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state=0)
@@ -119,12 +119,12 @@ model = LogisticRegression(
 print(model)
 
 model.fit(x_train, y_train)
-# train으로 학습하는 것
+# train용 데이터로 학습하는 것
 
 # 분류(Classification)결과를 예측
 y_pred = model.predict(x_test) # x_test로 예측
-print('예측값 : ', y_pred)
-print("실제값 : ", y_test)
+print('예측값 : ', y_pred) # x_test로 본 예측값(predict함수사용)
+print("실제값 : ", y_test) # x_test데이터에 대한 실제값
 
 
 

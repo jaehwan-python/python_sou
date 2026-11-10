@@ -22,21 +22,24 @@ print(x[:3])
 print(y[:3])
 
 # Decision Tree는 크게 2가지 계수를 가진다.
-# GINI Impurity
-# Entropy Impurity
+# - GINI Impurity
+# - Entropy Impurity
 
 # 지니 불순도(GINI)를 기준으로, 최대 깊이 3으로 제한하는 분류모델을 생성
-# GINI Impurity는 하나의 노드에 서로 다른 클래스가 얼마나 섞여 있는지를 나타낸다.
+# GINI Impurity는 하나의 노드에 서로 다른 클래스(0과1)가 얼마나 섞여 있는지를 나타낸다.
 # ex) class 0 (100%)  class 1 (0%) : 완전순서
 #     class 0 (50%)   class 1(50%) : 불순도 가장 높음
 model = DecisionTreeClassifier(criterion='gini', max_depth=3) # tree 최대 길이
 # 깊이가 너무 크면 학습 데이터에 과적합될 수 있고, 너무 작으면 과소적합될 수 있다.
 
 model.fit(x,y)
+# x를 통해서 y를 맞히는 분류 규칙을 학습
 print('Train Accuracy : ', model.score(x, y))
-# 결과 ; 1.0
+# 결과 : 1.0 = 100%로 다 맞춤
+# 학습한 규칙으로 x의 정답을 얼마나 잘 맞추었는지 나타냄 
 
-
+# DecisionTree는 해당 노드에서 질문에 따라 두 그룹을 계속 나누다. 그래서 최종 결과가 이분법적 분류로
+# 0과 1로 분류하게 만드는 것이다.
 # 시각화
 plt.figure(figsize = (10, 6))
 plot_tree(model, feature_names=['x1', 'x2'], class_names = ['0','1'], filled=True) 

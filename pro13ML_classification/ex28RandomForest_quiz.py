@@ -3,7 +3,7 @@
 # 중요도, 교차검증까지 해보기
 
 # input variables (based on physicochemical tests):
-#  1 - fixed acidity = 독립변수들
+#  1 - fixed acidity                      = 독립변수들
 #  2 - volatile acidity
 #  3 - citric acid
 #  4 - residual sugar
@@ -14,8 +14,9 @@
 #  9 - pH
 #  10 - sulphates
 #  11 - alcohol
+
 #  Output variable (based on sensory data):
-#  12 - quality (score between 0 and 10) = 종속변수
+#  12 - quality (score between 0 and 10)  = 종속변수
 # --------------------------------------------------------------------------------------
 # [1단계] 라이브러리 불러오기
 import numpy as np
