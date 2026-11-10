@@ -1,7 +1,7 @@
 # Regression   ->   classification   ->   clustering 
 # 지난 시간까지 '선형회귀분석'과 '비선형회귀분석'을 배웠다.
 # Regression(회귀)는 정량적이라서 우리가 회귀선으로 값을 예측할 수 있었지만
-# 이번에 배울 classification은 정성적인 값으로 우리가 회귀선을 통해서 값을 분류할 것이다.
+# 이번에 배울 classification은 '정성적'인 값으로 우리가 회귀선을 통해서 값을 분류할 것이다.
 
 # classification의 종류에는
 # - Logistic Regression 
@@ -9,17 +9,23 @@
 # - Random Forest
 # - SVM
 # - K-MM
-# 이 존재한다. 우리는 이 중 Logistic Regression을 중점적으로 배운다. 
+# 이 존재한다. 우리는 이 중 'Logistic Regression'을 중점적으로 배운다. 
 # 왜냐하면 Logistic Regression  ->  ANN  ->  MLP  ->  Deep Learning  ->  생성형 Model(LLM)
-# 이 되어서 중요하기 때문이다. 그리고 유일하게 Logistic Regression언 Classification 중에서 y = wx + b를 이용하여
+# 로 연결이되어서 중요하기 때문이다. 그리고 유일하게 Logistic Regression는 Classification중에서 'y = wx + b(회귀선)'을 이용하여
 # 추세선을 그려 데이터를 분류한다.
 
 # y = wx + b
 # 이 추세선에서 기울기(w)는 입력데이터 갯수만큼 생긴다.
 
-# Linear Regression은 독립변수 : 연속형, 종속변수 : 연속형이었다.
-# Logistic Regression은 독립변수 : 연속형, 종속변수 : 범주형(확률값)이다. 
+# Linear Regression은 
+# 독립변수 : 연속형
+# 종속변수 : 연속형이었다.
+
+# Logistic Regression은 
+# 독립변수 : 연속형
+# 종속변수 : "범주형"(확률값)이다. 
 # 그래서 wx+b를 logit변환하여 sigmoid를 태워주어 특정 값을 도출한다.
+# y=wx+B  ->  odds ratio  ->  log  ->  sigmoid(이항분류)  ->  classify
 
 # 그래서 우리는 Logistic Regression의 방법에 대해서 학습한다.
 # 그 알고리즘을 파악한다.
@@ -28,11 +34,11 @@
 
 # 과정
 # Logistic Regression : 오즈비에 log함수를 적용한 것으로 로짓을 대상으로 회귀분석을 한 것
-# [1단계] : 독립변수에 학습된 가중치와 절편을 적용하여 z = wx + b를 계산한다.
+# [1단계] : 독립변수에 학습된 가중치(intercept)와 절편(bias)을 적용하여 'z = wx + b'를 계산한다.
 # [2단계] : 'wx + b'를 승산비(odds ration)로 감싼다.
 # [3단계] : 그리고 승산비로 감싼 값을 로그(log)변환해준다.
-# [4단계] : 이 값은 확률 자체가 아니라 로그 오즈(logit)값으로 -무한대 ~ +무한대까지의 '실수' 범위르 가진다.
-# [5단계] : 이후 sigmoid 함수를 적용하여 0~1사이의 '확률'을 구하고, 0.5를 기준으로 클래스를 분류한다.
+# [4단계] : 이 값은 확률 자체가 아니라 로그 오즈(logit)값으로 "-무한대 ~ +무한대"까지의 '실수' 범위를 가진다.
+# [5단계] : 이후 sigmoid 함수를 적용하여 '0~1'사이의 '확률'을 구하고, '0.5'를 기준으로 클래스(label의 범위에 따른 값 : 0.5이상이면 '1', 이하면 '0')를 분류한다.
 # [6단계] : 그래프로 시각화를 하게 되면 sigmoid함수에 의해 여러 개의 s자 선이 나타난다. 그 중에서 어떤 s선을 사용할지 판단하기 위해서 가능성(우도)를 사용한다.
 #           - **모델의 학습과 통계적 적합도 평가 : 가능성(우도)
 #           - **분류 성능 평가 : Acccuracy, Precision, Recall, F1-score, ROC-AUC
@@ -48,11 +54,11 @@
 # sigmoid function 적용 연습
 # LogisticRegression 모델은 wx+b를 logit 변환한 값에 sigmoid function처리한 값을 사용한다.
 
-# Linear Regression에서는 독립변수도 연속형, 종속변수도 연속형이라서 wx+b를 수치값으로 받았다(정성적)
-# 하지만 Logistic Regression은 독립변수는 연속형, 종속변수는 범주형이다.(정량적) 그래서 수치값이 아닌 확률값을 받게 된다.
+# Linear Regression에서는 독립변수도 '연속형', 종속변수도 '연속형'이라서 wx+b를 수치값으로 받았다(정성적)
+# 하지만 Logistic Regression은 독립변수는 '연속형', 종속변수는 '범주형'이다.(정량적) 그래서 수치값이 아닌 "확률값"을 받게 된다.
 # wx+b를 연속형으로 반환한다. 하지만 우리는 정량적으로 반환해야한다.
 # 그래서 승산비(odds ration)로 감싸서 로그(log)를 씌운다. 그러면 '-무한대'에서 '+무한대'의 범위를 가진다. = 로짓변환
-# 그다음 **sigmoid함수**를 통과시킨다. 그러면 0~1사이의 실수값이 된다. 0.5를 기준으로 크면 1, 작으면 0으로 값을 내놓았다.
+# 그 다음 **sigmoid함수**를 통과시킨다. 그러면 '0~1'사이의 실수값이 된다. 0.5를 기준으로 크면 1, 작으면 0으로 값을 내놓았다.
 # 그렇게 1과 0으로 데이터를 classification한다.
 
 # log(p / 1 - p) = wx + b라고 정의된다.
@@ -112,6 +118,7 @@ print("p : ", p)
 #    9.99441555e-01 9.99697171e-01 9.99835804e-01 9.99910977e-01
 #    9.99951736e-01 9.99973834e-01 9.99985814e-01 9.99992309e-01
 #    9.99995831e-01 9.99997740e-01]
+# 모두 0~1사이의 숫자들이다.
 
 # 시각화
 plt.figure(figsize=(8,5))

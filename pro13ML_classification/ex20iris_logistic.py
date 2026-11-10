@@ -1,13 +1,17 @@
 # LogisticRegression - 다항분류(softmax함수 사용) - iris dataset으로 실습 ... 이항분류가 기본이지만 다항분류도 해보자
 # iris데이터는 0,1,2로 다항 함수 처리의 예시로 사용하기 좋다.
-# 2개(이항분류)로 분류 할때는      ->  "sigmoid"
-# 3개 이상(다항분류)을 분류할 때는 ->  "softmax"
+# - 2개(이항분류)로 분류 할때는      ->  "sigmoid"
+# - 3개 이상(다항분류)을 분류할 때는 ->  "softmax"
 # 를 사용한다.
+# iris data는 다항분류를 하기에 좋은 예시이다.
 
 # softmax함수 : 인공지능의 다중 클래스 분류(Multi-claa-Classification)문제에서 출력층에 주로 사용된다.
 #              인공신경망에서 확률값을 얻기 위해 마지막 층에 사용되는 함수.
 #              확률값이 가장 높은 녀석을 찾는다.
 
+
+# [1단계] : 데이터 불러오기 및 변수 설정
+# 1. 데이터 불러오기
 import numpy as np
 import pandas as pd
 
@@ -43,8 +47,13 @@ print(iris.data[:3])
 #  [4.9 3.  1.4 0.2]
 #  [4.7 3.2 1.3 0.2]]
 
+# iris.data[0]    # 첫 번째 꽃의 측정값: [5.1, 3.5, 1.4, 0.2]
+# iris.target[0]  # 첫 번째 꽃의 정답: 0 → setosa
+
 print(np.corrcoef(iris.data[:2], iris.data[:3])[0, 1])
-# 결과 : 
+# 결과 : 0.9959986612402603
+# 해석 : 매우 강한 상관관계가 있다.
+# 첫번째 꽃과 두번째 꽃 사이의 상관계수
 
 x = iris.data[:, [2, 3]]  # 꽃잎 length, width
 y = iris.target
@@ -53,6 +62,11 @@ print(x.shape, y.shape)
 print(x[:3], y[:3], set(map(int, y)))
 # {0, 1, 2}
 
+# 2. 과적합 방지 : train / test split()
+# - train / test split
+# - KFold
+# - GridSearchCV
+# - L1, L2규제 .. # C가 작을수록 규제가 강함, C가 클수록 규제가 약함 ( 모델의 복잡도를 제한하여 과적합을 줄임)
 print('\n train / test split (7:3)')
 
 # train / test split : 이미 확보한 데이터 전체를 무작위로 나눠서 train용과 test용으로 구분하는 것. 새로운 데이터를 만들어내는 건 아니다.
@@ -87,7 +101,7 @@ print()
 # : 최적화 과정에서 안정성, 수렴속도 향상, 과적합/과소적합 방지 등의 효과가 있다. = 변수들의 값 크기를 일정한 기준으로 맞춰 최적화의 안정성과 수렴 속도를 높인다.
 
 '''
-# 표준화 :
+# 3. 표준화 :
 print("표준화")
 sc = StandardScaler()
 sc.fit(x_train)
@@ -107,7 +121,8 @@ print()
 '''
 
 
-# 분류 모델 생성
+# [2단계] : 모델 생성 및 학습
+# 1. 모델 생성
 model = LogisticRegression(random_state=0)
 model = LogisticRegression(
                     C=1,                         # model에 패널티를 적용(L2 규제), 숫자값을 조정해 가며 정확도를 확인 = 모델의 강도를 조절하는 것이다. -> 숫자가 클수록 강도가 약해진다. = 규제가 약해진다.
@@ -118,17 +133,18 @@ model = LogisticRegression(
                     )
 print(model)
 
+# 2. 모델 학습(train용 데이터로 학습과 그에 대한 예측값을 fit에 적어줌)
 model.fit(x_train, y_train)
 # train용 데이터로 학습하는 것
 
-# 분류(Classification)결과를 예측
+
+# [3단계] : 모델 예측 및 평가
+# 1. 분류(Classification)결과를 예측
 y_pred = model.predict(x_test) # x_test로 예측
 print('예측값 : ', y_pred) # x_test로 본 예측값(predict함수사용)
 print("실제값 : ", y_test) # x_test데이터에 대한 실제값
 
-
-
-# 모델 성능 확인
+# 2. 모델 성능 확인(평가)
 print(f"총 갯수 : {len(y_test)}, 오류수 : {(y_test != y_pred).sum()}")
 # 총 갯수 : 45개
 # 오류 : 1개
@@ -148,10 +164,10 @@ print("분류정확도 : \n", np.trace(conf_mat) / np.sum(conf_mat)) # 이렇게
 print(f"train score : {model.score(x_train, y_train)}") # 0.9714285
 print(f"test score : {model.score(x_test, y_test)}")    # 0.97777
 # train score와 test score의 차이가 크면 과적합을 의심해보아야 한다.
+# -----------------------------------------------------------------------------
 
 
-
-# 모델이 학습이 끝난 후 검증이 끝난 모델을 저장한 후 일기
+# 모델이 학습이 끝난 후 검증이 끝난 모델을 저장한 후 읽기
 import joblib
 
 # 1. 모델 저장
@@ -239,6 +255,7 @@ x_combined_std = np.vstack((x_train, x_test))
 y_combined = np.hstack((y_train, y_test))
 plot_decision_regionFunc(X=x_combined_std, y=y_combined, classifier=read_model, test_idx=range(105, 150), title='scikit-learn제공') 
 
+# ------------------------------------------------------------------------------------------------------------------------------
 
 # Logistic Regression : 오즈비에 log함수를 적용한 것으로 로짓을 대상으로 회귀분석을 한 것
 # [1단계] : 독립변수에 학습된 가중치와 절편을 적용하여 z = wx + b를 계산한다.
@@ -249,9 +266,15 @@ plot_decision_regionFunc(X=x_combined_std, y=y_combined, classifier=read_model, 
 # [6단계] : 그래프로 시각화를 하게 되면 sigmoid함수에 의해 여러 개의 s자 선이 나타난다. 그 중에서 어떤 s선을 사용할지 판단하기 위해서 가능성(우도)를 사용한다.
 #           - 모델의 학습과 통계적 적합도 평가 : 가능성(우도)
 #           - 분류 성능 평가 : Acccuracy, Precision, Recall, F1-score, ROC-AUC
-# 이제부터 분류성능 평가에 대해서 얘기해보자.
 
-# 분류 성능 평가에는 ... 분류성능평가지도
+# 이제부터 **분류성능 평가**에 대해서 얘기해보자.
+# 분류성능평가 방법  ->  - accuracy_score
+#                       - confusion_matrix : 정확도, 정밀도, 트깅도, 민감도, 성능점수를 TP, FP, TN, FN으로 계산하여 구할 수 있다.
+#                       - classification_report : 정확도, 정밀도, 트깅도, 민감도, 성능점수를 직접 표로 볼 수 있다.
+
+# 오차행렬표를 통해 비교한다.
+
+# 분류 성능 평가에는 ... 분류성능평가지도(classification_report)
 # - 정확도(Accuracy) : 전체 데이터에서 모델이 옳게 판단한 비율 
 #                    -> 수식 :  (TP + TN) / (TP + FN + FP + TN)
 # - 정밀도(Precision) : 양성 가운데 맞춘 양성의 수 
@@ -263,6 +286,7 @@ plot_decision_regionFunc(X=x_combined_std, y=y_combined, classifier=read_model, 
 # - 성능점수(F1 Score) : 정밀도와 민감도의 조화 평균
 #                    -> 수식: 2 * 정밀도 * 민감도 / (정밀도 + 민감도)
 # 이들은 모두 오차 행렬에 기반해서 만들어진다.
+
 # 오차행렬 표 해석 :
 #                                     <예측>
 #                         Positive             Negative
@@ -271,7 +295,6 @@ plot_decision_regionFunc(X=x_combined_std, y=y_combined, classifier=read_model, 
 # 정밀도와 민감도는 trade-off 관계이다.
 
 # ROC커브 y축의 1.0에 가까이 가면 더 가까이 갈수록 더 좋은 모델이다. = 죽 면적이 넓어야 좋은 모델이다.
-# 
 
 # 분류 성능 평가를 할때 오차행렬을 통해서 분류 정확도만 보는게 아니라 저 5가지 중 precision과 Recall까지 분석한다.
 # 그리고 나서 ROC커브를 생성한다.

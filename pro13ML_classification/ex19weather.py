@@ -10,14 +10,14 @@ import statsmodels.formula.api as smf
 data = pd.read_csv("https://raw.githubusercontent.com/jaehwan-python/pythonforktest/refs/heads/master/testdata_utf8/weather.csv")
 print(data.head(2), data.shape)
 # 결과 : 
-#          Date  MinTemp  MaxTemp  Rainfall  Sunshine  WindSpeed  Humidity  Pressure  Cloud  Temp RainToday RainTomorrow
-# 0  2016-11-01      8.0     24.3       0.0       6.3         20        29    1015.0      7  23.6        No          Yes
-# 1  2016-11-02     14.0     26.9       3.6       9.7         17        36    1008.4      3  25.7       Yes          Yes 
-# (366, 12)
+#            Date  MinTemp  MaxTemp  Rainfall  Sunshine  WindSpeed  Humidity  Pressure  Cloud  Temp RainToday RainTomorrow
+#   0  2016-11-01      8.0     24.3       0.0       6.3         20        29    1015.0      7  23.6        No          Yes
+#   1  2016-11-02     14.0     26.9       3.6       9.7         17        36    1008.4      3  25.7       Yes          Yes 
+#   (366, 12)
 # 366행, 12열의 값
 # ... RainTomorrow는 Yes라는 str값이다.
-# 우린 이를 숫자로 바꾸어 주어야 한다.
-
+# 우린 이를 숫자(0,1)로 바꾸어 주어야 한다.
+# 이진 분류를 하기 위해서..
 print(data.info())
 #  Column   Non-Null          Count        Dtype  
 #   ---      ------      --------------   -----  
@@ -32,7 +32,7 @@ print(data.info())
 #    8       Cloud        366 non-null     int64  
 #    9        Temp        366 non-null    float64
 #   10      RainToday     366 non-null      str    
-#   11     RainTomorrow   366 non-null      str
+#   11   "RainTomorrow"   366 non-null     "str"
 # 1 ~ 9행까지 독립변수로 쓴다.
 # 11행은 종속변수가 된다.
 # 나머지 0, 10행은 뺀다. -> 필요없기 때문
@@ -107,7 +107,7 @@ print(model.summary())   # 각 변수별 p-value  >  0.05인 경우 제거 후 �
 # WindSpeed     -0.021242
 # 모든 독립변수에 대해서 회귀계수(기울기)를 만나보았다.
 
-# LLR p-value :
+# "LLR p-value" :
 # ols표(LinearRegression)에서는 p-value가 회귀계수가 0인지 아닌지를 보았다면
 # Logistic Regression에서는 
 # 귀무가설 : "독립변수없이 절편만 사용하는 모델이다."" 
@@ -118,8 +118,10 @@ print(model.params)
 # 학습된 모델(logit)의 회귀계수를 보여준다.
 print()
 
-print("예측값 : ", np.rint(model.predict(test)[:5].values))
-print("실제값 : ", test['RainTomorrow'][:5].values)
+print("예측값 : ", np.rint(model.predict(test)[:5].values)) # 예측한 x에 대한 y값
+print("실제값 : ", test['RainTomorrow'][:5].values)         # 실제 x에 대한 y값
+# model이 실제 지도학습을 하는데도 틀리는 이유 : 
+# model은 답을 외우는 것이 아니라 pattern을 학습하는 것이기 때문이다.
 
 
 # 분류 정확도
