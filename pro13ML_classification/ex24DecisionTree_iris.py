@@ -8,6 +8,8 @@
 #              인공신경망에서 확률값을 얻기 위해 마지막 층에 사용되는 함수.
 #              확률값이 가장 높은 녀석을 찾는다.
 
+# [1단계] : 데이터 불러오기 및 변수 설정
+# 1. Lib불러오기
 import numpy as np
 import pandas as pd
 
@@ -44,17 +46,18 @@ print(iris.data[:3])
 #  [4.7 3.2 1.3 0.2]]
 
 print(np.corrcoef(iris.data[:2], iris.data[:3])[0, 1])
-# 결과 : 
+# 결과 : 0.977
 
+# 2. 변수 설정
 x = iris.data[:, [2, 3]]  # 꽃잎 length, width
-y = iris.target
+y = iris.target # 꽃 종류 : 0, 1, 2
 print(x.shape, y.shape)
 # (150, 2) (150,)
 print(x[:3], y[:3], set(map(int, y)))
 # {0, 1, 2}
 
+# 3. 과적합 문제 방지 : train / test split()
 print('\n train / test split (7:3)')
-
 # train / test split : 이미 확보한 데이터 전체를 무작위로 나눠서 train용과 test용으로 구분하는 것. 새로운 데이터를 만들어내는 건 아니다.
 # 모델이 처음 보는 데이터도 잘 예측하는지 확인하려고
 # 모델은 800개로만 학습하고, 남겨둔 200개로 평가
@@ -87,10 +90,11 @@ print()
 # : 최적화 과정에서 안정성, 수렴속도 향상, 과적합/과소적합 방지 등의 효과가 있다. = 변수들의 값 크기를 일정한 기준으로 맞춰 최적화의 안정성과 수렴 속도를 높인다.
 
 
-# <Overfitting 히결방법>
+# <Overfitting 해결방법>
 # 1. train / test split
 # 2. k fold 
-# 3. grid search
+# 3. GridSearchCV
+# 4. L1, L2규제
 
 '''
 # 표준화 :
@@ -113,22 +117,24 @@ print()
 '''
 
 
-# 분류 모델 생성
+# [2단계] : 모델 생성 및 학습
 from sklearn.tree import DecisionTreeClassifier
+# 1. 모델 생성
 model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 5, random_state =0 )
 print(model)
 
+# 2. 모델 학습-train용 데이터
 model.fit(x_train, y_train)
 # train으로 학습하는 것
 
+# [3단계] : 예측 및 평가
+# 1. 모델 예측
 # 분류(Classification)결과를 예측
 y_pred = model.predict(x_test) # x_test로 예측
 print('예측값 : ', y_pred)
 print("실제값 : ", y_test)
 
-
-
-# 모델 성능 확인
+# 2. 모델 성능 확인
 print(f"총 갯수 : {len(y_test)}, 오류수 : {(y_test != y_pred).sum()}")
 # 총 갯수 : 45개
 # 오류 : 1개
@@ -148,10 +154,9 @@ print("분류정확도 : \n", np.trace(conf_mat) / np.sum(conf_mat)) # 이렇게
 print(f"train score : {model.score(x_train, y_train)}") # 0.9714285
 print(f"test score : {model.score(x_test, y_test)}")    # 0.97777
 # train score와 test score의 차이가 크면 과적합을 의심해보아야 한다.
+# --------------------------------------------------------------------------------------------------------------------------
 
-
-
-# 모델이 학습이 끝난 후 검증이 끝난 모델을 저장한 후 일기
+# 모델이 학습이 끝난 후 검증이 끝난 모델을 저장한 후 읽기
 import joblib
 
 # 1. 모델 저장
