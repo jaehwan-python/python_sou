@@ -59,7 +59,7 @@ print(f"상관계수는 {df.corr()}")
 #           맥주 소비량 (litros)     0.574615     -0.193784        1.000000
 
 
-# 모든 모델에서 Overfitting이 발생할 수 있지만, 우리는 선형회귀에 대해서 배우고 있으니 선형회귀에서 Overfitting을 해결하는 4가지 방법을 보자.
+# 모든 모델에서 Overfitting이 발생할 수 있지만, 우리는 '선형회귀'에 대해서 배우고 있으니 선형회귀에서 Overfitting을 해결하는 4가지 방법을 보자.
 # - 1. 변수(feature)를 줄이기
 # - 2. 정규화(Regularization) 적용하기 -> L1, L2규제, ElasticNet ... 이 정규화는 선형회귀모델만 검사가 가능하다.
 # - 3. Train/Test split

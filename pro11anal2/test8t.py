@@ -1,8 +1,5 @@
 # 단일 모집단의 평균에 대한 가설검정(One Sample t-test)
 
-# 실습예제2)
-# A중학교 1학년 1반 학생들의 시험결과가 담긴 파일을 읽어 처리(국어점수 평균 검정)
-
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
@@ -23,7 +20,7 @@ print(data.describe())
 print(data['국어'].mean())
 # 결과 : 72.9
 # **그때 평균인 80과 72.9가 차이가 있는거야 없는거야..?**
-# ... 이를 검정해주는 것이 one-sample t-test이다.
+# ... 이를 검정해주는 것이 one-sample t-test이다. =단일표본 t검정
 # 그때 정규성 검정을 만족하면 one-sample t-test이다.
 
 

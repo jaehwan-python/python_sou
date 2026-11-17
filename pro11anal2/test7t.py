@@ -35,7 +35,7 @@ print(np.array(one_sample).mean())
 # 결과 : 175.24
 # 결과가 175.24인 경우 177.0과 차이가 있는가?
 
-# 모수의 평균값이 177인 경우
+# 모수의 평균값이 "177"인 경우 -> 177을 특정기준값으로 정함
 result = stats.ttest_1samp(one_sample, popmean=177.0)
 #                         (    데이터,  모수의 평균값)
 print(result)
@@ -43,7 +43,7 @@ print(result)
 # 해석 : 유의수준0.05 < pvalue=0.5882740 ... 귀무가설 채택
 print()
 
-# 모수의 평균값이 160인 경우
+# 모수의 평균값이 "160"인 경우 -> 160을 특정기준값으로 정함
 result2 = stats.ttest_1samp(one_sample, popmean=160.0)
 # 모수의 평균값을 177.0에서 160.0으로 바꿈.
 print(result2)
