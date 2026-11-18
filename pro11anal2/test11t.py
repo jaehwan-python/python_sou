@@ -17,7 +17,7 @@ import seaborn as sns
 
 pd.set_option('display.max_columns', None)
 
-# 매출 데이터 읽기
+# 매출 데이터 읽기 
 sales_data = pd.read_csv("https://raw.githubusercontent.com/pykwon/python/refs/heads/master/testdata_utf8/tsales.csv", dtype={'YMD':'object'}) # int -> object로 변환해 읽기
 print(sales_data.head(2))
 print(sales_data.info())  # 328 *3
