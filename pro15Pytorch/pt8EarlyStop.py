@@ -59,8 +59,9 @@ datas.drop(
     axis='columns', inplace=True
 )
 print(datas.head(1))
-#     mpg  horsepower  weight
-# 0  18.0       130.0    3504
+# 결과: 
+#       mpg  horsepower  weight
+#   0  18.0       130.0    3504
 
 # 5. Overfitting 해결  ->  train / test split : 샘플링으로 처리 : train데이터를 70%로 정의함 
 train_dataset = datas.sample(frac=0.7, random_state=123)
@@ -148,7 +149,7 @@ print(len(train_loader), len(vali_loader), len(test_loader))
 
 
 # [2단계] : 모델 생성 및 학습 
-# 1. 모델의 구조와 계산방법 정의(layer정의)
+# 1. 모델의 구조와 계산방법 정의(layer정의) -> Sequential vs class모듈
 class MpgModel(nn.Module):
     def __init__(self):
         super().__init__()
