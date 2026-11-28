@@ -81,9 +81,9 @@ print('test용 데이터 : ', x_test_scaled.shape, y_test.shape)
 # validation용 데이터 :  (910, 12) (910,)
 # test용 데이터       :  (1950, 12) (1950,)
 
-# wineDataFrame(100%) : 6497개 - train(70%) : 4547개 - train(80%)      : 3637개
-#                                                    - validation(20%) : 910개 
-#                              - test(30&) : 1950개
+# wineDataFrame(100%) : 6497개 - train(70%) : 4547개 - train(80%)       :  3637개
+#                                                    - validation(20%)  :   910개 
+#                              - test(30%)  : 1950개
 print()
 
 # 7. nd.array(2차원)  ->  torch.tensor(2차원)
